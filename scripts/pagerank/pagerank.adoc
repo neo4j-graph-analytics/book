@@ -39,7 +39,7 @@ MERGE (source)-[:FOLLOWS]->(destination)
 // end::neo4j-import-relationships[]
 
 // tag::neo4j-execute[]
-CALL algo.pageRank.stream('Page', 'LINKS', {iterations:20, dampingFactor:0.85})
+CALL algo.pageRank.stream('User', 'FOLLOWS', {iterations:20, dampingFactor:0.85})
 YIELD nodeId, score
 MATCH (node) WHERE id(node) = nodeId
 RETURN node.id AS page, score
@@ -47,14 +47,17 @@ ORDER BY score DESC
 // end::neo4j-execute[]
 
 // tag::neo4j-results[]
-+--------------------------------+
-| page      | score              |
-+--------------------------------+
-| "Doug"    | 1.6704119999999998 |
-| "Mark"    | 1.5610085          |
-| "Alice"   | 1.1106700000000003 |
-| "Bridget" | 0.535373           |
-| "Michael" | 0.535373           |
-| "Charles" | 0.3844895          |
-+--------------------------------+
++---------------------------------+
+| page      | score               |
++---------------------------------+
+| "Doug"    | 1.6704119999999998  |
+| "Mark"    | 1.5610085           |
+| "Alice"   | 1.1106700000000003  |
+| "Bridget" | 0.535373            |
+| "Michael" | 0.535373            |
+| "Amy"     | 0.385875            |
+| "Charles" | 0.3844895           |
+| "David"   | 0.2775              |
+| "James"   | 0.15000000000000002 |
++---------------------------------+
 // end::neo4j-results[]

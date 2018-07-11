@@ -3,21 +3,28 @@
 |     id|degree|inDegree|outDegree|
 +-------+------+--------+---------+
 |   Doug|     6|       5|        1|
+|  Alice|     7|       3|        4|
 |Michael|     5|       2|        3|
-|  Alice|     6|       2|        4|
 |Bridget|     5|       2|        3|
-|   Mark|     2|       1|        1|
 |Charles|     2|       1|        1|
+|   Mark|     3|       1|        2|
+|  David|     2|       1|        1|
+|    Amy|     1|       1|        0|
+|  James|     1|       0|        1|
 +-------+------+--------+---------+
 // end::pyspark-results[]
 
 // tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-nodes.csv" AS row
+WITH "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-nodes.csv"
+AS uri
+LOAD CSV WITH HEADERS FROM uri AS row
 MERGE (:User {id: row.id})
 // end::neo4j-import-nodes[]
 
 // tag::neo4j-import-relationships[]
-LOAD CSV WITH HEAD pERS FROM "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-relationships.csv" AS row
+WITH "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-relationships.csv"
+AS uri
+LOAD CSV WITH HEADERS FROM uri AS row
 MATCH (source:User {id: row.src})
 MATCH (destination:User {id: row.dst})
 MERGE (source)-[:FOLLOWS]->(destination)

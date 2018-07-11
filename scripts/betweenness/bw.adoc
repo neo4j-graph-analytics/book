@@ -13,9 +13,12 @@ ORDER BY centrality DESC
 | "Alice"   | 10.0       |
 | "Doug"    | 7.0        |
 | "Mark"    | 7.0        |
+| "David"   | 1.0        |
 | "Bridget" | 0.0        |
 | "Charles" | 0.0        |
 | "Michael" | 0.0        |
+| "Amy"     | 0.0        |
+| "James"   | 0.0        |
 +------------------------+
 // end::neo4j-results[]
 
@@ -29,14 +32,17 @@ ORDER BY centrality DESC
 // end::neo4j-execute-approx[]
 
 // tag::neo4j-results-approx[]
-+-------+----------+
-|   user|centrality|
-+-------+----------+
-|  Alice|       3.0|
-|Charles|       1.0|
-|Bridget|       0.0|
-|   Doug|       0.0|
-|   Mark|       0.0|
-|Michael|       0.0|
-+-------+----------+
++------------------------+
+| user      | centrality |
++------------------------+
+| "Alice"   | 5.0        |
+| "Doug"    | 4.0        |
+| "Mark"    | 1.0        |
+| "David"   | 1.0        |
+| "Bridget" | 0.0        |
+| "Charles" | 0.0        |
+| "Michael" | 0.0        |
+| "Amy"     | 0.0        |
+| "James"   | 0.0        |
++------------------------+
 // end::neo4j-results-approx[]
