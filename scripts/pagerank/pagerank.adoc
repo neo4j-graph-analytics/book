@@ -23,12 +23,16 @@
 // end::pyspark-personalized-pagerank-results[]
 
 // tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/oreilly-graph-algorithms-book/raw/master/data/social-nodes.csv" AS row
+WITH "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-nodes.csv"
+AS uri
+LOAD CSV WITH HEADERS FROM uri AS row
 MERGE (:User {id: row.id})
 // end::neo4j-import-nodes[]
 
 // tag::neo4j-import-relationships[]
-LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/oreilly-graph-algorithms-book/raw/master/data/social-relationships.csv" AS row
+WITH "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-relationships.csv"
+AS uri
+LOAD CSV WITH HEADERS FROM uri AS row
 MATCH (source:User {id: row.src})
 MATCH (destination:User {id: row.dst})
 MERGE (source)-[:FOLLOWS]->(destination)

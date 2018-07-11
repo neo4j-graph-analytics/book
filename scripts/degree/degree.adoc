@@ -12,12 +12,12 @@
 // end::pyspark-results[]
 
 // tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "file:///social-nodes.csv" AS row
+LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-nodes.csv" AS row
 MERGE (:User {id: row.id})
 // end::neo4j-import-nodes[]
 
 // tag::neo4j-import-relationships[]
-LOAD CSV WITH HEAD pERS FROM "file:///social-relationships.csv" AS row
+LOAD CSV WITH HEAD pERS FROM "https://github.com/neo4j-graph-analytics/book/raw/master/data/social-relationships.csv" AS row
 MATCH (source:User {id: row.src})
 MATCH (destination:User {id: row.dst})
 MERGE (source)-[:FOLLOWS]->(destination)
