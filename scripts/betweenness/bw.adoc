@@ -1,0 +1,54 @@
+// tag::neo4j-import-nodes[]
+LOAD CSV WITH HEADERS FROM "file:///org-nodes.csv" AS row
+MERGE (:User {id:row.id})
+// end::neo4j-import-nodes[]
+
+// tag::neo4j-import-relationships[]
+LOAD CSV WITH HEADERS FROM "file:///org-relationships.csv" AS row
+MATCH (source:User {id: row.src})
+MATCH (destination:User {id: row.dst})
+MERGE (source)-[:MANAGES]->(destination)
+// end::neo4j-import-relationships[]
+
+// tag::neo4j-execute[]
+CALL algo.betweenness.stream("User", "MANAGES")
+YIELD nodeId, centrality
+MATCH (user:User) WHERE id(user) = nodeId
+RETURN user.id AS user,centrality
+ORDER BY centrality DESC
+// end::neo4j-execute[]
+
+// tag::neo4j-results[]
++-------+----------+
+|   user|centrality|
++-------+----------+
+|  Alice|       4.0|
+|Charles|       2.0|
+|Bridget|       0.0|
+|   Doug|       0.0|
+|   Mark|       0.0|
+|Michael|       0.0|
++-------+----------+
+// end::neo4j-results[]
+
+// tag::neo4j-execute-approx[]
+CALL algo.betweenness.sampled.stream("User", "MANAGES",
+ {strategy:"random", probability:1.0, maxDepth:1})
+YIELD nodeId, centrality
+MATCH (user) WHERE id(user) = nodeId
+RETURN user.id AS user,centrality
+ORDER BY centrality DESC
+// end::neo4j-execute-approx[]
+
+// tag::neo4j-results-approx[]
++-------+----------+
+|   user|centrality|
++-------+----------+
+|  Alice|       3.0|
+|Charles|       1.0|
+|Bridget|       0.0|
+|   Doug|       0.0|
+|   Mark|       0.0|
+|Michael|       0.0|
++-------+----------+
+// end::neo4j-results-approx[]

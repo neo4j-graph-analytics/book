@@ -1,0 +1,34 @@
+// tag::pyspark-results[]
++-------+-------------+
+|     id|        label|
++-------+-------------+
+|   Doug| 171798691840|
+|Michael| 609885356032|
+|   Mark| 841813590016|
+|Charles| 841813590016|
+|Bridget|1065151889408|
+|  Alice|1065151889408|
++-------+-------------+
+// end::pyspark-results[]
+
+// tag::neo4j-import-nodes[]
+LOAD CSV WITH HEADERS FROM "file:///social-nodes.csv" AS row
+MERGE (:User {id: row.id})
+// end::neo4j-import-nodes[]
+
+// tag::neo4j-import-relationships[]
+LOAD CSV WITH HEADERS FROM "file:///social-relationships.csv" AS row
+MATCH (source:User {id: row.src})
+MATCH (destination:User {id: row.dst})
+MERGE (source)-[:FOLLOWS]->(destination)
+// end::neo4j-import-relationships[]
+
+
+// tag::neo4j-execute[]
+CALL algo.labelPropagation.stream("User", "FOLLOWS",
+ {direction: "OUTGOING", iterations: 10})
+YIELD nodeId, label
+MATCH (n) WHERE id(n) = nodeId
+RETURN n.id AS id, label
+ORDER BY label
+// end::neo4j-execute[]

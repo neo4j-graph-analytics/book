@@ -1,0 +1,67 @@
+// tag::pyspark-results[]
++---+------------------------------------------------+
+|id |distances                                       |
++---+------------------------------------------------+
+|A  |[E -> 2, F -> 2, A -> 0, B -> 1, C -> 1, D -> 1]|
+|B  |[B -> 0, D -> 1, F -> 2, E -> 2]                |
+|C  |[C -> 0, E -> 1, D -> 1, F -> 2]                |
+|D  |[D -> 0, F -> 1, E -> 1]                        |
+|E  |[E -> 0, F -> 1]                                |
+|F  |[F -> 0]                                        |
++---+------------------------------------------------+
+// end::pyspark-results[]
+
+// tag::neo4j-execute-unweighted[]
+CALL algo.allShortestPaths.stream(null, {nodeQuery:"Loc", defaultValue:1.0})
+YIELD sourceNodeId, targetNodeId, distance
+
+WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
+MATCH (source:Loc) WHERE id(source) = sourceNodeId
+MATCH (target:Loc) WHERE id(target) = targetNodeId
+
+WITH source.id AS source, target.id AS target, distance
+ORDER BY source, target
+RETURN source, apoc.map.fromPairs(collect([target, distance])) AS others
+ORDER BY source
+LIMIT 10
+// end::neo4j-execute-unweighted[]
+
+// tag::neo4j-results-unweighted[]
++------+-----------------------------------------+
+|source|                                   others|
++------+-----------------------------------------+
+|     A|{"B":1.0,"C":1.0,"D":1.0,"E":2.0,"F":2.0}|
+|     B|                {"D":1.0,"E":2.0,"F":2.0}|
+|     C|                {"D":1.0,"E":1.0,"F":2.0}|
+|     D|                        {"E":1.0,"F":1.0}|
+|     E|                                {"F":1.0}|
++------+-----------------------------------------+
+// end::neo4j-results-unweighted[]
+
+// tag::neo4j-execute-weighted[]
+CALL algo.allShortestPaths.stream("cost", {nodeQuery:"Loc", defaultValue:1.0})
+YIELD sourceNodeId, targetNodeId, distance
+
+WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
+MATCH (source:Loc) WHERE id(source) = sourceNodeId
+MATCH (target:Loc) WHERE id(target) = targetNodeId
+
+WITH source.id AS source, target.id AS target, distance
+ORDER BY source, target
+RETURN source, apoc.map.fromPairs(collect([target, distance])) AS others
+ORDER BY source
+LIMIT 10
+// end::neo4j-execute-weighted[]
+
+// tag::neo4j-results-weighted[]
++------+--------------------------------------------------------+
+|source|                                                  others|
++------+--------------------------------------------------------+
+|     A|{"A":0.0,"B":50.0,"C":50.0,"D":90.0,"E":120.0,"F":160.0}|
+|     B|                   {"B":0.0,"D":40.0,"E":70.0,"F":110.0}|
+|     C|                   {"C":0.0,"D":40.0,"E":70.0,"F":110.0}|
+|     D|                             {"D":0.0,"E":30.0,"F":70.0}|
+|     E|                                      {"E":0.0,"F":40.0}|
+|     F|                                               {"F":0.0}|
++------+--------------------------------------------------------+
+// end::neo4j-results-weighted[]

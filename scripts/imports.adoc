@@ -1,0 +1,8 @@
+// tag::imports[]
+from graphframes import *
+from pyspark import SparkContext, SQLContext
+// end::imports[]
+
+// tag::sqlcontext[]
+sqlContext = SQLContext(sc)
+// end::sqlcontext[]

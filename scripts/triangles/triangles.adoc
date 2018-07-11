@@ -1,0 +1,48 @@
+// tag::pyspark-results[]
++-------+-----+
+|     id|count|
++-------+-----+
+|Michael|    3|
+|   Will|    2|
+|  Chris|    2|
+|   Mark|    1|
+|  Karin|    1|
+|  Alice|    0|
++-------+-----+
+// end::pyspark-results[]
+
+// tag::neo4j-import-nodes[]
+LOAD CSV WITH HEADERS FROM "file:///friends-nodes.csv" AS row
+MERGE (:Person {id: row.id})
+// end::neo4j-import-nodes[]
+
+// tag::neo4j-import-relationships[]
+LOAD CSV WITH HEADERS FROM "file:///friends-relationships.csv" AS row
+MATCH (source:Person {id: row.src})
+MATCH (destination:Person {id: row.dst})
+MERGE (source)-[:KNOWS]->(destination)
+// end::neo4j-import-relationships[]
+
+// tag::neo4j-execute[]
+CALL algo.triangleCount.stream('Person', 'KNOWS')
+YIELD nodeId, triangles, coefficient
+
+MATCH (p:Person) WHERE id(p) = nodeId
+
+RETURN p.id AS name, coefficient
+ORDER BY coefficient DESC
+// end::neo4j-execute[]
+
+// tag::neo4j-results[]
++-------+------------------+
+|   name|       coefficient|
++-------+------------------+
+|  Karin|               1.0|
+|   Mark|               1.0|
+|   Will|0.6666666666666666|
+|  Chris|0.3333333333333333|
+|Michael|               0.3|
+|  Alice|          	    0.0|
+|  David|          	    0.0|
++-------+------------------+
+// end::neo4j-results[]

@@ -1,0 +1,40 @@
+// tag::pyspark-results[]
++----+-----------------+---+----------------+---+
+|from|               e0| v1|              e1| to|
++----+-----------------+---+----------------+---+
+| [A]|[A, D, ROAD, 100]|[D]|[D, F, ROAD, 80]|[F]|
++----+-----------------+---+----------------+---+
+// end::pyspark-results[]
+
+
+// tag::neo4j-import-nodes[]
+LOAD CSV WITH HEADERS FROM "file:///sp-nodes.csv" AS row
+MERGE (:Loc {id:row.id})
+// end::neo4j-import-nodes[]
+
+// tag::neo4j-import-relationships[]
+LOAD CSV WITH HEADERS FROM "file:///sp-relationships.csv" AS row
+MATCH (source:Loc {id: row.src})
+MATCH (destination:Loc {id: row.dst})
+MERGE (source)-[:ROAD {cost: toInteger(row.cost)}]->(destination)
+// end::neo4j-import-relationships[]
+
+// tag::neo4j-execute[]
+MATCH (start:Loc {id:"A"}), (end:Loc {id:"F"})
+CALL algo.shortestPath.stream(start, end, "cost")
+YIELD nodeId, cost
+MATCH (other:Loc) WHERE id(other) = nodeId
+RETURN other.id AS location, cost
+// end::neo4j-execute[]
+
+// tag::neo4j-results[]
++--------+-----+
+|location| cost|
++--------+-----+
+|       A|  0.0|
+|       B| 50.0|
+|       D| 90.0|
+|       E|120.0|
+|       F|160.0|
++-------+------+
+// end::neo4j-results[]

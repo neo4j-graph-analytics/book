@@ -1,0 +1,11 @@
+
+// tag::pyspark-deps[]
+pip install pyspark
+pip install \
+  "git+https://github.com/munro/graphframes.git@release-0.5.0#egg=graphframes&subdirectory=python"
+// end::pyspark-deps[]
+
+// tag::pyspark-repl[]
+./spark-2.3.1-bin-hadoop2.7/bin/pyspark \
+  --packages graphframes:graphframes:0.5.0-spark2.1-s_2.11
+// end::pyspark-repl[]

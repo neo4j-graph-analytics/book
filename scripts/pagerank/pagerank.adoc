@@ -1,0 +1,56 @@
+// tag::pyspark-pagerank-results[]
++-------+-------------------+
+|     id|           pagerank|
++-------+-------------------+
+|   Doug| 1.7310039394083756|
+|   Mark| 1.6219227215746999|
+|  Alice| 1.1509537856263334|
+|Bridget| 0.5507046045426175|
+|Michael| 0.5507046045426175|
+|Charles|0.39471034430535634|
++-------+-------------------+
+// end::pyspark-pagerank-results[]
+
+// tag::pyspark-personalized-pagerank-results[]
++-------+--------------------+
+|     id|            pagerank|
++-------+--------------------+
+|  Alice|  0.1650183746272782|
+|Michael|0.048842467744891996|
+|Bridget|0.048842467744891996|
+|Charles| 0.03497796119878669|
++-------+--------------------+
+// end::pyspark-personalized-pagerank-results[]
+
+// tag::neo4j-import-nodes[]
+LOAD CSV WITH HEADERS FROM "file:///social-nodes.csv" AS row
+MERGE (:User {id: row.id})
+// end::neo4j-import-nodes[]
+
+// tag::neo4j-import-relationships[]
+LOAD CSV WITH HEADERS FROM "file:///social-relationships.csv" AS row
+MATCH (source:User {id: row.src})
+MATCH (destination:User {id: row.dst})
+MERGE (source)-[:FOLLOWS]->(destination)
+// end::neo4j-import-relationships[]
+
+// tag::neo4j-execute[]
+CALL algo.pageRank.stream('Page', 'LINKS', {iterations:20, dampingFactor:0.85})
+YIELD nodeId, score
+MATCH (node) WHERE id(node) = nodeId
+RETURN node.id AS page, score
+ORDER BY score DESC
+// end::neo4j-execute[]
+
+// tag::neo4j-results[]
++--------------------------------+
+| page      | score              |
++--------------------------------+
+| "Doug"    | 1.6704119999999998 |
+| "Mark"    | 1.5610085          |
+| "Alice"   | 1.1106700000000003 |
+| "Bridget" | 0.535373           |
+| "Michael" | 0.535373           |
+| "Charles" | 0.3844895          |
++--------------------------------+
+// end::neo4j-results[]
