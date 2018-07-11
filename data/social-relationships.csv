@@ -14,3 +14,4 @@ src,dst,relationship
 "Alice","Doug","FOLLOWS"
 "Mark","Alice","FOLLOWS"
 "David","Amy","FOLLOWS"
+"James","David","FOLLOWS"
