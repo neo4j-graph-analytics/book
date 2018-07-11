@@ -1,0 +1,10 @@
+src,dst,relationship,cost
+"A","B","ROAD",50
+"A","C","ROAD",50
+"A","D","ROAD",100
+"B","D","ROAD",40
+"C","D","ROAD",40
+"C","E","ROAD",80
+"D","E","ROAD",30
+"D","F","ROAD",80
+"E","F","ROAD",40
