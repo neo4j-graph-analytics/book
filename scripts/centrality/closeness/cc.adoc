@@ -14,6 +14,22 @@
 +--------------------------------+
 // end::neo4j-results[]
 
+// tag::neo4j-results-wasserman-faust[]
++---------------------------------+
+| user      | centrality          |
++---------------------------------+
+| "Alice"   | 0.5                 |
+| "Doug"    | 0.5                 |
+| "Bridget" | 0.35714285714285715 |
+| "Michael" | 0.35714285714285715 |
+| "Charles" | 0.3125              |
+| "Mark"    | 0.3125              |
+| "David"   | 0.125               |
+| "Amy"     | 0.08333333333333333 |
+| "James"   | 0.08333333333333333 |
++---------------------------------+
+// end::neo4j-results-wasserman-faust[]
+
 // tag::neo4j-results-harmonic[]
 +------------------------+
 | user      | centrality |
