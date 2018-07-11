@@ -1,11 +1,3 @@
-// tag::neo4j-execute[]
-CALL algo.closeness.stream("User", "FOLLOWS")
-YIELD nodeId, centrality
-MATCH (n) WHERE id(n) = nodeId
-RETURN n.id AS user, centrality
-ORDER BY centrality DESC
-// end::neo4j-execute[]
-
 // tag::neo4j-results[]
 +--------------------------------+
 | user      | centrality         |
@@ -21,14 +13,6 @@ ORDER BY centrality DESC
 | "Mark"    | 0.625              |
 +--------------------------------+
 // end::neo4j-results[]
-
-// tag::neo4j-execute-harmonic[]
-CALL algo.closeness.harmonic.stream("User", "FOLLOWS")
-YIELD nodeId, centrality
-MATCH (n) WHERE id(n) = nodeId
-RETURN n.id AS user, centrality
-ORDER BY centrality DESC
-// end::neo4j-execute-harmonic[]
 
 // tag::neo4j-results-harmonic[]
 +------------------------+
