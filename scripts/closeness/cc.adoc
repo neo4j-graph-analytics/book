@@ -1,53 +1,41 @@
-// tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/oreilly-graph-algorithms-book/raw/master/data/links-nodes.csv" AS row
-MERGE (:Node {id:row.id})
-// end::neo4j-import-nodes[]
-
-// tag::neo4j-import-relationships[]
-LOAD CSV WITH HEADERS FROM "https://github.com/neo4j-graph-analytics/oreilly-graph-algorithms-book/raw/master/data/links-relationships.csv" AS row
-MATCH (source:Node {id: row.src})
-MATCH (destination:Node {id: row.dst})
-MERGE (source)-[:LINK]->(destination)
-// end::neo4j-import-relationships[]
-
 // tag::neo4j-execute[]
-CALL algo.closeness.stream("Node", "LINK")
+CALL algo.closeness.stream("User", "FOLLOWS")
 YIELD nodeId, centrality
-MATCH (n:Node) WHERE id(n) = nodeId
-RETURN n.id AS node, centrality
+MATCH (n) WHERE id(n) = nodeId
+RETURN n.id AS user, centrality
 ORDER BY centrality DESC
-LIMIT 20;
 // end::neo4j-execute[]
 
 // tag::neo4j-results[]
-+----+------------------+
-|node|        centrality|
-+----+------------------+
-|   C|0.6666666666666666|
-|   B|0.5714285714285714|
-|   D|0.5714285714285714|
-|   A|               0.4|
-|   E|               0.4|
-+----+------------------+
++--------------------------------+
+| user      | centrality         |
++--------------------------------+
+| "Alice"   | 1.0                |
+| "Doug"    | 1.0                |
+| "Bridget" | 0.7142857142857143 |
+| "Michael" | 0.7142857142857143 |
+| "Charles" | 0.625              |
+| "Mark"    | 0.625              |
++--------------------------------+
 // end::neo4j-results[]
 
 // tag::neo4j-execute-harmonic[]
-CALL algo.closeness.harmonic.stream("Node", "LINK")
+CALL algo.closeness.harmonic.stream("User", "FOLLOWS")
 YIELD nodeId, centrality
-MATCH (n:Node) WHERE id(n) = nodeId
-RETURN n.id AS node, centrality
+MATCH (n) WHERE id(n) = nodeId
+RETURN n.id AS user, centrality
 ORDER BY centrality DESC
-LIMIT 20;
 // end::neo4j-execute-harmonic[]
 
 // tag::neo4j-results-harmonic[]
-+----+------------------+
-|node|        centrality|
-+----+------------------+
-|   C|              0.75|
-|   B|0.7083333333333334|
-|   D|0.7083333333333334|
-|   A|0.5208333333333333|
-|   E|0.5208333333333333|
-+----+------------------+
++------------------------+
+| user      | centrality |
++------------------------+
+| "Alice"   | 1.0        |
+| "Doug"    | 1.0        |
+| "Bridget" | 0.8        |
+| "Michael" | 0.8        |
+| "Charles" | 0.7        |
+| "Mark"    | 0.7        |
++------------------------+
 // end::neo4j-results-harmonic[]
