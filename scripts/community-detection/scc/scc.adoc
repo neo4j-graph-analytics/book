@@ -1,0 +1,56 @@
+// tag::neo4j-results[]
++---------------------------------+
+| partition | libraries           |
++---------------------------------+
+| 17        | ["notebook"]        |
+| 8         | ["pyspark"]         |
+| 11        | ["spacy"]           |
+| 20        | ["ipython"]         |
+| 2         | ["six"]             |
+| 5         | ["python-dateutil"] |
+| 14        | ["jupyter"]         |
+| 13        | ["py4j"]            |
+| 4         | ["numpy"]           |
+| 16        | ["nbconvert"]       |
+| 7         | ["pytz"]            |
+| 1         | ["neotime"]         |
+| 10        | ["matplotlib"]      |
+| 19        | ["jupyter-client"]  |
+| 18        | ["ipykernel"]       |
+| 9         | ["nltk"]            |
+| 21        | ["jupyter-core"]    |
+| 3         | ["pandas"]          |
+| 12        | ["requests"]        |
+| 15        | ["jupyter-console"] |
+| 6         | ["scipy"]           |
+| 0         | ["neo4j-driver"]    |
++---------------------------------+
+// end::neo4j-results[]
+
+// tag::neo4j-circular-dependency-results[]
++------------------------------------------+
+| partition | libraries                    |
++------------------------------------------+
+| 8         | ["pyspark", "py4j", "Extra"] |
+| 17        | ["notebook"]                 |
+| 11        | ["spacy"]                    |
+| 20        | ["ipython"]                  |
+| 2         | ["six"]                      |
+| 5         | ["python-dateutil"]          |
+| 14        | ["jupyter"]                  |
+| 4         | ["numpy"]                    |
+| 16        | ["nbconvert"]                |
+| 7         | ["pytz"]                     |
+| 1         | ["neotime"]                  |
+| 10        | ["matplotlib"]               |
+| 19        | ["jupyter-client"]           |
+| 18        | ["ipykernel"]                |
+| 9         | ["nltk"]                     |
+| 21        | ["jupyter-core"]             |
+| 3         | ["pandas"]                   |
+| 12        | ["requests"]                 |
+| 15        | ["jupyter-console"]          |
+| 6         | ["scipy"]                    |
+| 0         | ["neo4j-driver"]             |
++------------------------------------------+
+// end::neo4j-circular-dependency-results[]

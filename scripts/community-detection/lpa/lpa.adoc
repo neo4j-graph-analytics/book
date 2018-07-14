@@ -1,34 +1,41 @@
 // tag::pyspark-results[]
-+-------+-------------+
-|     id|        label|
-+-------+-------------+
-|   Doug| 171798691840|
-|Michael| 609885356032|
-|   Mark| 841813590016|
-|Charles| 841813590016|
-|Bridget|1065151889408|
-|  Alice|1065151889408|
-+-------+-------------+
++-------------+-----------------------------------------------------------+
+|label        |collect_list(id)                                           |
++-------------+-----------------------------------------------------------+
+|223338299392 |[spacy, pandas, matplotlib, nltk, scipy, neotime]          |
+|283467841536 |[nbconvert, jupyter-client]                                |
+|498216206336 |[six, numpy, requests, pytz, python-dateutil, neo4j-driver]|
+|558345748480 |[notebook, jupyter-console, ipykernel]                     |
+|721554505728 |[ipython, jupyter]                                         |
+|936302870528 |[pyspark]                                                  |
+|1228360646656|[jupyter-core]                                             |
+|1279900254208|[py4j]                                                     |
++-------------+-----------------------------------------------------------+
 // end::pyspark-results[]
 
-// tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "file:///social-nodes.csv" AS row
-MERGE (:User {id: row.id})
-// end::neo4j-import-nodes[]
+// tag::neo4j-results[]
++---------------------------------------------------------------------------------------+
+| label | libraries                                                                     |
++---------------------------------------------------------------------------------------+
+| 21    | ["jupyter", "jupyter-console", "nbconvert", "jupyter-client", "jupyter-core"] |
+| 2     | ["six", "python-dateutil", "nltk", "matplotlib"]                              |
+| 4     | ["pandas", "numpy", "scipy", "spacy"]                                         |
+| 7     | ["neo4j-driver", "neotime", "pytz"]                                           |
+| 22    | ["pyspark", "Extra"]                                                          |
+| 17    | ["notebook"]                                                                  |
+| 20    | ["ipython"]                                                                   |
+| 13    | ["py4j"]                                                                      |
+| 18    | ["ipykernel"]                                                                 |
+| 12    | ["requests"]                                                                  |
++---------------------------------------------------------------------------------------+
+// end::neo4j-results[]
 
-// tag::neo4j-import-relationships[]
-LOAD CSV WITH HEADERS FROM "file:///social-relationships.csv" AS row
-MATCH (source:User {id: row.src})
-MATCH (destination:User {id: row.dst})
-MERGE (source)-[:FOLLOWS]->(destination)
-// end::neo4j-import-relationships[]
-
-
-// tag::neo4j-execute[]
-CALL algo.labelPropagation.stream("User", "FOLLOWS",
- {direction: "OUTGOING", iterations: 10})
-YIELD nodeId, label
-MATCH (n) WHERE id(n) = nodeId
-RETURN n.id AS id, label
-ORDER BY label
-// end::neo4j-execute[]
+// tag::neo4j-undirected-results[]
++----------------------------------------------------------------------------------------------------------------------------------------------+
+| label | libraries                                                                                                                            |
++----------------------------------------------------------------------------------------------------------------------------------------------+
+| 10    | ["neo4j-driver", "neotime", "six", "pandas", "numpy", "python-dateutil", "scipy", "pytz", "nltk", "matplotlib", "spacy", "requests"] |
+| 20    | ["jupyter", "jupyter-console", "nbconvert", "notebook", "ipykernel", "jupyter-client", "ipython", "jupyter-core"]                    |
+| 13    | ["pyspark", "py4j"]                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------+
+// end::neo4j-undirected-results[]
