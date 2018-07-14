@@ -21,10 +21,9 @@
 | 2     | ["six", "python-dateutil", "nltk", "matplotlib"]                              |
 | 4     | ["pandas", "numpy", "scipy", "spacy"]                                         |
 | 7     | ["neo4j-driver", "neotime", "pytz"]                                           |
-| 22    | ["pyspark", "Extra"]                                                          |
+| 13    | ["pyspark", "py4j"]                                                           |
 | 17    | ["notebook"]                                                                  |
 | 20    | ["ipython"]                                                                   |
-| 13    | ["py4j"]                                                                      |
 | 18    | ["ipykernel"]                                                                 |
 | 12    | ["requests"]                                                                  |
 +---------------------------------------------------------------------------------------+
