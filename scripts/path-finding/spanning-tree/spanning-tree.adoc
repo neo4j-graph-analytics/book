@@ -1,0 +1,15 @@
+// tag::neo4j-minst-results[]
++-------------------------------------------------+
+| source             | destination        | cost  |
++-------------------------------------------------+
+| "Amsterdam"        | "Den Haag"         | 59.0  |
+| "Den Haag"         | "Hoek van Holland" | 27.0  |
+| "Hoek van Holland" | "Felixstowe"       | 207.0 |
+| "Felixstowe"       | "Ipswich"          | 22.0  |
+| "Ipswich"          | "Colchester"       | 32.0  |
+| "Colchester"       | "London"           | 106.0 |
+| "London"           | "Doncaster"        | 277.0 |
+| "Doncaster"        | "Immingham"        | 74.0  |
+| "Amsterdam"        | "Utrecht"          | 46.0  |
++-------------------------------------------------+
+// end::neo4j-minst-results[]

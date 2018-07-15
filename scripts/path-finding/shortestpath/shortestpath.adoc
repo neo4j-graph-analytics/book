@@ -7,18 +7,6 @@
 // end::pyspark-results[]
 
 
-// tag::neo4j-import-nodes[]
-LOAD CSV WITH HEADERS FROM "file:///sp-nodes.csv" AS row
-MERGE (:Loc {id:row.id})
-// end::neo4j-import-nodes[]
-
-// tag::neo4j-import-relationships[]
-LOAD CSV WITH HEADERS FROM "file:///sp-relationships.csv" AS row
-MATCH (source:Loc {id: row.src})
-MATCH (destination:Loc {id: row.dst})
-MERGE (source)-[:ROAD {cost: toInteger(row.cost)}]->(destination)
-// end::neo4j-import-relationships[]
-
 // tag::neo4j-execute[]
 MATCH (start:Loc {id:"A"}), (end:Loc {id:"F"})
 CALL algo.shortestPath.stream(start, end, "cost")
@@ -28,13 +16,49 @@ RETURN other.id AS location, cost
 // end::neo4j-execute[]
 
 // tag::neo4j-results[]
-+--------+-----+
-|location| cost|
-+--------+-----+
-|       A|  0.0|
-|       B| 50.0|
-|       D| 90.0|
-|       E|120.0|
-|       F|160.0|
-+-------+------+
++--------------------+
+| place       | cost |
++--------------------+
+| "Amsterdam" | 0.0  |
+| "Immingham" | 1.0  |
+| "Doncaster" | 2.0  |
+| "London"    | 3.0  |
++--------------------+
 // end::neo4j-results[]
+
+
+// tag::neo4j-weighted-results[]
++----------------------------+
+| place              | cost  |
++----------------------------+
+| "Amsterdam"        | 0.0   |
+| "Den Haag"         | 59.0  |
+| "Hoek van Holland" | 86.0  |
+| "Felixstowe"       | 293.0 |
+| "Ipswich"          | 315.0 |
+| "Colchester"       | 347.0 |
+| "London"           | 453.0 |
++----------------------------+
+// end::neo4j-weighted-results[]
+
+// tag::neo4j-unweighted-results[]
++--------------------+
+| place       | cost |
++--------------------+
+| "Amsterdam" | 0.0  |
+| "Immingham" | 1.0  |
+| "Doncaster" | 2.0  |
+| "London"    | 3.0  |
++--------------------+
+// end::neo4j-unweighted-results[]
+
+// tag::neo4j-unweighted-calculate-costs-results[]
++--------------------+
+| place       | cost |
++--------------------+
+| "Amsterdam" | 0    |
+| "Immingham" | 369  |
+| "Doncaster" | 443  |
+| "London"    | 720  |
++--------------------+
+// end::neo4j-unweighted-calculate-costs-results[]

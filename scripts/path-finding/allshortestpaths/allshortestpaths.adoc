@@ -11,57 +11,38 @@
 +---+------------------------------------------------+
 // end::pyspark-results[]
 
-// tag::neo4j-execute-unweighted[]
-CALL algo.allShortestPaths.stream(null, {nodeQuery:"Loc", defaultValue:1.0})
-YIELD sourceNodeId, targetNodeId, distance
 
-WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
-MATCH (source:Loc) WHERE id(source) = sourceNodeId
-MATCH (target:Loc) WHERE id(target) = targetNodeId
-
-WITH source.id AS source, target.id AS target, distance
-ORDER BY source, target
-RETURN source, apoc.map.fromPairs(collect([target, distance])) AS others
-ORDER BY source
-LIMIT 10
-// end::neo4j-execute-unweighted[]
 
 // tag::neo4j-results-unweighted[]
-+------+-----------------------------------------+
-|source|                                   others|
-+------+-----------------------------------------+
-|     A|{"B":1.0,"C":1.0,"D":1.0,"E":2.0,"F":2.0}|
-|     B|                {"D":1.0,"E":2.0,"F":2.0}|
-|     C|                {"D":1.0,"E":1.0,"F":2.0}|
-|     D|                        {"E":1.0,"F":1.0}|
-|     E|                                {"F":1.0}|
-+------+-----------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| source             | others                                                                                                                                                                |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| "Amsterdam"        | {Utrecht: 1.0, Amsterdam: 0.0, `Den Haag`: 1.0}                                                                                                                       |
+| "Colchester"       | {Felixstowe: 2.0, Ipswich: 1.0, `Den Haag`: 4.0, `Hoek van Holland`: 3.0, Colchester: 0.0}                                                                            |
+| "Den Haag"         | {`Den Haag`: 0.0}                                                                                                                                                     |
+| "Doncaster"        | {Felixstowe: 4.0, Ipswich: 3.0, Utrecht: 3.0, Amsterdam: 2.0, Doncaster: 0.0, Colchester: 2.0, London: 1.0, `Den Haag`: 3.0, `Hoek van Holland`: 5.0, Immingham: 1.0} |
+| "Felixstowe"       | {Felixstowe: 0.0, `Den Haag`: 2.0, `Hoek van Holland`: 1.0}                                                                                                           |
+| "Hoek van Holland" | {`Den Haag`: 1.0, `Hoek van Holland`: 0.0}                                                                                                                            |
+| "Immingham"        | {Utrecht: 2.0, Amsterdam: 1.0, `Den Haag`: 2.0, Immingham: 0.0}                                                                                                       |
+| "Ipswich"          | {Felixstowe: 1.0, Ipswich: 0.0, `Den Haag`: 3.0, `Hoek van Holland`: 2.0}                                                                                             |
+| "London"           | {Felixstowe: 3.0, Ipswich: 2.0, Colchester: 1.0, London: 0.0, `Den Haag`: 5.0, `Hoek van Holland`: 4.0}                                                               |
+| "Utrecht"          | {Utrecht: 0.0}                                                                                                                                                        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 // end::neo4j-results-unweighted[]
 
-// tag::neo4j-execute-weighted[]
-CALL algo.allShortestPaths.stream("cost", {nodeQuery:"Loc", defaultValue:1.0})
-YIELD sourceNodeId, targetNodeId, distance
-
-WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
-MATCH (source:Loc) WHERE id(source) = sourceNodeId
-MATCH (target:Loc) WHERE id(target) = targetNodeId
-
-WITH source.id AS source, target.id AS target, distance
-ORDER BY source, target
-RETURN source, apoc.map.fromPairs(collect([target, distance])) AS others
-ORDER BY source
-LIMIT 10
-// end::neo4j-execute-weighted[]
-
 // tag::neo4j-results-weighted[]
-+------+--------------------------------------------------------+
-|source|                                                  others|
-+------+--------------------------------------------------------+
-|     A|{"A":0.0,"B":50.0,"C":50.0,"D":90.0,"E":120.0,"F":160.0}|
-|     B|                   {"B":0.0,"D":40.0,"E":70.0,"F":110.0}|
-|     C|                   {"C":0.0,"D":40.0,"E":70.0,"F":110.0}|
-|     D|                             {"D":0.0,"E":30.0,"F":70.0}|
-|     E|                                      {"E":0.0,"F":40.0}|
-|     F|                                               {"F":0.0}|
-+------+--------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| source             | others                                                                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| "Amsterdam"        | {Utrecht: 46.0, Amsterdam: 0.0, `Den Haag`: 59.0}                                                                                                                                      |
+| "Colchester"       | {Felixstowe: 54.0, Ipswich: 32.0, `Den Haag`: 288.0, `Hoek van Holland`: 261.0, Colchester: 0.0}                                                                                       |
+| "Den Haag"         | {`Den Haag`: 0.0}                                                                                                                                                                      |
+| "Doncaster"        | {Felixstowe: 437.0, Ipswich: 415.0, Utrecht: 489.0, Amsterdam: 443.0, Doncaster: 0.0, Colchester: 383.0, London: 277.0, `Den Haag`: 502.0, `Hoek van Holland`: 644.0, Immingham: 74.0} |
+| "Felixstowe"       | {Felixstowe: 0.0, `Den Haag`: 234.0, `Hoek van Holland`: 207.0}                                                                                                                        |
+| "Hoek van Holland" | {`Den Haag`: 27.0, `Hoek van Holland`: 0.0}                                                                                                                                            |
+| "Immingham"        | {Utrecht: 415.0, Amsterdam: 369.0, `Den Haag`: 428.0, Immingham: 0.0}                                                                                                                  |
+| "Ipswich"          | {Felixstowe: 22.0, Ipswich: 0.0, `Den Haag`: 256.0, `Hoek van Holland`: 229.0}                                                                                                         |
+| "London"           | {Felixstowe: 160.0, Ipswich: 138.0, Colchester: 106.0, London: 0.0, `Den Haag`: 394.0, `Hoek van Holland`: 367.0}                                                                      |
+| "Utrecht"          | {Utrecht: 0.0}                                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 // end::neo4j-results-weighted[]
