@@ -6,27 +6,6 @@
 +----+-----------------+---+----------------+---+
 // end::pyspark-results[]
 
-
-// tag::neo4j-execute[]
-MATCH (start:Loc {id:"A"}), (end:Loc {id:"F"})
-CALL algo.shortestPath.stream(start, end, "cost")
-YIELD nodeId, cost
-MATCH (other:Loc) WHERE id(other) = nodeId
-RETURN other.id AS location, cost
-// end::neo4j-execute[]
-
-// tag::neo4j-results[]
-+--------------------+
-| place       | cost |
-+--------------------+
-| "Amsterdam" | 0.0  |
-| "Immingham" | 1.0  |
-| "Doncaster" | 2.0  |
-| "London"    | 3.0  |
-+--------------------+
-// end::neo4j-results[]
-
-
 // tag::neo4j-weighted-results[]
 +----------------------------+
 | place              | cost  |

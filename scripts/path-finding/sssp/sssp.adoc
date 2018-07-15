@@ -1,0 +1,20 @@
+
+// tag::neo4j-results[]
++----------------------------------+
+| destination        | distance    |
++----------------------------------+
+| "London"           | 0.0         |
+| "Rostock"          | 21474.83647 |
+| "Lübbenau"         | 21474.83647 |
+| "Berlin"           | 21474.83647 |
+| "Amsterdam"        | 21474.83647 |
+| "Utrecht"          | 21474.83647 |
+| "Den Haag"         | 394.0       |
+| "Immingham"        | 351.0       |
+| "Doncaster"        | 277.0       |
+| "Hoek van Holland" | 367.0       |
+| "Felixstowe"       | 160.0       |
+| "Ipswich"          | 138.0       |
+| "Colchester"       | 106.0       |
++----------------------------------+
+// end::neo4j-results[]
