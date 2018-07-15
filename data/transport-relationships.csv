@@ -1,10 +1,12 @@
 src,dst,relationship,cost
-"A","B","ROAD",50
-"A","C","ROAD",50
-"A","D","ROAD",100
-"B","D","ROAD",40
-"C","D","ROAD",40
-"C","E","ROAD",80
-"D","E","ROAD",30
-"D","F","ROAD",80
-"E","F","ROAD",40
+"Amsterdam","Utrecht","EROAD",46
+"Amsterdam","Den Haag","EROAD",59
+"Den Haag","Rotterdam","EROAD",26
+"Immingham","Amsterdam","EROAD",369
+"Doncaster","Immingham","EROAD",74
+"Doncaster","London","EROAD",277
+"Hoek van Holland","Den Haag","EROAD",27
+"Felixstowe","Hoek van Holland","EROAD",207
+"Ipswich","Felixstowe","EROAD",22
+"Colchester","Ipswich","EROAD",32
+"London","Colchester","EROAD",106
