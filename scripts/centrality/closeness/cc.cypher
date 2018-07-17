@@ -6,6 +6,10 @@ RETURN n.id AS user, centrality
 ORDER BY centrality DESC
 // end::neo4j-execute[]
 
+// tag::neo4j-write-execute[]
+CALL algo.closeness("User", "FOLLOWS")
+// end::neo4j-write-execute[]
+
 // tag::neo4j-execute-wasserman-faust[]
 CALL algo.closeness.stream("User", "FOLLOWS", {improved: true})
 YIELD nodeId, centrality
