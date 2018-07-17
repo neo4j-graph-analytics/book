@@ -9,10 +9,12 @@ RETURN resultCount
 
 // tag::neo4j-path0-execute[]
 MATCH p=(:Place {id: "London"})-[r:PATH_0*]->(:Place {id: "Amsterdam"})
-RETURN p
+UNWIND relationships(p) AS pair
+return startNode(pair).id, endNode(pair).id, pair.weight AS distance
 // end::neo4j--path0-execute[]
 
 // tag::neo4j-path1-execute[]
 MATCH p=(:Place {id: "London"})-[r:PATH_1*]->(:Place {id: "Amsterdam"})
-RETURN p
+UNWIND relationships(p) AS pair
+return startNode(pair).id, endNode(pair).id, pair.weight AS distance
 // end::neo4j--path1-execute[]
