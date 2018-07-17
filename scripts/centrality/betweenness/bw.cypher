@@ -6,6 +6,10 @@ RETURN user.id AS user,centrality
 ORDER BY centrality DESC
 // end::neo4j-execute[]
 
+// tag::neo4j-write-execute[]
+CALL algo.betweenness('User', 'FOLLOWS')
+// end::neo4j-write-execute[]
+
 // tag::neo4j-execute-approx[]
 CALL algo.betweenness.sampled.stream("User", "FOLLOWS",
  {strategy:"random", probability:1.0, maxDepth:1})
