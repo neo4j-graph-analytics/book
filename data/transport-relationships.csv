@@ -2,8 +2,8 @@ src,dst,relationship,cost
 "Amsterdam","Utrecht","EROAD",46
 "Amsterdam","Den Haag","EROAD",59
 "Den Haag","Rotterdam","EROAD",26
-"Immingham","Amsterdam","EROAD",369
-"Doncaster","Immingham","EROAD",74
+"Amsterdam","Immingham","EROAD",369
+"Immingham","Doncaster","EROAD",74
 "Doncaster","London","EROAD",277
 "Hoek van Holland","Den Haag","EROAD",27
 "Felixstowe","Hoek van Holland","EROAD",207
