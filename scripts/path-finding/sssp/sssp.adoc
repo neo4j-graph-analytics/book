@@ -11,5 +11,7 @@
 | "Immingham"        | 351.0    |
 | "Hoek van Holland" | 367.0    |
 | "Den Haag"         | 394.0    |
+| "Amsterdam"        | 453.0    |
+| "Utrecht"          | 499.0    |
 +-------------------------------+
 // end::neo4j-results[]

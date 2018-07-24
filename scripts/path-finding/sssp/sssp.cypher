@@ -1,6 +1,6 @@
 // tag::neo4j-execute[]
 MATCH (n:Place {id:"London"})
-CALL algo.shortestPath.deltaStepping.stream(n, "distance", 3.0)
+CALL algo.shortestPath.deltaStepping.stream(n, "distance", 1.0, {direction: "BOTH"})
 YIELD nodeId, distance WHERE algo.isFinite(distance)
 MATCH (destination) WHERE id(destination) = nodeId
 RETURN destination.id AS destination, distance

@@ -11,6 +11,19 @@
 +-------+-------------------+
 // end::pyspark-pagerank-results[]
 
+// tag::pyspark-pagerank-convergence-results[]
++-------+------------------+
+|     id|          pagerank|
++-------+------------------+
+|   Doug|1.7057059550006477|
+|   Mark|1.6037713092075674|
+|  Alice|1.1551022271085856|
+|Bridget|0.5629163783287376|
+|Michael|0.5629163783287376|
+|Charles|0.4095877520257239|
++-------+------------------+
+// end::pyspark-pagerank-convergence-results[]
+
 // tag::pyspark-personalized-pagerank-results[]
 +-------+--------------------+
 |     id|            pagerank|

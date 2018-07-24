@@ -15,6 +15,11 @@ results = g.pageRank(resetProbability=0.15, maxIter=20)
 results.vertices.sort("pagerank", ascending=False).show()
 # // end::pagerank[]
 
+# // tag::pagerank-convergence[]
+results = g.pageRank(resetProbability=0.15, tol=0.01)
+results.vertices.sort("pagerank", ascending=False).show()
+# // end::pagerank-convergence[]
+
 # // tag::personalized-pagerank[]
 me = "Doug"
 results = g.pageRank(resetProbability=0.15, maxIter=20, sourceId=me)
