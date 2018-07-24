@@ -1,36 +1,22 @@
 // tag::pyspark-results[]
-+----------------+--------------------+
-|              id|           distances|
-+----------------+--------------------+
-|       Amsterdam|[Amsterdam -> 0, ...|
-|          Berlin|[Berlin -> 0, Lüb...|
-|      Colchester|[Den Haag -> 4, C...|
-|        Den Haag|     [Den Haag -> 0]|
-|       Doncaster|[Doncaster -> 0, ...|
-|      Felixstowe|[Felixstowe -> 0,...|
-|Hoek van Holland|[Hoek van Holland...|
-|       Immingham|[Doncaster -> 1, ...|
-|         Ipswich|[Ipswich -> 0, Fe...|
-|          London|[Den Haag -> 5, L...|
-|        Lübbenau|     [Lübbenau -> 0]|
-|         Rostock|[Rostock -> 0, Be...|
-|         Utrecht|      [Utrecht -> 0]|
-+----------------+--------------------+
++----------------+----------------------------------------+
+|id              |distances                               |
++----------------+----------------------------------------+
+|Amsterdam       |[Colchester -> 4, Hoek van Holland -> 7]|
+|Berlin          |[Berlin -> 0]                           |
+|Colchester      |[Colchester -> 0, Hoek van Holland -> 3]|
+|Den Haag        |[]                                      |
+|Doncaster       |[Colchester -> 2, Hoek van Holland -> 5]|
+|Felixstowe      |[Hoek van Holland -> 1]                 |
+|Hoek van Holland|[Hoek van Holland -> 0]                 |
+|Immingham       |[Colchester -> 3, Hoek van Holland -> 6]|
+|Ipswich         |[Hoek van Holland -> 2]                 |
+|London          |[Colchester -> 1, Hoek van Holland -> 4]|
+|Lübbenau        |[]                                      |
+|Rostock         |[Berlin -> 1]                           |
+|Utrecht         |[]                                      |
++----------------+----------------------------------------+
 // end::pyspark-results[]
-
-// tag::pyspark-results-tidy[]
-Amsterdam Felixstowe 6
-Amsterdam Ipswich 5
-Amsterdam Utrecht 1
-Amsterdam Amsterdam 0
-Amsterdam Doncaster 2
-Amsterdam Colchester 4
-Amsterdam London 3
-Amsterdam Den Haag 1
-Amsterdam Hoek van Holland 7
-Amsterdam Immingham 1
-// end::pyspark-results-tidy[]
-
 
 // tag::neo4j-results-unweighted[]
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
