@@ -1,16 +1,35 @@
 // tag::pyspark-results[]
-+---+------------------------------------------------+
-|id |distances                                       |
-+---+------------------------------------------------+
-|A  |[E -> 2, F -> 2, A -> 0, B -> 1, C -> 1, D -> 1]|
-|B  |[B -> 0, D -> 1, F -> 2, E -> 2]                |
-|C  |[C -> 0, E -> 1, D -> 1, F -> 2]                |
-|D  |[D -> 0, F -> 1, E -> 1]                        |
-|E  |[E -> 0, F -> 1]                                |
-|F  |[F -> 0]                                        |
-+---+------------------------------------------------+
++----------------+--------------------+
+|              id|           distances|
++----------------+--------------------+
+|       Amsterdam|[Amsterdam -> 0, ...|
+|          Berlin|[Berlin -> 0, Lüb...|
+|      Colchester|[Den Haag -> 4, C...|
+|        Den Haag|     [Den Haag -> 0]|
+|       Doncaster|[Doncaster -> 0, ...|
+|      Felixstowe|[Felixstowe -> 0,...|
+|Hoek van Holland|[Hoek van Holland...|
+|       Immingham|[Doncaster -> 1, ...|
+|         Ipswich|[Ipswich -> 0, Fe...|
+|          London|[Den Haag -> 5, L...|
+|        Lübbenau|     [Lübbenau -> 0]|
+|         Rostock|[Rostock -> 0, Be...|
+|         Utrecht|      [Utrecht -> 0]|
++----------------+--------------------+
 // end::pyspark-results[]
 
+// tag::pyspark-results-tidy[]
+Amsterdam Felixstowe 6
+Amsterdam Ipswich 5
+Amsterdam Utrecht 1
+Amsterdam Amsterdam 0
+Amsterdam Doncaster 2
+Amsterdam Colchester 4
+Amsterdam London 3
+Amsterdam Den Haag 1
+Amsterdam Hoek van Holland 7
+Amsterdam Immingham 1
+// end::pyspark-results-tidy[]
 
 
 // tag::neo4j-results-unweighted[]
