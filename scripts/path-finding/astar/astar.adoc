@@ -1,0 +1,13 @@
+// tag::neo4j-results[]
++----------------------------+
+| place              | cost  |
++----------------------------+
+| "Amsterdam"        | 0.0   |
+| "Den Haag"         | 59.0  |
+| "Hoek van Holland" | 86.0  |
+| "Felixstowe"       | 293.0 |
+| "Ipswich"          | 315.0 |
+| "Colchester"       | 347.0 |
+| "London"           | 453.0 |
++----------------------------+
+// end::neo4j-results[]
