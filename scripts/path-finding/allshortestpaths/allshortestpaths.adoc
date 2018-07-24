@@ -10,21 +10,7 @@
 |Felixstowe      |[Hoek van Holland -> 1]                 |
 |Hoek van Holland|[Hoek van Holland -> 0]                 |
 |Immingham       |[Colchester -> 3, Hoek van Holland -> 6]|
-|Ips+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| source             | others                                                                                                                                                                |
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| "Amsterdam"        | {Utrecht: 1.0, Amsterdam: 0.0, `Den Haag`: 1.0}                                                                                                                       |
-| "Colchester"       | {Felixstowe: 2.0, Ipswich: 1.0, `Den Haag`: 4.0, `Hoek van Holland`: 3.0, Colchester: 0.0}                                                                            |
-| "Den Haag"         | {`Den Haag`: 0.0}                                                                                                                                                     |
-| "Doncaster"        | {Felixstowe: 4.0, Ipswich: 3.0, Utrecht: 3.0, Amsterdam: 2.0, Doncaster: 0.0, Colchester: 2.0, London: 1.0, `Den Haag`: 3.0, `Hoek van Holland`: 5.0, Immingham: 1.0} |
-| "Felixstowe"       | {Felixstowe: 0.0, `Den Haag`: 2.0, `Hoek van Holland`: 1.0}                                                                                                           |
-| "Hoek van Holland" | {`Den Haag`: 1.0, `Hoek van Holland`: 0.0}                                                                                                                            |
-| "Immingham"        | {Utrecht: 2.0, Amsterdam: 1.0, `Den Haag`: 2.0, Immingham: 0.0}                                                                                                       |
-| "Ipswich"          | {Felixstowe: 1.0, Ipswich: 0.0, `Den Haag`: 3.0, `Hoek van Holland`: 2.0}                                                                                             |
-| "London"           | {Felixstowe: 3.0, Ipswich: 2.0, Colchester: 1.0, London: 0.0, `Den Haag`: 5.0, `Hoek van Holland`: 4.0}                                                               |
-| "Utrecht"          | {Utrecht: 0.0}                                                                                                                                                        |
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-wich         |[Hoek van Holland -> 2]                 |
+|Ipswich         |[Hoek van Holland -> 2]                 |
 |London          |[Colchester -> 1, Hoek van Holland -> 4]|
 |Lübbenau        |[]                                      |
 |Rostock         |[Berlin -> 1]                           |
