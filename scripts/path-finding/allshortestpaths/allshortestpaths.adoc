@@ -33,20 +33,21 @@ wich         |[Hoek van Holland -> 2]                 |
 // end::pyspark-results[]
 
 // tag::neo4j-results-unweighted[]
-+----------------------------------------------+
-| source       | target             | distance |
-+----------------------------------------------+
-| "Colchester" | "Amsterdam"        | 4.0      |
-| "Immingham"  | "Utrecht"          | 2.0      |
-| "Amsterdam"  | "Doncaster"        | 2.0      |
-| "Den Haag"   | "Doncaster"        | 3.0      |
-| "Utrecht"    | "London"           | 4.0      |
-| "Den Haag"   | "Felixstowe"       | 2.0      |
-| "Ipswich"    | "Felixstowe"       | 1.0      |
-| "Immingham"  | "Den Haag"         | 2.0      |
-| "Utrecht"    | "Hoek van Holland" | 3.0      |
-| "Doncaster"  | "Utrecht"          | 3.0      |
-+----------------------------------------------+
+
++----------------------------------------+
+| source       | target       | distance |
++----------------------------------------+
+| "Colchester" | "Utrecht"    | 5.0      |
+| "Ipswich"    | "Utrecht"    | 5.0      |
+| "Utrecht"    | "Ipswich"    | 5.0      |
+| "Utrecht"    | "Colchester" | 5.0      |
+| "London"     | "Den Haag"   | 4.0      |
+| "Felixstowe" | "Immingham"  | 4.0      |
+| "Ipswich"    | "Immingham"  | 4.0      |
+| "London"     | "Utrecht"    | 4.0      |
+| "Colchester" | "Amsterdam"  | 4.0      |
+| "Ipswich"    | "Amsterdam"  | 4.0      |
++----------------------------------------+
 
 // end::neo4j-results-unweighted[]
 
@@ -54,15 +55,15 @@ wich         |[Hoek van Holland -> 2]                 |
 +----------------------------------------------------+
 | source             | target             | distance |
 +----------------------------------------------------+
-| "Felixstowe"       | "Den Haag"         | 234.0    |
-| "Den Haag"         | "Utrecht"          | 105.0    |
-| "Felixstowe"       | "Doncaster"        | 437.0    |
-| "London"           | "Hoek van Holland" | 367.0    |
-| "Doncaster"        | "Felixstowe"       | 437.0    |
+| "Hoek van Holland" | "Doncaster"        | 529.0    |
+| "Doncaster"        | "Hoek van Holland" | 529.0    |
+| "Felixstowe"       | "Immingham"        | 511.0    |
 | "Immingham"        | "Felixstowe"       | 511.0    |
-| "Hoek van Holland" | "Immingham"        | 455.0    |
-| "Lübbenau"         | "Rostock"          | 324.0    |
-| "Amsterdam"        | "Den Haag"         | 59.0     |
-| "Den Haag"         | "Amsterdam"        | 59.0     |
+| "Den Haag"         | "Doncaster"        | 502.0    |
+| "Doncaster"        | "Den Haag"         | 502.0    |
+| "Utrecht"          | "London"           | 499.0    |
+| "London"           | "Utrecht"          | 499.0    |
+| "Ipswich"          | "Immingham"        | 489.0    |
+| "Doncaster"        | "Utrecht"          | 489.0    |
 +----------------------------------------------------+
 // end::neo4j-results-weighted[]
