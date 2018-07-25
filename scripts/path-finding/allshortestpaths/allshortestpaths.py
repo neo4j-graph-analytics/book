@@ -11,5 +11,5 @@ g = GraphFrame(v, e)
 
 # // tag::allshortestpaths[]
 result = g.shortestPaths(["Colchester", "Berlin", "Hoek van Holland"])
-result.sort(["id"]).show(truncate=False)
+result.sort(["id"]).select("id", "distances").show(truncate=False)
 # // end::allshortestpaths[]

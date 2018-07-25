@@ -14,6 +14,7 @@
 |London          |[Colchester -> 1, Hoek van Holland -> 4]|
 |Lübbenau        |[]                                      |
 |Rostock         |[Berlin -> 1]                           |
+|Rotterdam       |[]                                      |
 |Utrecht         |[]                                      |
 +----------------+----------------------------------------+
 // end::pyspark-results[]
