@@ -12,5 +12,8 @@ g = GraphFrame(v, e)
 
 # // tag::shortestpath[]
 result = g.bfs("id='Amsterdam'", "id='London'")
-result.show()
+columns = [column for column in result.columns
+           if not column.startswith("e")]
+
+result.select(columns).show()
 # // end::shortestpath[]
