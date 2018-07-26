@@ -3,7 +3,7 @@ CALL algo.allShortestPaths.stream(null)
 YIELD sourceNodeId, targetNodeId, distance
 
 WITH sourceNodeId, targetNodeId, distance
-WHERE algo.isFinite(distance) = true AND sourceNodeId < targetNodeId
+WHERE algo.isFinite(distance) AND sourceNodeId < targetNodeId
 MATCH (source) WHERE id(source) = sourceNodeId
 MATCH (target) WHERE id(target) = targetNodeId
 
@@ -17,7 +17,7 @@ CALL algo.allShortestPaths.stream("distance")
 YIELD sourceNodeId, targetNodeId, distance
 
 WITH sourceNodeId, targetNodeId, distance
-WHERE algo.isFinite(distance) = true AND sourceNodeId < targetNodeId
+WHERE algo.isFinite(distance) = true sourceNodeId < targetNodeId
 MATCH (source) WHERE id(source) = sourceNodeId
 MATCH (target) WHERE id(target) = targetNodeId
 
