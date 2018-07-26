@@ -1,8 +1,9 @@
 // tag::neo4j-execute-unweighted[]
-CALL algo.allShortestPaths.stream(null, {nodeQuery:"Place", defaultValue:1.0})
+CALL algo.allShortestPaths.stream(null)
 YIELD sourceNodeId, targetNodeId, distance
 
-WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
+WITH sourceNodeId, targetNodeId, distance
+WHERE algo.isFinite(distance) = true AND sourceNodeId < targetNodeId
 MATCH (source) WHERE id(source) = sourceNodeId
 MATCH (target) WHERE id(target) = targetNodeId
 
@@ -12,10 +13,11 @@ LIMIT 10
 // end::neo4j-execute-unweighted[]
 
 // tag::neo4j-execute-weighted[]
-CALL algo.allShortestPaths.stream("distance", {nodeQuery:"Place", defaultValue:1.0})
+CALL algo.allShortestPaths.stream("distance")
 YIELD sourceNodeId, targetNodeId, distance
 
-WITH sourceNodeId, targetNodeId, distance WHERE algo.isFinite(distance) = true
+WITH sourceNodeId, targetNodeId, distance
+WHERE algo.isFinite(distance) = true AND sourceNodeId < targetNodeId
 MATCH (source) WHERE id(source) = sourceNodeId
 MATCH (target) WHERE id(target) = targetNodeId
 
