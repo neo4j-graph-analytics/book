@@ -10,5 +10,7 @@ src,dst,relationship,cost
 "Ipswich","Felixstowe","EROAD",22
 "Colchester","Ipswich","EROAD",32
 "London","Colchester","EROAD",106
-"Rostock","Berlin","EROAD",230
-"Berlin","Lübbenau","EROAD",94
+"Gouda","Rotterdam","EROAD",25
+"Gouda","Utrecht","EROAD",35
+"Den Haag","Gouda","EROAD",32
+"Hoek van Holland","Rotterdam","EROAD",33
