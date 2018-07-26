@@ -33,12 +33,12 @@
 // end::neo4j-unweighted-results[]
 
 // tag::neo4j-unweighted-calculate-costs-results[]
-+--------------------+
-| place       | cost |
-+--------------------+
-| "Amsterdam" | 0    |
-| "Immingham" | 369  |
-| "Doncaster" | 443  |
-| "London"    | 720  |
-+--------------------+
++---------------------+
+| place       | cost  |
++---------------------+
+| "Amsterdam" | 0.0   |
+| "Immingham" | 369.0 |
+| "Doncaster" | 443.0 |
+| "London"    | 720.0 |
++---------------------+
 // end::neo4j-unweighted-calculate-costs-results[]

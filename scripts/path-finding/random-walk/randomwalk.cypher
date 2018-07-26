@@ -1,7 +1,7 @@
 // tag::neo4j-execute[]
 MATCH (source:Place {id: "London"})
 CALL algo.randomWalk.stream(id(source), 5, 1)
-YIELD nodesIds
+YIELD nodeIds
 
 UNWIND nodeIds AS nodeId
 MATCH (place) WHERE id(place) = nodeId
