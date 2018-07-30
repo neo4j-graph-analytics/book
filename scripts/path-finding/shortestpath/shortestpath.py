@@ -1,12 +1,18 @@
 
 # // tag::imports[]
 from graphframes import *
-from pyspark import SparkContext
+import pandas as pd
 # // end::imports[]
 
 # // tag::load-graph-frame[]
 v = spark.read.csv("data/transport-nodes.csv", header=True)
-e = spark.read.csv("data/transport-relationships.csv", header=True)
+
+src_dst = spark.read.csv("data/transport-relationships.csv", header=True)
+df_src_dst = src_dst.toPandas()
+df_dst_src = src_dst.toPandas()
+df_dst_src.columns = ["dst", "src", "relationship", "cost"]
+e = spark.createDataFrame(pd.concat([df_src_dst, df_dst_src]))
+
 g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
