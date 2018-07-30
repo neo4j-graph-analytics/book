@@ -1,8 +1,8 @@
 
 // tag::neo4j-execute[]
-MATCH (start:Place {id:"London"}),
-      (end:Place {id:"Amsterdam"})
-CALL algo.kShortestPaths.stream(start, end, 3, 'distance')
+MATCH (start:Place {id:"Gouda"}),
+      (end:Place {id:"Felixstowe"})
+CALL algo.kShortestPaths.stream(start, end, 5, 'distance')
 YIELD index, nodeIds, path, costs
 RETURN index,
        [nodeId in nodeIds | algo.getNodeById(nodeId).id][1..-1] AS via,
