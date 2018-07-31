@@ -1,3 +1,30 @@
+// tag::pyspark-results[]
++-------------+-----------------+
+|component    |collect_list(id) |
++-------------+-----------------+
+|223338299392 |[spacy]          |
+|283467841536 |[jupyter-client] |
+|283467841537 |[scipy]          |
+|489626271744 |[neotime]        |
+|498216206336 |[numpy]          |
+|523986010112 |[six]            |
+|549755813888 |[pandas]         |
+|558345748480 |[nbconvert]      |
+|609885356032 |[requests]       |
+|661424963584 |[ipykernel]      |
+|721554505728 |[jupyter]        |
+|833223655424 |[pytz]           |
+|910533066752 |[python-dateutil]|
+|919123001344 |[nltk]           |
+|936302870528 |[pyspark]        |
+|944892805120 |[matplotlib]     |
+|1005022347264|[neo4j-driver]   |
+|1125281431552|[jupyter-console]|
+|1228360646656|[jupyter-core]   |
+|1279900254208|[py4j]           |
++-------------+-----------------+
+// end::pyspark-results[]
+
 // tag::neo4j-results[]
 +---------------------------------+
 | partition | libraries           |
