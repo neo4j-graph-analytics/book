@@ -1,6 +1,5 @@
 # // tag::imports[]
 from graphframes import *
-from pyspark import SparkContext
 # // end::imports[]
 
 # // tag::load-graph-frame[]

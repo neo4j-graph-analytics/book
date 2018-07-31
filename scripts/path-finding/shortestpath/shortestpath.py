@@ -21,12 +21,11 @@ result = g.bfs("id='Amsterdam'", "id='London'")
 # // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
-result.columns
+print(result.columns)
 # // end::shortestpath-columns[]
 
 
 # // tag::shortestpath-results[]
 columns = [column for column in result.columns if not column.startswith("e")]
-
 result.select(columns).show()
 # // end::shortestpath-results[]
