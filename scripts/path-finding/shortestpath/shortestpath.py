@@ -26,8 +26,7 @@ result.columns
 
 
 # // tag::shortestpath-results[]
-columns = [column for column in result.columns
-           if not column.startswith("e")]
+columns = [column for column in result.columns if not column.startswith("e")]
 
 result.select(columns).show()
 # // end::shortestpath-results[]
