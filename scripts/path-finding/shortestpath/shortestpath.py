@@ -18,11 +18,11 @@ g = GraphFrame(v, e)
 
 # // tag::shortestpath[]
 result = g.bfs("id='Amsterdam'", "id='London'")
-# // tag::shortestpath[]
+# // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
 result.columns
-# // tag::shortestpath-columns[]
+# // end::shortestpath-columns[]
 
 
 # // tag::shortestpath-results[]
