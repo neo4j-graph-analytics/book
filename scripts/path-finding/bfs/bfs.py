@@ -25,12 +25,17 @@ g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
 # // tag::candidates[]
-g.vertices.filter("population > 100000 and population < 300000").sort("population").show()
+g.vertices \
+    .filter("population > 100000 and population < 300000") \
+    .sort("population") \
+    .show()
 # // end::candidates[]
 
 
 # // tag::shortestpath[]
-result = g.bfs("id='Den Haag'", "population > 100000 and population < 300000 and id <> 'Den Haag'")
+from = "id='Den Haag'"
+to = "population > 100000 and population < 300000 and id <> 'Den Haag'"
+result = g.bfs(from, to)
 # // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
