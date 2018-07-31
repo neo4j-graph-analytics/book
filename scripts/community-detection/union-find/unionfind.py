@@ -9,9 +9,14 @@ e = spark.read.csv("data/sw-relationships.csv", header=True)
 g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
-# // tag::triangles[]
-result = g.triangleCount()
-result.sort("count", ascending=False) \
-    .filter('count > 0') \
-    .show()
-#  // end::triangles[]
+sc.setCheckpointDir("/tmp")
+
+# // tag::unionfind[]
+from pyspark.sql import functions as F
+
+result = g.connectedComponents()
+result.sort("component") \
+    .groupby("component") \
+    .agg(F.collect_list("id")) \
+    .show(truncate=False)
+#  // end::unionfind[]
