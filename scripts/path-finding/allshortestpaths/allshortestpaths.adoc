@@ -2,18 +2,20 @@
 +----------------+--------------------------------------------------------+
 |id              |distances                                               |
 +----------------+--------------------------------------------------------+
-|Amsterdam       |[Immingham -> 1, Colchester -> 4, Hoek van Holland -> 7]|
-|Colchester      |[Colchester -> 0, Hoek van Holland -> 3]                |
-|Den Haag        |[]                                                      |
-|Doncaster       |[Colchester -> 2, Hoek van Holland -> 5]                |
-|Felixstowe      |[Hoek van Holland -> 1]                                 |
-|Hoek van Holland|[Hoek van Holland -> 0]                                 |
-|Immingham       |[Immingham -> 0, Colchester -> 3, Hoek van Holland -> 6]|
-|Ipswich         |[Hoek van Holland -> 2]                                 |
-|London          |[Colchester -> 1, Hoek van Holland -> 4]                |
-|Rotterdam       |[]                                                      |
-|Utrecht         |[]                                                      |
+|Amsterdam       |[Immingham -> 1, Hoek van Holland -> 2, Colchester -> 4]|
+|Colchester      |[Colchester -> 0, Hoek van Holland -> 3, Immingham -> 3]|
+|Den Haag        |[Hoek van Holland -> 1, Immingham -> 2, Colchester -> 4]|
+|Doncaster       |[Immingham -> 1, Colchester -> 2, Hoek van Holland -> 4]|
+|Felixstowe      |[Hoek van Holland -> 1, Colchester -> 2, Immingham -> 4]|
+|Gouda           |[Hoek van Holland -> 2, Immingham -> 3, Colchester -> 5]|
+|Hoek van Holland|[Hoek van Holland -> 0, Immingham -> 3, Colchester -> 3]|
+|Immingham       |[Immingham -> 0, Colchester -> 3, Hoek van Holland -> 3]|
+|Ipswich         |[Colchester -> 1, Hoek van Holland -> 2, Immingham -> 4]|
+|London          |[Colchester -> 1, Immingham -> 2, Hoek van Holland -> 4]|
+|Rotterdam       |[Hoek van Holland -> 1, Immingham -> 3, Colchester -> 4]|
+|Utrecht         |[Immingham -> 2, Hoek van Holland -> 3, Colchester -> 5]|
 +----------------+--------------------------------------------------------+
+
 // end::pyspark-results[]
 
 // tag::neo4j-results-unweighted[]
