@@ -1,7 +1,7 @@
 // tag::neo4j-execute[]
 CALL algo.triangleCount.stream('Library', 'DEPENDS_ON')
 YIELD nodeId, triangles, coefficient
-
+WHERE coefficient > 0
 MATCH (l) WHERE id(l) = nodeId
 
 RETURN l.id AS library, coefficient

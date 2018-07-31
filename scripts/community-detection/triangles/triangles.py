@@ -1,7 +1,6 @@
-
 # // tag::imports[]
 from graphframes import *
-from pyspark import SparkContext, SQLContext
+
 # // end::imports[]
 
 # // tag::load-graph-frame[]
@@ -11,6 +10,7 @@ g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
 # // tag::triangles[]
-results = g.triangleCount()
-results.sort("count", ascending=False).show()
-# // end::triangles[]
+results.sort("count", ascending=False) \
+    .filter('count > 0') \
+    .show()
+#  // end::triangles[]
