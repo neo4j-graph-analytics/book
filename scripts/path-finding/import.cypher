@@ -3,7 +3,9 @@ WITH "https://github.com/neo4j-graph-analytics/book/raw/master/data/transport-no
 AS uri
 LOAD CSV WITH HEADERS FROM uri  AS row
 MERGE (place:Place {id:row.id})
-SET place.latitude = toFloat(row.latitude), place.longitude = toFloat(row.latitude)
+SET place.latitude = toFloat(row.latitude),
+    place.longitude = toFloat(row.latitude),
+    place.population = toInteger(row.population)
 // end::neo4j-import-nodes[]
 
 // tag::neo4j-import-relationships[]
