@@ -28,8 +28,6 @@ df_dst_src.columns = ["dst", "src", "relationship", "cost"]
 e = spark.createDataFrame(pd.concat([df_src_dst, df_dst_src]))
 
 g = GraphFrame(v, e)
-
-
 # // end::load-graph-frame[]
 
 
@@ -111,8 +109,55 @@ def dijkstra_with_paths(g, origin):
 # // end::custom-shortest-path[]
 
 
+# // tag::custom-shortest-path[]
+def dijkstra_with_paths(g, origin, destination, column_name="cost"):
+    if g.vertices.filter(g.vertices.id == destination).count() == 0:
+        return spark.createDataFrame(sc.emptyRDD(), g.vertices.schema).withColumn("path", F.array())
+    vertices = g.vertices \
+        .withColumn("visited", F.lit(False)) \
+        .withColumn("distance", F.when(g.vertices["id"] == origin, 0).otherwise(float("inf"))) \
+        .withColumn("path", F.array())
+    cached_vertices = AM.getCachedDataFrame(vertices)
+    g2 = GraphFrame(cached_vertices, g.edges)
+    while g2.vertices.filter('visited == False').first():
+        current_node_id = g2.vertices.filter('visited == False').sort("distance").first().id
+        msg_for_dst = F.when(AM.src['id'] == current_node_id,
+                             F.struct(AM.edge[column_name] + AM.src['distance'], add_path_udf(AM.src["path"], AM.src["id"])))
+        new_distances = g2.aggregateMessages(F.min(AM.msg).alias("aggMess"), sendToDst=msg_for_dst)
+        new_visited_col = F.when(g2.vertices.visited | (g2.vertices.id == current_node_id), True).otherwise(False)
+        new_distance_col = F \
+            .when(new_distances["aggMess"].isNotNull() & (new_distances.aggMess["col1"] < g2.vertices.distance),
+                  new_distances.aggMess["col1"]) \
+            .otherwise(g2.vertices.distance)
+        new_path_col = F \
+            .when(new_distances["aggMess"].isNotNull() & (new_distances.aggMess["col1"] < g2.vertices.distance),
+                  new_distances.aggMess["col2"].cast("array<string>")) \
+            .otherwise(g2.vertices.path)
+        new_vertices = g2.vertices.join(new_distances, on="id", how="left_outer") \
+            .drop(new_distances["id"]) \
+            .withColumn("visited", new_visited_col) \
+            .withColumn("newDistance", new_distance_col) \
+            .withColumn("newPath", new_path_col) \
+            .drop("aggMess") \
+            .drop('distance') \
+            .drop('path') \
+            .withColumnRenamed('newDistance', 'distance') \
+            .withColumnRenamed('newPath', 'path')
+        cached_new_vertices = AM.getCachedDataFrame(new_vertices)
+        g2 = GraphFrame(cached_new_vertices, g2.edges)
+        if g2.vertices.filter(g2.vertices.id == destination).first().visited:
+            return g2.vertices \
+                .filter(g2.vertices.id == destination) \
+                .drop("visited") \
+                .withColumn("newPath", add_path_udf("path", "id")) \
+                .drop("path") \
+                .withColumnRenamed("newPath", "path")
+    return spark.createDataFrame(sc.emptyRDD())
+# // end::custom-shortest-path[]
+
+
 # // tag::shortestpath[]
-result = dijkstra_with_paths(g, "London")
+result = dijkstra_with_paths(g, "London", "Amsterdam")
 result.select("id", "distance", "path").show(truncate=False)
 # // end::shortestpath[]
 
