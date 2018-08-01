@@ -66,9 +66,8 @@ def add_path(s, s2):
 
 
 add_path_udf = udf(add_path, ArrayType(StringType()))
-
-
 # // end::udfs[]
+
 
 # // tag::custom-shortest-path[]
 def dijkstra_with_paths(g, origin):
@@ -104,12 +103,17 @@ def dijkstra_with_paths(g, origin):
             .withColumnRenamed('newPath', 'path')
         cached_new_vertices = AM.getCachedDataFrame(new_vertices)
         g2 = GraphFrame(cached_new_vertices, g2.edges)
-    return GraphFrame(g2.vertices.drop("visited"), g2.edges)
+    return g2.vertices \
+        .drop("visited") \
+        .withColumn("newPath", add_path_udf("path", "id")) \
+        .drop("path") \
+        .withColumnRenamed("newPath", "path")
 # // end::custom-shortest-path[]
 
 
 # // tag::shortestpath[]
-result = dijkstra(g, "London")
+result = dijkstra_with_paths(g, "London")
+result.select("id", "distance", "path").show(truncate=False)
 # // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
