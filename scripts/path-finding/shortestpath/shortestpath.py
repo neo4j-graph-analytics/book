@@ -31,6 +31,10 @@ from pyspark.sql import functions as F
 # // end::custom-shortest-path-imports[]
 
 # // tag::custom-shortest-path[]
+
+# if we pass in a destination as well, once the destination has been visited the algorithm is done
+
+# dijkstra from origin to everyone
 def dijkstra(g, origin):
     vertices = g.vertices \
         .withColumn("visited", F.lit(False)) \
@@ -52,7 +56,7 @@ def dijkstra(g, origin):
             .drop('distance') \
             .withColumnRenamed('newDistance', 'distance')
         cached_new_vertices = AM.getCachedDataFrame(new_vertices)
-        
+
         g2 = GraphFrame(cached_new_vertices, g2.edges)
     return GraphFrame(g2.vertices.drop("visited"), g2.edges)
 # // end::custom-shortest-path[]
