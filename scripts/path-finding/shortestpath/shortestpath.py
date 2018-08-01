@@ -35,25 +35,30 @@ def dijkstra(g, origin):
     vertices = g.vertices \
         .withColumn("visited", F.lit(False)) \
         .withColumn("distance", F.when(g.vertices["id"] == origin, 0).otherwise(float("inf")))
-    g2 = GraphFrame(vertices, g.edges)
+    cached_vertices = AM.getCachedDataFrame(vertices)
+    g2 = GraphFrame(cached_vertices, g.edges)
     for i in range(1, g.vertices.count() - 1):
         current_node_id = g2.vertices.filter('visited == False').sort("distance").first().id
         msg_for_dst = F.when(AM.src['id'] == current_node_id, AM.edge['cost'] + AM.src['distance'])
         new_distances = g2.aggregateMessages(F.min(AM.msg).alias("aggMess"), sendToDst=msg_for_dst)
-        combined_vertices = g2.vertices.join(new_distances, on="id")
-        new_vertices = combined_vertices \
-            .withColumn("visited",
-                        F.when(combined_vertices.visited | (combined_vertices.id == current_node_id), True) \
-                         .otherwise(False)) \
-            .withColumn("distance",
-                        F.least(combined_vertices.distance, combined_vertices.aggMess)) \
-            .drop("aggMess")
-        g2 = GraphFrame(new_vertices, g2.edges)
-    return g2
+
+        new_visited_col = F.when(g2.vertices.visited | (g2.vertices.id == current_node_id), True).otherwise(False)
+        new_distance_col = F.least(g2.vertices.distance, new_distances.aggMess)
+        new_vertices = g2.vertices.join(new_distances, on="id", how="left_outer") \
+            .drop(new_distances["id"]) \
+            .withColumn("visited", new_visited_col) \
+            .withColumn("newDistance", new_distance_col) \
+            .drop("aggMess") \
+            .drop('distance') \
+            .withColumnRenamed('newDistance', 'distance')
+        cached_new_vertices = AM.getCachedDataFrame(new_vertices)
+        
+        g2 = GraphFrame(cached_new_vertices, g2.edges)
+    return GraphFrame(g2.vertices.drop("visited"), g2.edges)
 # // end::custom-shortest-path[]
 
 # // tag::shortestpath[]
-result = g.bfs("id='Amsterdam'", "id='London'")
+result = dijkstra(g, "London")
 # // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
