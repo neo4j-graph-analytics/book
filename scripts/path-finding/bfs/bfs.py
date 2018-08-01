@@ -33,9 +33,9 @@ g.vertices \
 
 
 # // tag::shortestpath[]
-from = "id='Den Haag'"
-to = "population > 100000 and population < 300000 and id <> 'Den Haag'"
-result = g.bfs(from, to)
+from_expr = "id='Den Haag'"
+to_expr = "population > 100000 and population < 300000 and id <> 'Den Haag'"
+result = g.bfs(from_expr, to_expr)
 # // end::shortestpath[]
 
 # // tag::shortestpath-columns[]
