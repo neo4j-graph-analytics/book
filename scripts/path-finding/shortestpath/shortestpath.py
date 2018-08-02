@@ -57,15 +57,14 @@ def dijkstra(g, origin, destination, column_name="cost"):
     while g2.vertices.filter('visited == False').first():
         current_node_id = g2.vertices.filter('visited == False').sort("distance").first().id
 
-        msg = F.struct(AM.edge[column_name] + AM.src['distance'],
-                       add_path_udf(AM.src["path"], AM.src["id"]))
-        msg_for_dst = F.when(AM.src['id'] == current_node_id, msg)
+        msg_distance = AM.edge[column_name] + AM.src['distance']
+        msg_path = add_path_udf(AM.src["path"], AM.src["id"])
+        msg_for_dst = F.when(AM.src['id'] == current_node_id, F.struct(msg_distance, msg_path))
+        new_distances = g2.aggregateMessages(
+            F.min(AM.msg).alias("aggMess"), sendToDst=msg_for_dst)
 
-        new_distances = g2.aggregateMessages(F.min(AM.msg).alias("aggMess"),
-                                             sendToDst=msg_for_dst)
-        new_visited_col = F.when(g2.vertices.visited | (g2.vertices.id == current_node_id), \
-                                 True) \
-                           .otherwise(False)
+        new_visited_col = F.when(
+            g2.vertices.visited | (g2.vertices.id == current_node_id), True).otherwise(False)
         new_distance_col = F.when(new_distances["aggMess"].isNotNull() &
                                   (new_distances.aggMess["col1"] < g2.vertices.distance),
                                   new_distances.aggMess["col1"]) \
@@ -74,6 +73,7 @@ def dijkstra(g, origin, destination, column_name="cost"):
                               (new_distances.aggMess["col1"] < g2.vertices.distance),
                               new_distances.aggMess["col2"].cast("array<string>")) \
                         .otherwise(g2.vertices.path)
+
         new_vertices = g2.vertices.join(new_distances, on="id", how="left_outer") \
             .drop(new_distances["id"]) \
             .withColumn("visited", new_visited_col) \
@@ -87,9 +87,8 @@ def dijkstra(g, origin, destination, column_name="cost"):
         if g2.vertices.filter(g2.vertices.id == destination).first().visited:
             return g2.vertices \
                 .filter(g2.vertices.id == destination) \
-                .drop("visited") \
                 .withColumn("newPath", add_path_udf("path", "id")) \
-                .drop("path") \
+                .drop("visited", "path") \
                 .withColumnRenamed("newPath", "path")
     return spark \
         .createDataFrame(sc.emptyRDD(), g.vertices.schema) \
