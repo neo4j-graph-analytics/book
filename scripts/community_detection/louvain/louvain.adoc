@@ -1,9 +1,47 @@
 // tag::neo4j-results[]
++------------------------------------------+
+| communities | nodeId | libraries         |
++------------------------------------------+
+| [0, 0]      | 0      | "pytz"            |
+| [1, 1]      | 1      | "pyspark"         |
+| [2, 0]      | 2      | "matplotlib"      |
+| [2, 0]      | 3      | "spacy"           |
+| [1, 1]      | 4      | "py4j"            |
+| [3, 2]      | 5      | "jupyter"         |
+| [3, 2]      | 6      | "jpy-console"     |
+| [4, 2]      | 7      | "nbconvert"       |
+| [3, 2]      | 8      | "ipykernel"       |
+| [4, 2]      | 9      | "jpy-client"      |
+| [4, 2]      | 10     | "jpy-core"        |
+| [2, 0]      | 11     | "six"             |
+| [0, 0]      | 16     | "pandas"          |
+| [2, 0]      | 17     | "numpy"           |
+| [2, 0]      | 18     | "python-dateutil" |
++------------------------------------------+
+// end::neo4j-results[]
+
+// tag::neo4j-read-layer-1[]
++------------------------------------------------------+
+| community | libraries                                |
++------------------------------------------------------+
+| 2         | ["matplotlib", "six", "python-dateutil"] |
+| 5         | ["nbconvert", "jpy-client", "jpy-core"]  |
+| 4         | ["jupyter", "jpy-console", "ipykernel"]  |
+| 1         | ["pyspark", "py4j"]                      |
+| 3         | ["spacy", "numpy"]                       |
+| 0         | ["pytz", "pandas"]                       |
++------------------------------------------------------+
+
+// end::neo4j-read-layer-1[]
+
+// tag::neo4j-read-layer-2[]
 +--------------------------------------------------------------------------------------------+
 | community | libraries                                                                      |
 +--------------------------------------------------------------------------------------------+
 | 0         | ["pytz", "matplotlib", "spacy", "six", "pandas", "numpy", "python-dateutil"]   |
+| 2         | ["jupyter", "jpy-console", "nbconvert", "ipykernel", "jpy-client", "jpy-core"] |
 | 1         | ["pyspark", "py4j"]                                                            |
-| 5         | ["jupyter", "jpy-console", "nbconvert", "ipykernel", "jpy-client", "jpy-core"] |
 +--------------------------------------------------------------------------------------------+
-// end::neo4j-results[]
+
+
+// end::neo4j-read-layer-2[]
