@@ -2,18 +2,15 @@
 CALL algo.triangleCount.stream('Library', 'DEPENDS_ON')
 YIELD nodeId, triangles, coefficient
 WHERE coefficient > 0
-MATCH (l) WHERE id(l) = nodeId
-
-RETURN l.id AS library, coefficient
+RETURN algo.getNodeById(nodeId).id AS library, coefficient
 ORDER BY coefficient DESC
 // end::neo4j-execute[]
 
 
 // tag::neo4j-triangle-stream-execute[]
 CALL algo.triangle.stream("Library","DEPENDS_ON")
-YIELD nodeA,nodeB,nodeC
-MATCH (a) WHERE id(a) = nodeA
-MATCH (b) WHERE id(b) = nodeB
-MATCH (c) WHERE id(c) = nodeC
-RETURN a.id AS nodeA, b.id AS nodeB, c.id AS node
+YIELD nodeA, nodeB, nodeC
+RETURN algo.getNodeById(nodeA).id AS nodeA,
+       algo.getNodeById(nodeB).id AS nodeB,
+       algo.getNodeById(nodeC).id AS nodeC
 // end::neo4j-triangle-stream-execute[]

@@ -26,10 +26,11 @@
 // end::neo4j-results[]
 
 // tag::neo4j-triangle-stream-results[]
-+----------------------------------------------+
-| nodeA     | nodeB             | node         |
-+----------------------------------------------+
-| "six"     | "python-dateutil" | "matplotlib" |
-| "jupyter" | "jupyter-console" | "ipykernel"  |
-+----------------------------------------------+
++--------------------------------------------------+
+| nodeA        | nodeB         | nodeC             |
++--------------------------------------------------+
+| "matplotlib" | "six"         | "python-dateutil" |
+| "jupyter"    | "jpy-console" | "ipykernel"       |
++--------------------------------------------------+
+
 // end::neo4j-triangle-stream-results[]
