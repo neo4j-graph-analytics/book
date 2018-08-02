@@ -1,6 +1,7 @@
 
 # // tag::imports[]
 from graphframes import *
+from pyspark.sql import functions as F
 # // end::imports[]
 
 # // tag::load-graph-frame[]
@@ -10,8 +11,6 @@ g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
 # // tag::scc[]
-from pyspark.sql import functions as F
-
 result = g.stronglyConnectedComponents(maxIter=10)
 result.sort("component") \
     .groupby("component") \
