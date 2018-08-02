@@ -26,6 +26,6 @@ g = GraphFrame(v, e)
 
 
 # // tag::custom-shortest-path-execute[]
-result = dijkstra(g, "Amsterdam", "London")
+result = dijkstra(g, "Amsterdam", "Colchester")
 result.select("id", "distance", "path").show(truncate=False)
 # // end::custom-shortest-path-execute[]
