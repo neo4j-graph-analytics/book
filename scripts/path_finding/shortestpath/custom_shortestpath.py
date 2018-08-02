@@ -1,41 +1,18 @@
-# // tag::imports[]
-import pandas as pd
-from graphframes import *
 from pyspark.sql.types import *
-# // end::imports[]
-
+from graphframes import *
 
 # // tag::custom-shortest-path-imports[]
 from scripts.aggregate_messages import AggregateMessages as AM
 from pyspark.sql import functions as F
-from pyspark.sql.functions import udf
-
 # // end::custom-shortest-path-imports[]
-
-# // tag::load-graph-frame[]
-fields = [
-    StructField("id", StringType(), True),
-    StructField("latitude", FloatType(), True),
-    StructField("longitude", FloatType(), True),
-    StructField("population", IntegerType(), True)
-]
-v = spark.read.csv("data/transport-nodes.csv", header=True, schema=StructType(fields))
-
-src_dst = spark.read.csv("data/transport-relationships.csv", header=True)
-df_src_dst = src_dst.toPandas()
-df_dst_src = src_dst.toPandas()
-df_dst_src.columns = ["dst", "src", "relationship", "cost"]
-e = spark.createDataFrame(pd.concat([df_src_dst, df_dst_src]))
-
-g = GraphFrame(v, e)
-# // end::load-graph-frame[]
 
 
 # // tag::udfs[]
 def add_path(s, s2):
     return s + [s2]
 
-add_path_udf = udf(add_path, ArrayType(StringType()))
+
+add_path_udf = F.udf(add_path, ArrayType(StringType()))
 # // end::udfs[]
 
 
@@ -94,9 +71,3 @@ def dijkstra(g, origin, destination, column_name="cost"):
         .createDataFrame(sc.emptyRDD(), g.vertices.schema) \
         .withColumn("path", F.array())
 # // end::custom-shortest-path[]
-
-
-# // tag::custom-shortest-path-execute[]
-result = dijkstra(g, "Amsterdam", "London")
-result.select("id", "distance", "path").show(truncate=False)
-# // end::custom-shortest-path-execute[]
