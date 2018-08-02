@@ -3,8 +3,7 @@ MATCH (source:Place {id: "Amsterdam"}),
       (destination:Place {id: "London"})
 CALL algo.shortestPath.stream(source, destination,  "distance")
 YIELD nodeId, cost
-MATCH (p) WHERE id(p) = nodeId
-RETURN p.id AS place, cost
+RETURN algo.getNodeById(nodeId).id AS place, cost
 // end::neo4j-execute[]
 
 
@@ -13,8 +12,7 @@ MATCH (source:Place {id: "Amsterdam"}),
       (destination:Place {id: "London"})
 CALL algo.shortestPath.stream(source, destination, null)
 YIELD nodeId, cost
-MATCH (p) WHERE id(p) = nodeId
-RETURN p.id AS place, cost
+RETURN algo.getNodeById(nodeId).id AS place, cost
 // end::neo4j-unweighted-execute[]
 
 // tag::neo4j-unweighted-calculate-costs-execute[]
@@ -22,9 +20,8 @@ MATCH (source:Place {id: "Amsterdam"}),
       (destination:Place {id: "London"})
 CALL algo.shortestPath.stream(source, destination, null)
 YIELD nodeId, cost
-MATCH (other) WHERE id(other) = nodeId
 
-WITH collect(other) AS path
+WITH collect(algo.getNodeById(nodeId)) AS path
 UNWIND range(0, size(path)-1) AS index
 WITH path[index] AS current, path[index+1] AS next
 WITH current, next, [(current)-[r:EROAD]-(next) | r.distance][0] AS distance
