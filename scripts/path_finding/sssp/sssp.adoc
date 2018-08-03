@@ -17,3 +17,23 @@
 | "Utrecht"          | 460.0    |
 +-------------------------------+
 // end::neo4j-results[]
+
+// tag::pyspark-results[]
++----------------+--------+-------------------------------------------------------------+
+|id              |distance|via                                                          |
++----------------+--------+-------------------------------------------------------------+
+|Doncaster       |443.0   |[Immingham]                                                  |
+|Rotterdam       |85.0    |[Den Haag]                                                   |
+|London          |453.0   |[Den Haag, Hoek van Holland, Felixstowe, Ipswich, Colchester]|
+|Den Haag        |59.0    |[]                                                           |
+|Immingham       |369.0   |[]                                                           |
+|Amsterdam       |0.0     |[]                                                           |
+|Colchester      |347.0   |[Den Haag, Hoek van Holland, Felixstowe, Ipswich]            |
+|Utrecht         |46.0    |[]                                                           |
+|Gouda           |81.0    |[Utrecht]                                                    |
+|Ipswich         |315.0   |[Den Haag, Hoek van Holland, Felixstowe]                     |
+|Hoek van Holland|86.0    |[Den Haag]                                                   |
+|Felixstowe      |293.0   |[Den Haag, Hoek van Holland]                                 |
++----------------+--------+-------------------------------------------------------------+
+
+// end::pyspark-results[]

@@ -1,10 +1,11 @@
 # // tag::imports[]
-import pandas as pd
-from graphframes import *
 from pyspark.sql.types import *
+from graphframes import *
+from pyspark.sql import functions as F
+import pandas as pd
 # // end::imports[]
 
-from scripts.path_finding.shortestpath.custom_shortestpath import shortest_path
+from scripts.path_finding.sssp.custom_sssp import sssp
 
 # // tag::load-graph-frame[]
 fields = [
@@ -24,8 +25,18 @@ e = spark.createDataFrame(pd.concat([df_src_dst, df_dst_src]))
 g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
+# // tag::via[]
+def via(path):
+    return path[1:-1]
+
+
+via_udf = F.udf(via, ArrayType(StringType()))
+# // end::via[]
 
 # // tag::custom-shortest-path-execute[]
-result = shortest_path(g, "Amsterdam", "Colchester", "cost")
-result.select("id", "distance", "path").show(truncate=False)
+result = sssp(g, "Amsterdam", "cost")
+result \
+    .withColumn("via", via_udf("path")) \
+    .select("id", "distance", "via") \
+    .show(truncate=False)
 # // end::custom-shortest-path-execute[]

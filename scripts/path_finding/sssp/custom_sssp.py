@@ -1,10 +1,10 @@
 from pyspark.sql.types import *
 from graphframes import *
 
-# // tag::custom-shortest-path-imports[]
+# // tag::sssp-imports[]
 from scripts.aggregate_messages import AggregateMessages as AM
 from pyspark.sql import functions as F
-# // end::custom-shortest-path-imports[]
+# // end::sssp-imports[]
 
 
 # // tag::udfs[]
@@ -16,13 +16,8 @@ add_path_udf = F.udf(add_path, ArrayType(StringType()))
 # // end::udfs[]
 
 
-# // tag::custom-shortest-path[]
-def shortest_path(g, origin, destination, column_name="cost"):
-    if g.vertices.filter(g.vertices.id == destination).count() == 0:
-        return spark \
-            .createDataFrame(sc.emptyRDD(), g.vertices.schema) \
-            .withColumn("path", F.array())
-
+# // tag::sssp[]
+def sssp(g, origin, column_name="cost"):
     vertices = g.vertices \
         .withColumn("visited", F.lit(False)) \
         .withColumn("distance",
@@ -61,13 +56,9 @@ def shortest_path(g, origin, destination, column_name="cost"):
             .withColumnRenamed('newPath', 'path')
         cached_new_vertices = AM.getCachedDataFrame(new_vertices)
         g2 = GraphFrame(cached_new_vertices, g2.edges)
-        if g2.vertices.filter(g2.vertices.id == destination).first().visited:
-            return g2.vertices \
-                .filter(g2.vertices.id == destination) \
+
+    return g2.vertices \
                 .withColumn("newPath", add_path_udf("path", "id")) \
                 .drop("visited", "path") \
                 .withColumnRenamed("newPath", "path")
-    return spark \
-        .createDataFrame(sc.emptyRDD(), g.vertices.schema) \
-        .withColumn("path", F.array())
-# // end::custom-shortest-path[]
+# // end::sssp[]
