@@ -1,12 +1,12 @@
 // tag::neo4j-results[]
-+--------------------+
-| place              |
-+--------------------+
-| "London"           |
-| "Colchester"       |
-| "Ipswich"          |
-| "Felixstowe"       |
-| "Hoek van Holland" |
-| "Felixstowe"       |
-+--------------------+
++-------------+
+| place       |
++-------------+
+| "London"    |
+| "Doncaster" |
+| "Immingham" |
+| "Amsterdam" |
+| "Den Haag"  |
+| "Amsterdam" |
++-------------+
 // end::neo4j-results[]
