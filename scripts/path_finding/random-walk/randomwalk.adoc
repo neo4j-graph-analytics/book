@@ -6,7 +6,7 @@
 | "Doncaster" |
 | "Immingham" |
 | "Amsterdam" |
-| "Den Haag"  |
+| "Utrecht"   |
 | "Amsterdam" |
 +-------------+
 // end::neo4j-results[]
