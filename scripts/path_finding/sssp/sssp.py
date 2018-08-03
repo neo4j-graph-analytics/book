@@ -26,11 +26,7 @@ g = GraphFrame(v, e)
 # // end::load-graph-frame[]
 
 # // tag::via[]
-def via(path):
-    return path[1:-1]
-
-
-via_udf = F.udf(via, ArrayType(StringType()))
+via_udf = F.udf(lambda path: path[1:-1], ArrayType(StringType()))
 # // end::via[]
 
 # // tag::execute[]
