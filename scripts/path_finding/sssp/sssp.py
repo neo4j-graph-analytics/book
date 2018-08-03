@@ -33,11 +33,11 @@ def via(path):
 via_udf = F.udf(via, ArrayType(StringType()))
 # // end::via[]
 
-# // tag::custom-shortest-path-execute[]
+# // tag::execute[]
 result = sssp(g, "Amsterdam", "cost")
 result \
     .withColumn("via", via_udf("path")) \
     .select("id", "distance", "via") \
     .sort("distance") \
     .show(truncate=False)
-# // end::custom-shortest-path-execute[]
+# // end::execute[]

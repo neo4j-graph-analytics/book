@@ -1,10 +1,10 @@
 from pyspark.sql.types import *
 from graphframes import *
 
-# // tag::sssp-imports[]
+# // tag::imports[]
 from scripts.aggregate_messages import AggregateMessages as AM
 from pyspark.sql import functions as F
-# // end::sssp-imports[]
+# // end::imports[]
 
 
 # // tag::udfs[]
