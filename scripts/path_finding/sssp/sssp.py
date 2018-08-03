@@ -38,5 +38,6 @@ result = sssp(g, "Amsterdam", "cost")
 result \
     .withColumn("via", via_udf("path")) \
     .select("id", "distance", "via") \
+    .sort("distance") \
     .show(truncate=False)
 # // end::custom-shortest-path-execute[]
