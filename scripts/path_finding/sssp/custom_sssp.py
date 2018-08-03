@@ -8,11 +8,7 @@ from pyspark.sql import functions as F
 
 
 # // tag::udfs[]
-def add_path(s, s2):
-    return s + [s2]
-
-
-add_path_udf = F.udf(add_path, ArrayType(StringType()))
+add_path_udf = F.udf(lambda path, id: path + [id], ArrayType(StringType()))
 # // end::udfs[]
 
 
