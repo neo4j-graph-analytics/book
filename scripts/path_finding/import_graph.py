@@ -1,7 +1,6 @@
 # // tag::imports[]
 from pyspark.sql.types import *
 from graphframes import *
-from pyspark.sql import functions as F
 # // end::imports[]
 
 
