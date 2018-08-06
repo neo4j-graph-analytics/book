@@ -1,23 +1,24 @@
 // tag::stream[]
-+------------------------------------------+
-| communities | nodeId | libraries         |
-+------------------------------------------+
-| [0, 0]      | 0      | "pytz"            |
-| [1, 1]      | 1      | "pyspark"         |
-| [2, 0]      | 2      | "matplotlib"      |
-| [2, 0]      | 3      | "spacy"           |
-| [1, 1]      | 4      | "py4j"            |
-| [3, 2]      | 5      | "jupyter"         |
-| [3, 2]      | 6      | "jpy-console"     |
-| [4, 2]      | 7      | "nbconvert"       |
-| [3, 2]      | 8      | "ipykernel"       |
-| [4, 2]      | 9      | "jpy-client"      |
-| [4, 2]      | 10     | "jpy-core"        |
-| [2, 0]      | 11     | "six"             |
-| [0, 0]      | 16     | "pandas"          |
-| [2, 0]      | 17     | "numpy"           |
-| [2, 0]      | 18     | "python-dateutil" |
-+------------------------------------------+
++---------------------------------+
+| libraries         | communities |
++---------------------------------+
+| "pytz"            | [0, 0]      |
+| "pyspark"         | [1, 1]      |
+| "matplotlib"      | [2, 0]      |
+| "spacy"           | [2, 0]      |
+| "py4j"            | [1, 1]      |
+| "jupyter"         | [3, 2]      |
+| "jpy-console"     | [3, 2]      |
+| "nbconvert"       | [4, 2]      |
+| "ipykernel"       | [3, 2]      |
+| "jpy-client"      | [4, 2]      |
+| "jpy-core"        | [4, 2]      |
+| "six"             | [2, 0]      |
+| "pandas"          | [0, 0]      |
+| "numpy"           | [2, 0]      |
+| "python-dateutil" | [2, 0]      |
++---------------------------------+
+
 // end::stream[]
 
 // tag::read-layer-1[]

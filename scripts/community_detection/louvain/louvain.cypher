@@ -2,7 +2,7 @@
 // tag::stream[]
 CALL algo.louvain.stream("Library", "DEPENDS_ON")
 YIELD nodeId, communities
-RETURN communities, algo.getNodeById(nodeId).id AS libraries
+RETURN algo.getNodeById(nodeId).id AS libraries, communities
 // end::stream[]
 
 
