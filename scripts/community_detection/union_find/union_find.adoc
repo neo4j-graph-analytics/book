@@ -11,7 +11,7 @@
 
 // tag::pyspark-results[]
 +------------+------------------------------------------------------------------+
-|component   |collect_list(id)                                                  |
+|component   |libraries                                                         |
 +------------+------------------------------------------------------------------+
 |180388626432|[jpy-core, nbconvert, ipykernel, jupyter, jpy-client, jpy-console]|
 |223338299392|[spacy, numpy, six, pandas, pytz, python-dateutil, matplotlib]    |

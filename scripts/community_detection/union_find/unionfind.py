@@ -14,6 +14,6 @@ sc.setCheckpointDir("/tmp")
 result = g.connectedComponents()
 result.sort("component") \
     .groupby("component") \
-    .agg(F.collect_list("id")) \
+    .agg(F.collect_list("id").alias("libraries")) \
     .show(truncate=False)
 #  // end::unionfind[]

@@ -14,6 +14,6 @@ g = GraphFrame(v, e)
 result = g.stronglyConnectedComponents(maxIter=10)
 result.sort("component") \
     .groupby("component") \
-    .agg(F.collect_list("id")) \
+    .agg(F.collect_list("id").alias("libraries")) \
     .show(truncate=False)
 # // end::scc[]
