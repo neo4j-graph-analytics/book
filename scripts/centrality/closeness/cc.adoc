@@ -1,3 +1,19 @@
+// tag::pyspark-results[]
++-------+-----------------------------------------------------------------+------------------+
+|id     |ids                                                              |closeness         |
++-------+-----------------------------------------------------------------+------------------+
+|Doug   |[[Charles, 1], [Mark, 1], [Alice, 1], [Bridget, 1], [Michael, 1]]|1.0               |
+|Alice  |[[Charles, 1], [Mark, 1], [Bridget, 1], [Doug, 1], [Michael, 1]] |1.0               |
+|David  |[[James, 1], [Amy, 1]]                                           |1.0               |
+|Bridget|[[Charles, 2], [Mark, 2], [Alice, 1], [Doug, 1], [Michael, 1]]   |0.7142857142857143|
+|Michael|[[Charles, 2], [Mark, 2], [Alice, 1], [Doug, 1], [Bridget, 1]]   |0.7142857142857143|
+|James  |[[Amy, 2], [David, 1]]                                           |0.6666666666666666|
+|Amy    |[[James, 2], [David, 1]]                                         |0.6666666666666666|
+|Mark   |[[Bridget, 2], [Charles, 2], [Michael, 2], [Doug, 1], [Alice, 1]]|0.625             |
+|Charles|[[Bridget, 2], [Mark, 2], [Michael, 2], [Doug, 1], [Alice, 1]]   |0.625             |
++-------+-----------------------------------------------------------------+------------------+
+// end::pyspark-results[]
+
 // tag::neo4j-results[]
 +--------------------------------+
 | user      | centrality         |
