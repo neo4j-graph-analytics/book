@@ -1,8 +1,7 @@
 // tag::neo4j-execute[]
 CALL algo.scc.stream("Library", "DEPENDS_ON")
 YIELD nodeId, partition
-MATCH (l) WHERE id(l) = nodeId
-RETURN partition, collect(l.id) AS libraries
+RETURN partition, collect(algo.getNodeById(nodeId)) AS libraries
 ORDER BY size(libraries) DESC
 // end::neo4j-execute[]
 
