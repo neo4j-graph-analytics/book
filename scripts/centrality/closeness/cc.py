@@ -17,7 +17,10 @@ def collect_paths(paths):
 
 collect_paths_udf = F.udf(collect_paths, ArrayType(StringType()))
 
-paths_type = ArrayType(StructType([StructField("id", StringType()), StructField("distance", IntegerType())]))
+paths_type = ArrayType(StructType([
+    StructField("id", StringType()),
+    StructField("distance", IntegerType())
+]))
 
 
 def flatten(ids):
@@ -64,7 +67,8 @@ g2 = GraphFrame(cached_vertices, g.edges)
 for i in range(0, g2.vertices.count()):
     msg_dst = new_paths_udf(AM.src["ids"], AM.src["id"])
     msg_src = new_paths_udf(AM.dst["ids"], AM.dst["id"])
-    agg = g2.aggregateMessages(F.collect_set(AM.msg).alias("agg"), sendToSrc=msg_src, sendToDst=msg_dst)
+    agg = g2.aggregateMessages(F.collect_set(AM.msg).alias("agg"),
+        sendToSrc=msg_src, sendToDst=msg_dst)
     res = agg.withColumn("newIds", flatten_udf("agg")).drop("agg")
     new_vertices = g2.vertices.join(res, on="id", how="left_outer") \
         .withColumn("mergedIds", merge_paths_udf("ids", "newIds", "id")) \
