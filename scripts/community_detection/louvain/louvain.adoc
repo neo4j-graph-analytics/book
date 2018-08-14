@@ -22,16 +22,16 @@
 // end::stream[]
 
 // tag::read-layer-1[]
-+------------------------------------------------------+
-| community | libraries                                |
-+------------------------------------------------------+
-| 2         | ["matplotlib", "six", "python-dateutil"] |
-| 5         | ["nbconvert", "jpy-client", "jpy-core"]  |
-| 4         | ["jupyter", "jpy-console", "ipykernel"]  |
-| 1         | ["pyspark", "py4j"]                      |
-| 3         | ["spacy", "numpy"]                       |
-| 0         | ["pytz", "pandas"]                       |
-+------------------------------------------------------+
++---------------------------------------------------------------+
+| community | libraries                                         |
++---------------------------------------------------------------+
+| 2         | ["matplotlib", "spacy", "six", "python-dateutil"] |
+| 4         | ["nbconvert", "jpy-client", "jpy-core"]           |
+| 3         | ["jupyter", "jpy-console", "ipykernel"]           |
+| 1         | ["pyspark", "py4j"]                               |
+| 0         | ["pytz", "pandas"]                                |
+| 5         | ["numpy"]                                         |
++---------------------------------------------------------------+
 // end::read-layer-1[]
 
 // tag::read-layer-2[]
