@@ -1,0 +1,94 @@
+{
+  "node": {
+    "diameter": "50px",
+    "color": "#A5ABB6",
+    "border-color": "#9AA1AC",
+    "border-width": "2px",
+    "text-color-internal": "#FFFFFF",
+    "font-size": "10px"
+  },
+  "relationship": {
+    "color": "#A5ABB6",
+    "shaft-width": "1px",
+    "font-size": "8px",
+    "padding": "3px",
+    "text-color-external": "#000000",
+    "text-color-internal": "#FFFFFF",
+    "caption": "<type>"
+  },
+  "relationship.EROAD": {
+    "caption": "{distance}"
+  },
+  "node.Place": {
+    "color": "#FF756E",
+    "border-color": "#E06760",
+    "text-color-internal": "#FFFFFF",
+    "defaultCaption": "<id>",
+    "caption": "{id}",
+    "diameter": "80px"
+  },
+  "node.*": {
+    "color": "#6DCE9E",
+    "border-color": "#60B58B",
+    "text-color-internal": "#FFFFFF",
+    "defaultCaption": "<id>"
+  },
+  "node.Character": {
+    "color": "#FF756E",
+    "border-color": "#E06760",
+    "text-color-internal": "#FFFFFF",
+    "caption": "{name}",
+    "diameter": "80px"
+  },
+  "node.Area": {
+    "color": "#DE9BF9",
+    "border-color": "#BF85D6",
+    "text-color-internal": "#FFFFFF",
+    "caption": "{name}",
+    "diameter": "80px"
+  },
+  "node.Category": {
+    "color": "#FB95AF",
+    "border-color": "#E0849B",
+    "text-color-internal": "#FFFFFF",
+    "caption": "{name}",
+    "diameter": "80px"
+  },
+  "node.User": {
+    "color": "#FFD86E",
+    "border-color": "#EDBA39",
+    "text-color-internal": "#604A0E",
+    "caption": "{name}",
+    "diameter": "80px"
+  },
+  "node.SuperCategory": {
+    "caption": "{name}"
+  },
+  "node.Country": {
+    "caption": "{name}",
+    "color": "#68BDF6",
+    "border-color": "#5CA8DB",
+    "text-color-internal": "#FFFFFF"
+  },
+  "node.Review": {
+    "caption": "{name}",
+    "color": "#6DCE9E",
+    "border-color": "#60B58B",
+    "text-color-internal": "#FFFFFF",
+    "diameter": "80px"
+  },
+  "node.City": {
+    "caption": "{name}",
+    "diameter": "80px",
+    "text-color-internal": "#FFFFFF",
+    "color": "#FF4500",
+    "border-color": "#A52A2A"
+  },
+  "node.Business": {
+    "caption": "{name}",
+    "diameter": "80px",
+    "text-color-internal": "#FFFFFF",
+    "color": "#0000FF",
+    "border-color": "#00008B"
+  }
+}

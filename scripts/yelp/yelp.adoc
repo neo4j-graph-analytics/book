@@ -1,0 +1,65 @@
+// tag::install[]
+pip install neo4j-driver tabulate pandas
+// end::install[]
+
+
+// tag::node-cardinalities[]
++----------+---------+
+| label    |   count |
+|----------+---------|
+| Business |  174567 |
+| Category |    1293 |
+| User     | 1326101 |
+| Review   | 5261669 |
+| City     |    1093 |
+| Area     |      54 |
+| Country  |      17 |
++----------+---------+
+// end::node-cardinalities[]
+
+// tag::rel-cardinalities[]
++-------------+----------+
+| relType     |    count |
+|-------------+----------|
+| IN_CATEGORY |   667527 |
+| FRIENDS     | 10645356 |
+| WROTE       |  5261669 |
+| REVIEWS     |  5261669 |
+| IN_CITY     |   174566 |
+| IN_COUNTRY  |       54 |
+| IN_AREA     |     1154 |
++-------------+----------+
+// end::rel-cardinalities[]
+
+// tag::restaurants[]
++-------+
+| count |
++-------+
+| 79395 |
++-------+
+// end::restaurants[]
+
+// tag::restaurants-reviews[]
++---------+
+| count   |
++---------+
+| 4213372 |
++---------+
+// end::restaurants-reviews[]
+
+// tag::toronto-restaurants-top-rated[]
++-----------------+-----------------------------------+-----------+
+|   averageRating | business                          |   reviews |
+|-----------------+-----------------------------------+-----------|
+|         4.28849 | Pai Northern Thai Kitchen         |      2988 |
+|         4.24383 | Banh Mi Boys                      |      1944 |
+|         3.49175 | Uncle Tetsu's Japanese Cheesecake |      1696 |
+|         3.9764  | Khao San Road                     |      1271 |
+|         4.11233 | KINKA IZAKAYA ORIGINAL            |      1184 |
+|         3.31727 | Amsterdam BrewHouse               |       996 |
+|         4.35344 | Seven Lives Tacos Y Mariscos      |       945 |
+|         3.76443 | Bannock                           |       866 |
+|         3.94272 | Barque Smokehouse                 |       838 |
+|         3.46964 | Salad King Restaurant             |       807 |
++-----------------+-----------------------------------+-----------+
+// end::toronto-restaurants-top-rated[]
