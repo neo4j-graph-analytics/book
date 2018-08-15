@@ -1,7 +1,7 @@
 # tag::imports[]
 from neo4j.v1 import GraphDatabase
 import pandas as pd
-import tabulate
+from tabulate import tabulate
 # end::imports[]
 
 # tag::driver[]
