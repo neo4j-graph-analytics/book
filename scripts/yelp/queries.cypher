@@ -47,3 +47,14 @@ RETURN u.name AS name,
        size((u)-[:FRIENDS]-()) AS friends
 ORDER BY u.restaurantPageRank DESC
 // end::toronto-restaurants-best-reviewers-query[]
+
+// tag::toronto-restaurants-pai-northern-thai-kitchen[]
+MATCH (b:Business {name: "Pai Northern Thai Kitchen"})
+MATCH (b)<-[:REVIEWS]-(review)<-[:WROTE]-(user)
+RETURN user.name AS name,
+       user.restaurantPageRank AS pageRank,
+       review.stars AS stars,
+       review.date AS date
+ORDER BY user.restaurantPageRank DESC
+LIMIT 5
+// end::toronto-restaurants-pai-northern-thai-kitchen[]
