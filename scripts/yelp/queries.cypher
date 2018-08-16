@@ -58,3 +58,15 @@ RETURN user.name AS name,
 ORDER BY user.restaurantPageRank DESC
 LIMIT 5
 // end::toronto-restaurants-pai-northern-thai-kitchen[]
+
+// tag::category-hierarchies[]
+CALL algo.louvain.stream(
+  "MATCH (c:Category) RETURN id(c) AS id",
+  "MATCH (c1:Category)<-[:IN_CATEGORY]-()-[:IN_CATEGORY]->(c2:Category)
+   WHERE id(c1) < id(c2)
+   RETURN id(c1) AS source, id(c2) AS target, count(*) AS weight",
+  {graph: "cypher"}
+)
+YIELD nodeId, communities
+RETURN algo.getNodeById(nodeId).name, communities
+// end::category-hierarchies[]
