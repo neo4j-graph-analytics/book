@@ -70,3 +70,16 @@ CALL algo.louvain.stream(
 YIELD nodeId, communities
 RETURN algo.getNodeById(nodeId).name, communities
 // end::category-hierarchies[]
+
+
+// tag::user-clusters[]
+CALL algo.labelPropagation.stream(
+  "MATCH (u:User) RETURN id(u) AS id",
+  "MATCH (u1)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(c1:Category),
+         (c1)<-[:IN_CATEGORY]-()<-[:REVIEWS]-()<-[:WROTE]-(u2:User)
+   WHERE id(u1) < id(u2)
+   RETURN id(u1) AS source, id(u2) AS target, count(*) AS weight",
+   {graph: "cypher"})
+YIELD nodeId, label
+RETURN nodeId, label
+// end::user-clusters[]
