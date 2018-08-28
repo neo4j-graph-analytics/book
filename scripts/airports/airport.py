@@ -109,12 +109,12 @@ to_expr = 'id = "CKB"'
 result = g.bfs(from_expr, to_expr)
 
 (result
- .select(F.col("e0.deptDelay"),
-         F.col("e0.date"),
+ .select(F.col("e0.date"),
          F.col("e0.time"),
-         F.col("e0.flightNumber"))
- .sort("date")
- .show())
+         F.col("e0.flightNumber"),
+         F.col("e0.deptDelay"))
+ .sort("deptDelay", ascending=False)
+ .show(n=50))
 
 # end::ord-ckb[]
 
