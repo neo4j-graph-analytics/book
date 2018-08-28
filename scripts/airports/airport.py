@@ -180,6 +180,8 @@ airlines = (g.edges
  .groupBy("airline")
  .agg(F.count("airline").alias("flights"))
  .sort("flights", ascending=False))
+
+airlines.show()
 # end::airlines[]
 
 
