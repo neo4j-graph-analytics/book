@@ -51,3 +51,4 @@ RETURN label, count(*) as size
 ORDER BY size DESC
 LIMIT 10
 // end::lpa[]
+

@@ -173,3 +173,39 @@ result = airline_graph.labelPropagation(maxIter=10)
  .show(truncate=70))
 
 # end::skywest-airport-clusters[]
+
+
+# tag::airlines[]
+airlines = (g.edges
+ .groupBy("airline")
+ .agg(F.count("airline").alias("flights"))
+ .sort("flights", ascending=False))
+# end::airlines[]
+
+
+# tag::scc-airlines-fn[]
+def find_scc_components(g, airline):
+    airline_relationships = g.edges[g.edges.airline == airline]
+    airline_graph = GraphFrame(g.vertices, airline_relationships)
+    result = airline_graph.stronglyConnectedComponents(maxIter=10)
+    return (result
+        .groupBy("component")
+        .agg(F.count("id").alias("size"))
+        .sort("size", ascending=False)
+        .take(1)[0]["size"])
+# end::scc-airlines-fn[]
+
+scc_udf = F.udf(lambda airline: find_scc_components(airline), IntegerType())
+(airlines.withColumn("sccCount", scc_udf(g, airlines.airline)))
+
+# tag::scc-airlines[]
+airline_scc = [(airline, find_scc_components(g, airline))
+               for airline in airlines.toPandas()["airline"].tolist()]
+
+airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
+(airline_scc_df
+ .join(airlines, airlines.airline == airline_scc_df.id)
+ .select("id", "flights", "sccCount")
+ .sort("sccCount", ascending=False)
+ .show())
+# end::scc-airlines[]
