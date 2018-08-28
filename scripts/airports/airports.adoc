@@ -14,6 +14,24 @@
 +--------------+
 // end::longest-departing-delay[]
 
+// tag::flight-count[]
++---+------------------------------------------------+-----+
+|id |name                                            |count|
++---+------------------------------------------------+-----+
+|ATL|Hartsfield Jackson Atlanta International Airport|33837|
+|ORD|Chicago O'Hare International Airport            |28338|
+|DFW|Dallas Fort Worth International Airport         |23765|
+|CLT|Charlotte Douglas International Airport         |20251|
+|DEN|Denver International Airport                    |19836|
+|LAX|Los Angeles International Airport               |19059|
+|PHX|Phoenix Sky Harbor International Airport        |15103|
+|SFO|San Francisco International Airport             |14934|
+|LGA|La Guardia Airport                              |14709|
+|IAH|George Bush Intercontinental Houston Airport    |14407|
++---+------------------------------------------------+-----+
+// end::flight-count[]
+
+
 // tag::motifs-delayed-flights[]
 +--------+------------+--------+--------------+--------+------+
 |airport1|arrivalDelay|airport2|departureDelay|airport3| delay|

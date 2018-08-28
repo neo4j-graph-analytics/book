@@ -49,6 +49,20 @@ g.edges.count()
 g.edges.groupBy().max("deptDelay").show()
 # // end::longest-departing-delay[]
 
+# // tag::flight-count[]
+popular_airports =(g.edges
+ .groupBy("src")
+ .agg(F.count("src").alias("count"))
+ .sort(F.desc("count"))
+ .cache())
+
+(popular_airports
+ .join(g.vertices, popular_airports.src == g.vertices.id)
+ .sort("count", ascending=False)
+ .select("id", "name", "count")
+ .show(n=10, truncate=False))
+# // end::flight-count[]
+
 # // tag::ord-delays[]
 result = (g.edges
  .filter("src = 'ORD' and deptDelay > 0")
