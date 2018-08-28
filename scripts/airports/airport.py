@@ -86,11 +86,11 @@ from_expr = 'id = "ORD"'
 to_expr = 'id = "CKB"'
 result = g.bfs(from_expr, to_expr)
 
-(result
- .select(F.col("e0.date"),
-         F.col("e0.time"),
-         F.col("e0.flightNumber"),
-         F.col("e0.deptDelay"))
+(result.select(
+    F.col("e0.date"),
+    F.col("e0.time"),
+    F.col("e0.flightNumber"),
+    F.col("e0.deptDelay"))
  .sort("deptDelay", ascending=False)
  .show(n=50))
 
