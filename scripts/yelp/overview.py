@@ -19,7 +19,7 @@ with driver.session() as session:
         result["count"].append(count)
 
 df = pd.DataFrame(data=result)
-print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
+print(tabulate(df.sort_values("count"), headers='keys', tablefmt='psql', showindex=False))
 # end::node-cardinalities[]
 
 # tag::rel-cardinalities[]
@@ -33,5 +33,5 @@ with driver.session() as session:
         result["count"].append(count)
 
 df = pd.DataFrame(data=result)
-print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
+print(tabulate(df.sort_values("count"), headers='keys', tablefmt='psql', showindex=False))
 # end::rel-cardinalities[]
