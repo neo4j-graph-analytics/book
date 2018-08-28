@@ -162,3 +162,31 @@
 +---+------------------------------------------------------------+--------+-----+
 
 // end::triangles[]
+
+
+// tag::skywest-airport-clusters[]
++-------------+----------------------------------------------------------------------+
+|        label|                                                              airports|
++-------------+----------------------------------------------------------------------+
+|1554778161153|[IND, ORF, AVL, BHM, MEM, DTW, CID, BDL, PVD, LSE, TVC, CLE, FLL, E...|
+|1357209665542|[BGM, ESC, SYR, GSO, ERI, LAN, PLN, IAH, CAK, AZO, LEX, SAT, SCE, S...|
+|1589137899522|[BTM, PIH, ROW, SUN, GJT, SGU, EKO, MSO, LGB, BUR, FLG, SAN, FCA, S...|
+|1494648619009|[RIC, XNA, RKS, JAX, DRO, PSC, DSM, JAC, ELP, LBF, BFL, ASE, BZN, G...|
+|1477468749827|[ATW, INL, MSN, OMA, FSD, GFK, MOT, CIU, HIB, GRR, IMT, BJI, EWR, F...|
+|1571958030336|[GTR, TRI, ILM, AEX, CHO, BTR, LFT, ROA, MGM, SHV, CHA, CRW, FSM, A...|
+|1692217114632|               [MFR, ONT, SLC, RDD, ABQ, SBP, RDM, OTH, SBA, STS, ACV]|
+|1614907703298|                                   [MRY, DFW, EUG, RNO, OAK, TUS, FAT]|
+| 764504178689|                                             [GEG, BOI, SIT, PDX, BLI]|
+|1589137899524|                                             [MOB, BRO, HRL, CRP, MSP]|
+| 730144440320|                                                            [DEN, DVL]|
+|  25769803777|                                                                 [CWT]|
+|  17179869186|                                                                 [RDG]|
+|            3|                                                                 [FMY]|
+|  25769803778|                                                                 [DRT]|
+|            6|                                                                 [RKP]|
+|   8589934592|                                                                 [4A7]|
+|  25769803779|                                                                 [FOK]|
+|  25769803781|                                                                 [HVR]|
+|   8589934593|                                                                 [AVX]|
++-------------+----------------------------------------------------------------------+
+// end::skywest-airport-clusters[]

@@ -14,12 +14,14 @@ cleaned_nodes = (nodes.select("_c1", "_c3", "_c4")
                  .withColumnRenamed("_c1", "name")
                  .withColumnRenamed("_c4", "id")
                  .drop("_c3"))
+cleaned_nodes = cleaned_nodes[cleaned_nodes["id"] != "\\N"]
 
 relationships = spark.read.csv("data/188591317_T_ONTIME.csv", header=True)
 
 cleaned_relationships = (relationships
                          .select("ORIGIN", "DEST", "FL_DATE", "DEP_DELAY", "ARR_DELAY",
-                                 "DISTANCE", "TAIL_NUM", "FL_NUM", "CRS_DEP_TIME")
+                                 "DISTANCE", "TAIL_NUM", "FL_NUM", "CRS_DEP_TIME",
+                                 "UNIQUE_CARRIER")
                          .withColumnRenamed("ORIGIN", "src")
                          .withColumnRenamed("DEST", "dst")
                          .withColumnRenamed("DEP_DELAY", "deptDelay")
@@ -29,6 +31,7 @@ cleaned_relationships = (relationships
                          .withColumnRenamed("FL_DATE", "date")
                          .withColumnRenamed("CRS_DEP_TIME", "time")
                          .withColumnRenamed("DISTANCE", "distance")
+                         .withColumnRenamed("UNIQUE_CARRIER", "airline")
                          .withColumn("deptDelay", F.col("deptDelay").cast(FloatType()))
                          .withColumn("arrDelay", F.col("arrDelay").cast(FloatType()))
                          .withColumn("time", F.col("time").cast(IntegerType()))
@@ -155,3 +158,18 @@ pagerank = g.pageRank(resetProbability=0.15, maxIter=20).cache()
  .show(truncate=False))
 
 # end::triangles[]
+
+# tag::skywest-airport-clusters[]
+
+airline_relationships = g.edges.filter("airline = 'OO'")
+airline_graph = GraphFrame(g.vertices, airline_relationships)
+
+result = airline_graph.labelPropagation(maxIter=10)
+(result
+ .sort("label")
+ .groupby("label")
+ .agg(F.collect_list("id").alias("airports"))
+ .sort(F.size(F.col("airports")), ascending=False)
+ .show(truncate=70))
+
+# end::skywest-airport-clusters[]
