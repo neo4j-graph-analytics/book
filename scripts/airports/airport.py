@@ -53,7 +53,6 @@ g.edges.groupBy().max("deptDelay").show()
 popular_airports =(g.edges
  .groupBy("src")
  .agg(F.count("src").alias("count"))
- .sort(F.desc("count"))
  .cache())
 
 (popular_airports
