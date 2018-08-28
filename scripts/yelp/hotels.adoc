@@ -14,15 +14,6 @@
 +--------+
 // end::reviews[]
 
-// tag::best-reviewers[]
-+-----------------------------------------------------------------------------------+
-| nodes   | iterations | loadMillis | computeMillis | writeMillis | writeProperty   |
-+-----------------------------------------------------------------------------------+
-| 1326101 | 20         | 5603       | 187           | 5819        | "hotelPageRank" |
-+-----------------------------------------------------------------------------------+
-// end::best-reviewers[]
-
-
 // tag::top-rated[]
 +-----------------------------------------------------------------------------+
 | business                                     | reviews | averageRating      |
@@ -40,32 +31,95 @@
 +-----------------------------------------------------------------------------+
 // end::top-rated[]
 
-// tag::toronto-restaurants-best-reviewers-query[]
-+------------------------------------------------------------------------------+
-| name       | pageRank           | restaurantReviews | totalReviews | friends |
-+------------------------------------------------------------------------------+
-| "Kris"     | 25.274699499999993 | 723               | 830          | 4515    |
-| "Michelle" | 16.479681499999998 | 61                | 47           | 428     |
-| "Jason"    | 14.686309          | 133               | 122          | 2348    |
-| "Michael"  | 10.047493500000002 | 240               | 211          | 1036    |
-| "Will"     | 9.472587499999998  | 147               | 158          | 524     |
-| "Ariel"    | 9.1156725          | 187               | 180          | 246     |
-| "Karen"    | 7.977718           | 15                | 22           | 14      |
-| "Mai"      | 7.412119499999999  | 55                | 49           | 10      |
-| "D"        | 7.1778425000000015 | 23                | 25           | 8       |
-| "Amy"      | 6.811271499999999  | 366               | 414          | 1276    |
-+------------------------------------------------------------------------------+
-// end::toronto-restaurants-best-reviewers-query[]
+// tag::best-reviewers[]
++---------------------------------------------------------------------------------+
+| nodes | iterations | loadMillis | computeMillis | writeMillis | writeProperty   |
++---------------------------------------------------------------------------------+
+| 5502  | 20         | 5301       | 8             | 19          | "hotelPageRank" |
++---------------------------------------------------------------------------------+
+// end::best-reviewers[]
+
+// tag::best-reviewers-query[]
++-----------------------------------------------------------------------+
+| name     | pageRank           | hotelReviews | totalReviews | friends |
++-----------------------------------------------------------------------+
+| "Victor" | 31.166406499999997 | 5            | 7            | 2824    |
+| "Jason"  | 24.308904000000002 | 7            | 60           | 5159    |
+| "Jamie"  | 18.084405          | 8            | 41           | 688     |
+| "Jeremy" | 17.58316           | 6            | 28           | 6164    |
+| "Eli"    | 17.470840999999997 | 4            | 38           | 3446    |
+| "Lori"   | 16.312205999999996 | 6            | 39           | 4518    |
+| "Connie" | 13.728138          | 7            | 51           | 5336    |
+| "Ariana" | 11.957775          | 4            | 31           | 2228    |
+| "Abby"   | 10.356349499999999 | 9            | 82           | 7922    |
+| "Danny"  | 10.276619499999999 | 10           | 68           | 320     |
++-----------------------------------------------------------------------+
+// end::best-reviewers-query[]
 
 
-// tag::toronto-restaurants-pai-northern-thai-kitchen[]
-+-------------------------------------------------------+
-| name      | pageRank           | stars | date         |
-+-------------------------------------------------------+
-| "Michael" | 10.047493500000002 | 4     | "2017-02-09" |
-| "Will"    | 9.472587499999998  | 4     | "2014-07-19" |
-| "Amy"     | 6.811271499999999  | 5     | "2016-11-13" |
-| "Jo-Anne" | 5.7982415000000005 | 3     | "2016-04-26" |
-| "Janna"   | 4.882001           | 4     | "2016-07-17" |
-+-------------------------------------------------------+
-// end::toronto-restaurants-pai-northern-thai-kitchen[]
+// tag::bellagio[]
++-----------------------------------------+
+| name       | pageRank           | stars |
++-----------------------------------------+
+| "Victor"   | 31.166406499999997 | 3     |
+| "Jeremy"   | 17.58316           | 5     |
+| "Connie"   | 13.728138          | 5     |
+| "Michelle" | 9.390213999999999  | 4     |
+| "Amanda"   | 9.303717999999998  | 4     |
++-----------------------------------------+
+// end::bellagio[]
+
+// tag::similar-categories[]
++--------------------------------------+
+| otherCategory           | businesses |
++--------------------------------------+
+| "Car Rental"            | 811        |
+| "Tours"                 | 603        |
+| "Limos"                 | 345        |
+| "Airport Shuttles"      | 296        |
+| "Taxis"                 | 239        |
+| "Bed & Breakfast"       | 208        |
+| "Public Transportation" | 202        |
+| "Resorts"               | 171        |
+| "Airports"              | 145        |
+| "Airlines"              | 114        |
++--------------------------------------+
+
+// end::similar-categories[]
+
+// tag::similar-categories-vegas[]
++-----------------------------+
+| otherCategory       | count |
++-----------------------------+
+| "Tours"             | 189   |
+| "Car Rental"        | 160   |
+| "Limos"             | 84    |
+| "Resorts"           | 73    |
+| "Airport Shuttles"  | 52    |
+| "Taxis"             | 35    |
+| "Vacation Rentals"  | 29    |
+| "Airports"          | 25    |
+| "Airlines"          | 23    |
+| "Motorcycle Rental" | 19    |
++-----------------------------+
+
+// end::similar-categories-vegas[]
+
+
+// tag::trip-plan[]
++-----------------------------------------------------------+
+| otherCategory           | business                        |
++-----------------------------------------------------------+
+| "Guest Houses"          | "Hotel Del Kacvinsky"           |
+| "Food Tours"            | "Lip Smacking Foodie Tours"     |
+| "Campgrounds"           | "Callville Bay Resort & Marina" |
+| "Car Share Services"    | "Lyft"                          |
+| "Public Transportation" | "Rtc Ada Paratransit Service"   |
+| "Currency Exchange"     | "Foreign Money Exchange"        |
+| "Health Retreats"       | "Hot Yoga Bliss Vacations"      |
+| "Buses"                 | "BoltBus"                       |
+| "Vacation Rentals"      | "Jewel Manor Estate"            |
+| "Art Tours"             | "Graffiti Art Gallery Alley"    |
++-----------------------------------------------------------+
+// end::trip-plan[]
+
