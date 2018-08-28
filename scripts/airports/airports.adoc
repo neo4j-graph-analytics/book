@@ -1,0 +1,133 @@
+// tag::nodes[]
+1435
+// end::nodes[]
+
+// tag::relationships[]
+616529
+// end::relationships[]
+
+// tag::longest-departing-delay[]
++--------------+
+|max(deptDelay)|
++--------------+
+|        1632.0|
++--------------+
+// end::longest-departing-delay[]
+
+// tag::motifs-delayed-flights[]
++--------+------------+--------+--------------+--------+------+
+|airport1|arrivalDelay|airport2|departureDelay|airport3| delay|
++--------+------------+--------+--------------+--------+------+
+|     IAH|       167.0|     SFO|         837.0|     ORD|1004.0|
+|     RDD|       294.0|     SFO|         677.0|     RNO| 971.0|
+|     SNA|       177.0|     SFO|         728.0|     SEA| 905.0|
+|     RDD|       888.0|     SFO|          null|     OTH| 888.0|
+|     RDD|       888.0|     SFO|          null|     BUR| 888.0|
+|     SEA|        96.0|     SFO|         778.0|     PDX| 874.0|
+|     BWI|       833.0|     SFO|           0.0|     BWI| 833.0|
+|     SMF|       121.0|     SFO|         677.0|     RNO| 798.0|
+|     TUS|        33.0|     SFO|         677.0|     RNO| 710.0|
+|     BOI|       -11.0|     SFO|         513.0|     SBP| 502.0|
+|     ACV|       -21.0|     SFO|         513.0|     SBP| 492.0|
++--------+------------+--------+--------------+--------+------+
+// end::motifs-delayed-flights[]
+
+// tag::ord-delays[]
++---+-------------------------------------------+------------+--------------+
+|dst|name                                       |averageDelay|numberOfDelays|
++---+-------------------------------------------+------------+--------------+
+|CKB|North Central West Virginia Airport        |145.08      |12            |
+|OGG|Kahului Airport                            |119.67      |9             |
+|MQT|Sawyer International Airport               |114.75      |12            |
+|MOB|Mobile Regional Airport                    |102.2       |10            |
+|TTN|Trenton Mercer Airport                     |101.18      |17            |
+|AVL|Asheville Regional Airport                 |98.5        |28            |
+|ISP|Long Island Mac Arthur Airport             |94.08       |13            |
+|ANC|Ted Stevens Anchorage International Airport|83.74       |23            |
+|BTV|Burlington International Airport           |83.2        |25            |
+|CMX|Houghton County Memorial Airport           |79.18       |17            |
++---+-------------------------------------------+------------+--------------+
+// end::ord-delays[]
+
+# tag::ord-ckb[]
++---------+----------+----+------------+
+|deptDelay|      date|time|flightNumber|
++---------+----------+----+------------+
+|     43.0|2018-05-01|1645|        5066|
+|    881.0|2018-05-02|1645|        5066|
+|     -6.0|2018-05-03|1645|        5066|
+|      0.0|2018-05-04|1645|        5066|
+|    -10.0|2018-05-05|1645|        5066|
+|     -7.0|2018-05-06|1645|        5066|
+|     -8.0|2018-05-07|1645|        5066|
+|     -4.0|2018-05-08|1645|        5066|
+|     -4.0|2018-05-09|1645|        5066|
+|    -13.0|2018-05-10|1645|        5066|
+|     28.0|2018-05-11|1645|        5066|
+|     70.0|2018-05-12|1645|        5066|
+|     -8.0|2018-05-13|1645|        5066|
+|     65.0|2018-05-14|1645|        5066|
+|     -6.0|2018-05-15|1645|        5066|
+|     20.0|2018-05-16|1645|        5066|
+|     -6.0|2018-05-17|1645|        5066|
+|     30.0|2018-05-18|1645|        5066|
+|     -3.0|2018-05-19|1645|        5066|
+|    126.0|2018-05-20|1645|        5066|
++---------+----------+----+------------+
+# end::ord-ckb[]
+
+// tag::pagerank[]
++----------------------------------------------------------+---+--------+
+|name                                                      |id |pagerank|
++----------------------------------------------------------+---+--------+
+|Hartsfield Jackson Atlanta International Airport          |ATL|45.19   |
+|Chicago O'Hare International Airport                      |ORD|40.37   |
+|Dallas Fort Worth International Airport                   |DFW|37.19   |
+|Denver International Airport                              |DEN|28.94   |
+|Charlotte Douglas International Airport                   |CLT|27.66   |
+|Los Angeles International Airport                         |LAX|22.3    |
+|Minneapolis-St Paul International/Wold-Chamberlain Airport|MSP|22.01   |
+|Detroit Metropolitan Wayne County Airport                 |DTW|20.42   |
+|Phoenix Sky Harbor International Airport                  |PHX|19.1    |
+|George Bush Intercontinental Houston Airport              |IAH|19.04   |
+|San Francisco International Airport                       |SFO|18.88   |
+|McCarran International Airport                            |LAS|17.24   |
+|Seattle Tacoma International Airport                      |SEA|17.19   |
+|La Guardia Airport                                        |LGA|17.11   |
+|Salt Lake City International Airport                      |SLC|16.25   |
+|General Edward Lawrence Logan International Airport       |BOS|14.62   |
+|Newark Liberty International Airport                      |EWR|14.43   |
+|John F Kennedy International Airport                      |JFK|13.35   |
+|Orlando International Airport                             |MCO|13.17   |
+|Ronald Reagan Washington National Airport                 |DCA|12.96   |
++----------------------------------------------------------+---+--------+
+
+// end::pagerank[]
+
+// tag::triangles[]
++---+------------------------------------------------------------+--------+-----+
+|id |name                                                        |pagerank|count|
++---+------------------------------------------------------------+--------+-----+
+|ATL|Hartsfield Jackson Atlanta International Airport            |45.19   |1783 |
+|DEN|Denver International Airport                                |28.94   |1706 |
+|ORD|Chicago O'Hare International Airport                        |40.37   |1669 |
+|DFW|Dallas Fort Worth International Airport                     |37.19   |1595 |
+|CLT|Charlotte Douglas International Airport                     |27.66   |1595 |
+|LAS|McCarran International Airport                              |17.24   |1448 |
+|MSP|Minneapolis-St Paul International/Wold-Chamberlain Airport  |22.01   |1412 |
+|DTW|Detroit Metropolitan Wayne County Airport                   |20.42   |1401 |
+|PHX|Phoenix Sky Harbor International Airport                    |19.1    |1333 |
+|IAH|George Bush Intercontinental Houston Airport                |19.04   |1266 |
+|DCA|Ronald Reagan Washington National Airport                   |12.96   |1194 |
+|EWR|Newark Liberty International Airport                        |14.43   |1191 |
+|LAX|Los Angeles International Airport                           |22.3    |1191 |
+|MCO|Orlando International Airport                               |13.17   |1172 |
+|PHL|Philadelphia International Airport                          |12.41   |1109 |
+|SEA|Seattle Tacoma International Airport                        |17.19   |1072 |
+|BWI|Baltimore/Washington International Thurgood Marshall Airport|10.88   |1065 |
+|BOS|General Edward Lawrence Logan International Airport         |14.62   |1061 |
+|AUS|Austin Bergstrom International Airport                      |6.69    |1056 |
+|FLL|Fort Lauderdale Hollywood International Airport             |9.52    |1025 |
++---+------------------------------------------------------------+--------+-----+
+
+// end::triangles[]

@@ -7,9 +7,6 @@ pip install \
 
 // tag::pyspark-repl[]
 ./spark-2.3.1-bin-hadoop2.7/bin/pyspark \
-  --packages graphframes:graphframes:0.5.0-spark2.1-s_2.11
-
-./spark-2.3.1-bin-hadoop2.7/bin/pyspark \
   --driver-memory 2g \
   --executor-memory 6g \
   --packages graphframes:graphframes:0.5.0-spark2.1-s_2.11
