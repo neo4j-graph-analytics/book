@@ -24,6 +24,7 @@ cleaned_relationships = (relationships
   .withColumnRenamed("ARR_DELAY", "arrivalDelay")
   .withColumnRenamed("TAIL_NUM", "tailNumber")
   .withColumnRenamed("FL_NUM", "flightNumber")
+  .withColumnRenamed("DISTANCE", "distance")
 )
 
 g = GraphFrame(cleaned_nodes, cleaned_relationships)
@@ -33,3 +34,13 @@ g = GraphFrame(cleaned_nodes, cleaned_relationships)
 from_expr = "id='ORD'"
 to_expr = "id='SFO'"
 result = g.bfs(from_expr, to_expr)
+
+
+motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
+           .filter("""(b.id = 'SFO') and 
+                      (ab.arrivalDelay > 500 or bc.departureDelay > 500)"""))
+
+(motifs.withColumn("delay", motifs.ab.arrivalDelay + motifs.bc.departureDelay)
+       .select("ab", "bc", "delay")
+       .sort("delay", ascending=False)
+       .show(truncate=False))

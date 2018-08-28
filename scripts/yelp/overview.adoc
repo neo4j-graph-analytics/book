@@ -1,0 +1,32 @@
+// tag::install[]
+pip install neo4j-driver tabulate pandas
+// end::install[]
+
+
+// tag::node-cardinalities[]
++----------+---------+
+| label    |   count |
+|----------+---------|
+| Business |  174567 |
+| Category |    1293 |
+| User     | 1326101 |
+| Review   | 5261669 |
+| City     |    1093 |
+| Area     |      54 |
+| Country  |      17 |
++----------+---------+
+// end::node-cardinalities[]
+
+// tag::rel-cardinalities[]
++-------------+----------+
+| relType     |    count |
+|-------------+----------|
+| IN_CATEGORY |   667527 |
+| FRIENDS     | 10645356 |
+| WROTE       |  5261669 |
+| REVIEWS     |  5261669 |
+| IN_CITY     |   174566 |
+| IN_COUNTRY  |       54 |
+| IN_AREA     |     1154 |
++-------------+----------+
+// end::rel-cardinalities[]
