@@ -30,3 +30,25 @@ with driver.session() as session:
 top_hotels = df.sort_values(by=["reviews"], ascending=False).head(10)
 print(tabulate(top_hotels, headers='keys', tablefmt='psql', showindex=False))
 # end::top-rated[]
+
+
+# tag::bellagio[]
+query = """\
+MATCH (b:Business {name: $hotel})
+MATCH (b)<-[:REVIEWS]-(review)<-[:WROTE]-(user)
+WHERE exists(user.hotelPageRank)
+RETURN user.name AS name,
+       user.hotelPageRank AS pageRank,
+       review.stars AS stars
+ORDER BY user.hotelPageRank DESC
+"""
+
+with driver.session() as session:
+    params = { "hotel": "Bellagio Hotel" }
+    df = pd.DataFrame([dict(record) for record in session.run(query, params)])
+    df = df.round(2)
+    df = df[["name", "pageRank", "stars"]]
+
+top_reviews = df.sort_values(by=["pageRank"], ascending=False).head(10)
+print(tabulate(top_reviews, headers='keys', tablefmt='psql', showindex=False))
+# end::bellagio[]
