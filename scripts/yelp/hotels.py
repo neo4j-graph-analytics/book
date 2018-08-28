@@ -29,4 +29,4 @@ with driver.session() as session:
 # tag::top-rated[]
 top_hotels = df.sort_values(by=["reviews"], ascending=False).head(10)
 print(tabulate(top_hotels, headers='keys', tablefmt='psql', showindex=False))
-# tag::top-rated[]
+# end::top-rated[]
