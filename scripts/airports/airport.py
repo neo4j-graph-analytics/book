@@ -49,6 +49,37 @@ g.edges.count()
 g.edges.groupBy().max("deptDelay").show()
 # // end::longest-departing-delay[]
 
+# // tag::ord-delays[]
+result = (g.edges
+ .filter("src = 'ORD' and deptDelay > 0")
+ .groupBy("src", "dst")
+ .agg(F.avg("deptDelay"), F.count("deptDelay"))
+ .sort(F.desc("avg(deptDelay)")))
+
+(result
+ .join(g.vertices, result.dst == g.vertices.id)
+ .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
+ .withColumn("numberOfDelays", F.col("count(deptDelay)"))
+ .select("dst", "name", "averageDelay", "numberOfDelays")
+ .show(n=10, truncate=False))
+
+# // end::ord-delays[]
+
+# tag::ord-ckb[]
+from_expr = 'id = "ORD"'
+to_expr = 'id = "CKB"'
+result = g.bfs(from_expr, to_expr)
+
+(result
+ .select(F.col("e0.date"),
+         F.col("e0.time"),
+         F.col("e0.flightNumber"),
+         F.col("e0.deptDelay"))
+ .sort("deptDelay", ascending=False)
+ .show(n=50))
+
+# end::ord-ckb[]
+
 
 # // tag::motifs-delayed-flights[]
 motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
@@ -86,37 +117,6 @@ result.select(
 ).show()
 # // end::motifs-delayed-flights-result[]
 
-
-# // tag::ord-delays[]
-result = (g.edges
- .filter("src = 'ORD' and deptDelay > 0")
- .groupBy("src", "dst")
- .agg(F.avg("deptDelay"), F.count("deptDelay"))
- .sort(F.desc("avg(deptDelay)")))
-
-(result
- .join(g.vertices, result.dst == g.vertices.id)
- .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
- .withColumn("numberOfDelays", F.col("count(deptDelay)"))
- .select("dst", "name", "averageDelay", "numberOfDelays")
- .show(n=10, truncate=False))
-
-# // end::ord-delays[]
-
-# tag::ord-ckb[]
-from_expr = 'id = "ORD"'
-to_expr = 'id = "CKB"'
-result = g.bfs(from_expr, to_expr)
-
-(result
- .select(F.col("e0.date"),
-         F.col("e0.time"),
-         F.col("e0.flightNumber"),
-         F.col("e0.deptDelay"))
- .sort("deptDelay", ascending=False)
- .show(n=50))
-
-# end::ord-ckb[]
 
 # tag::pagerank[]
 result = g.pageRank(resetProbability=0.15, maxIter=20)
