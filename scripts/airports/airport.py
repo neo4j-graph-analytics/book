@@ -121,11 +121,14 @@ result = (motifs.withColumn("delay",
           .sort("delay", ascending=False))
 
 result.select(
-    F.col("ab.src").alias("airport1"),
+    F.col("ab.date"),
+    F.col("ab.src").alias("a1"),
+    F.col("ab.time").alias("a1DeptTime"),
     F.col("ab.arrDelay"),
-    F.col("ab.dst").alias("airport2"),
+    F.col("ab.dst").alias("a2"),
+    F.col("bc.time").alias("a2DeptTime"),
     F.col("bc.deptDelay"),
-    F.col("bc.dst").alias("airport3"),
+    F.col("bc.dst").alias("a3"),
     F.col("delay")
 ).show()
 # // end::motifs-delayed-flights-result[]
