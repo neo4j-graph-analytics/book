@@ -166,31 +166,89 @@
 
 
 // tag::airport-clusters[]
++-------------+----------------------------------------------------------------------+-----+
 |        label|                                                              airports|count|
 +-------------+----------------------------------------------------------------------+-----+
 |1606317768706|[IND, ORF, ATW, RIC, TRI, XNA, ECP, AVL, JAX, SYR, BHM, GSO, MEM, C...|   89|
 |1219770712067|[GEG, SLC, DTW, LAS, SEA, BOS, MSN, SNA, JFK, TVC, LIH, JAC, FLL, M...|   53|
-|            1|                                                                 [CNU]|    1|
-|            3|                                                                 [FMY]|    1|
-|            2|                                                                 [DAW]|    1|
-|  51539607553|                                                                 [ASH]|    1|
-|            4|                                                                 [LEB]|    1|
-|            5|                                                                 [OXC]|    1|
-|            6|                                                                 [RKP]|    1|
-|  60129542149|                                                                 [WDR]|    1|
-|  51539607554|                                                                 [CAR]|    1|
-|  51539607555|                                                                 [UWL]|    1|
-|  60129542144|                                                                 [AUW]|    1|
-|  60129542145|                                                                 [HOM]|    1|
-|  60129542146|                                                                 [IDA]|    1|
-|  60129542147|                                                                 [STE]|    1|
-|  60129542148|                                                                 [SVA]|    1|
-|  68719476736|                                                                 [CBF]|    1|
-|  68719476737|                                                                 [CUB]|    1|
-|  68719476739|                                                                 [HHR]|    1|
+|  17179869187|                                                                 [RHV]|    1|
+|  25769803777|                                                                 [CWT]|    1|
+|  25769803776|                                                                 [CDW]|    1|
+|  25769803782|                                                                 [KNW]|    1|
+|  25769803778|                                                                 [DRT]|    1|
+|  25769803779|                                                                 [FOK]|    1|
+|  25769803781|                                                                 [HVR]|    1|
+|  42949672962|                                                                 [GTF]|    1|
+|  34359738368|                                                                 [BUR]|    1|
+|  34359738369|                                                                 [CGX]|    1|
+|  34359738370|                                                                 [DKK]|    1|
+|  34359738371|                                                                 [GVT]|    1|
+|  34359738372|                                                                 [PTK]|    1|
+|  34359738374|                                                                 [UKF]|    1|
+|  42949672960|                                                                 [FOD]|    1|
+|  42949672963|                                                                 [MIC]|    1|
+|  42949672964|                                                                 [MRN]|    1|
+|  42949672965|                                                                 [OPF]|    1|
 +-------------+----------------------------------------------------------------------+-----+
 
 // end::airport-clusters[]
+
+// tag::airport-clusters-drilldown1[]
+
++---+------------------------------------------------------------+------+
+|id |name                                                        |degree|
++---+------------------------------------------------------------+------+
+|DFW|Dallas Fort Worth International Airport                     |47514 |
+|CLT|Charlotte Douglas International Airport                     |40495 |
+|IAH|George Bush Intercontinental Houston Airport                |28814 |
+|EWR|Newark Liberty International Airport                        |25131 |
+|PHL|Philadelphia International Airport                          |20804 |
+|BWI|Baltimore/Washington International Thurgood Marshall Airport|18989 |
+|MDW|Chicago Midway International Airport                        |15178 |
+|BNA|Nashville International Airport                             |12455 |
+|DAL|Dallas Love Field                                           |12084 |
+|IAD|Washington Dulles International Airport                     |11566 |
+|STL|Lambert St Louis International Airport                      |11439 |
+|HOU|William P Hobby Airport                                     |9742  |
+|IND|Indianapolis International Airport                          |8543  |
+|PIT|Pittsburgh International Airport                            |8410  |
+|CLE|Cleveland Hopkins International Airport                     |8238  |
+|CMH|Port Columbus International Airport                         |7640  |
+|SAT|San Antonio International Airport                           |6532  |
+|JAX|Jacksonville International Airport                          |5495  |
+|BDL|Bradley International Airport                               |4866  |
+|RSW|Southwest Florida International Airport                     |4569  |
++---+------------------------------------------------------------+------+
+
+// end::airport-clusters-drilldown1[]
+
+// tag::airport-clusters-drilldown2[]
++---+----------------------------------------------------------+------+
+|id |name                                                      |degree|
++---+----------------------------------------------------------+------+
+|ATL|Hartsfield Jackson Atlanta International Airport          |67672 |
+|ORD|Chicago O'Hare International Airport                      |56681 |
+|DEN|Denver International Airport                              |39671 |
+|LAX|Los Angeles International Airport                         |38116 |
+|PHX|Phoenix Sky Harbor International Airport                  |30206 |
+|SFO|San Francisco International Airport                       |29865 |
+|LGA|La Guardia Airport                                        |29416 |
+|LAS|McCarran International Airport                            |27801 |
+|DTW|Detroit Metropolitan Wayne County Airport                 |27477 |
+|MSP|Minneapolis-St Paul International/Wold-Chamberlain Airport|27163 |
+|BOS|General Edward Lawrence Logan International Airport       |26214 |
+|SEA|Seattle Tacoma International Airport                      |24098 |
+|MCO|Orlando International Airport                             |23442 |
+|JFK|John F Kennedy International Airport                      |22294 |
+|DCA|Ronald Reagan Washington National Airport                 |22244 |
+|SLC|Salt Lake City International Airport                      |18661 |
+|FLL|Fort Lauderdale Hollywood International Airport           |16364 |
+|SAN|San Diego International Airport                           |15401 |
+|MIA|Miami International Airport                               |14869 |
+|TPA|Tampa International Airport                               |12509 |
++---+----------------------------------------------------------+------+
+
+// end::airport-clusters-drilldown2[]
 
 // tag::airlines[]
 +-------+-------+

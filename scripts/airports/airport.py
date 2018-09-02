@@ -53,10 +53,10 @@ g.edges.groupBy().max("deptDelay").show()
 # // end::longest-departing-delay[]
 
 # // tag::flight-count[]
-outgoing_flights = g.outDegrees.withColumnRenamed("id", "oId")
+all_flights = g.outDegrees.withColumnRenamed("id", "oId")
 
-(outgoing_flights
- .join(g.vertices, outgoing_flights.oId == g.vertices.id)
+(all_flights
+ .join(g.vertices, all_flights.oId == g.vertices.id)
  .sort("outDegree", ascending=False)
  .select("id", "name", "outDegree")
  .show(n=10, truncate=False))
@@ -171,6 +171,28 @@ result = airline_graph.labelPropagation(maxIter=10)
  .show(truncate=70))
 
 # end::airport-clusters[]
+
+# tag::airport-clusters-drilldown[]
+all_flights = g.degrees.withColumnRenamed("id", "aId")
+# end::airport-clusters-drilldown[]
+
+# tag::airport-clusters-drilldown1[]
+(result
+ .filter("label=1606317768706")
+ .join(all_flights, all_flights.aId == result.id)
+ .sort("degree", ascending=False)
+ .select("id", "name", "degree")
+ .show(truncate=False))
+# end::airport-clusters-drilldown1[]
+
+# tag::airport-clusters-drilldown2[]
+(result
+ .filter("label=1219770712067")
+ .join(all_flights, all_flights.aId == result.id)
+ .sort("degree", ascending=False)
+ .select("id", "name", "degree")
+ .show(truncate=False))
+# end::airport-clusters-drilldown2[]
 
 
 # tag::airlines[]
