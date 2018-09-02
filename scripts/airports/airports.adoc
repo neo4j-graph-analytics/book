@@ -15,20 +15,21 @@
 // end::longest-departing-delay[]
 
 // tag::flight-count[]
-+---+------------------------------------------------+-----+
-|id |name                                            |count|
-+---+------------------------------------------------+-----+
-|ATL|Hartsfield Jackson Atlanta International Airport|33837|
-|ORD|Chicago O'Hare International Airport            |28338|
-|DFW|Dallas Fort Worth International Airport         |23765|
-|CLT|Charlotte Douglas International Airport         |20251|
-|DEN|Denver International Airport                    |19836|
-|LAX|Los Angeles International Airport               |19059|
-|PHX|Phoenix Sky Harbor International Airport        |15103|
-|SFO|San Francisco International Airport             |14934|
-|LGA|La Guardia Airport                              |14709|
-|IAH|George Bush Intercontinental Houston Airport    |14407|
-+---+------------------------------------------------+-----+
++---+------------------------------------------------+---------+
+|id |name                                            |outDegree|
++---+------------------------------------------------+---------+
+|ATL|Hartsfield Jackson Atlanta International Airport|33837    |
+|ORD|Chicago O'Hare International Airport            |28338    |
+|DFW|Dallas Fort Worth International Airport         |23765    |
+|CLT|Charlotte Douglas International Airport         |20251    |
+|DEN|Denver International Airport                    |19836    |
+|LAX|Los Angeles International Airport               |19059    |
+|PHX|Phoenix Sky Harbor International Airport        |15103    |
+|SFO|San Francisco International Airport             |14934    |
+|LGA|La Guardia Airport                              |14709    |
+|IAH|George Bush Intercontinental Houston Airport    |14407    |
++---+------------------------------------------------+---------+
+
 // end::flight-count[]
 
 
@@ -164,32 +165,32 @@
 // end::triangles[]
 
 
-// tag::skywest-airport-clusters[]
-+-------------+----------------------------------------------------------------------+
-|        label|                                                              airports|
-+-------------+----------------------------------------------------------------------+
-|1554778161153|[IND, ORF, AVL, BHM, MEM, DTW, CID, BDL, PVD, LSE, TVC, CLE, FLL, E...|
-|1357209665542|[BGM, ESC, SYR, GSO, ERI, LAN, PLN, IAH, CAK, AZO, LEX, SAT, SCE, S...|
-|1589137899522|[BTM, PIH, ROW, SUN, GJT, SGU, EKO, MSO, LGB, BUR, FLG, SAN, FCA, S...|
-|1494648619009|[RIC, XNA, RKS, JAX, DRO, PSC, DSM, JAC, ELP, LBF, BFL, ASE, BZN, G...|
-|1477468749827|[ATW, INL, MSN, OMA, FSD, GFK, MOT, CIU, HIB, GRR, IMT, BJI, EWR, F...|
-|1571958030336|[GTR, TRI, ILM, AEX, CHO, BTR, LFT, ROA, MGM, SHV, CHA, CRW, FSM, A...|
-|1692217114632|               [MFR, ONT, SLC, RDD, ABQ, SBP, RDM, OTH, SBA, STS, ACV]|
-|1614907703298|                                   [MRY, DFW, EUG, RNO, OAK, TUS, FAT]|
-| 764504178689|                                             [GEG, BOI, SIT, PDX, BLI]|
-|1589137899524|                                             [MOB, BRO, HRL, CRP, MSP]|
-| 730144440320|                                                            [DEN, DVL]|
-|  25769803777|                                                                 [CWT]|
-|  17179869186|                                                                 [RDG]|
-|            3|                                                                 [FMY]|
-|  25769803778|                                                                 [DRT]|
-|            6|                                                                 [RKP]|
-|   8589934592|                                                                 [4A7]|
-|  25769803779|                                                                 [FOK]|
-|  25769803781|                                                                 [HVR]|
-|   8589934593|                                                                 [AVX]|
-+-------------+----------------------------------------------------------------------+
-// end::skywest-airport-clusters[]
+// tag::airport-clusters[]
+|        label|                                                              airports|count|
++-------------+----------------------------------------------------------------------+-----+
+|1606317768706|[IND, ORF, ATW, RIC, TRI, XNA, ECP, AVL, JAX, SYR, BHM, GSO, MEM, C...|   89|
+|1219770712067|[GEG, SLC, DTW, LAS, SEA, BOS, MSN, SNA, JFK, TVC, LIH, JAC, FLL, M...|   53|
+|            1|                                                                 [CNU]|    1|
+|            3|                                                                 [FMY]|    1|
+|            2|                                                                 [DAW]|    1|
+|  51539607553|                                                                 [ASH]|    1|
+|            4|                                                                 [LEB]|    1|
+|            5|                                                                 [OXC]|    1|
+|            6|                                                                 [RKP]|    1|
+|  60129542149|                                                                 [WDR]|    1|
+|  51539607554|                                                                 [CAR]|    1|
+|  51539607555|                                                                 [UWL]|    1|
+|  60129542144|                                                                 [AUW]|    1|
+|  60129542145|                                                                 [HOM]|    1|
+|  60129542146|                                                                 [IDA]|    1|
+|  60129542147|                                                                 [STE]|    1|
+|  60129542148|                                                                 [SVA]|    1|
+|  68719476736|                                                                 [CBF]|    1|
+|  68719476737|                                                                 [CUB]|    1|
+|  68719476739|                                                                 [HHR]|    1|
++-------------+----------------------------------------------------------------------+-----+
+
+// end::airport-clusters[]
 
 // tag::airlines[]
 +-------+-------+

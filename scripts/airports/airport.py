@@ -53,15 +53,12 @@ g.edges.groupBy().max("deptDelay").show()
 # // end::longest-departing-delay[]
 
 # // tag::flight-count[]
-popular_airports =(g.edges
- .groupBy("src")
- .agg(F.count("src").alias("count"))
- .cache())
+outgoing_flights = g.outDegrees.withColumnRenamed("id", "oId")
 
-(popular_airports
- .join(g.vertices, popular_airports.src == g.vertices.id)
- .sort("count", ascending=False)
- .select("id", "name", "count")
+(outgoing_flights
+ .join(g.vertices, outgoing_flights.oId == g.vertices.id)
+ .sort("outDegree", ascending=False)
+ .select("id", "name", "outDegree")
  .show(n=10, truncate=False))
 # // end::flight-count[]
 
@@ -159,20 +156,21 @@ pagerank = g.pageRank(resetProbability=0.15, maxIter=20).cache()
 
 # end::triangles[]
 
-# tag::skywest-airport-clusters[]
+# tag::airport-clusters[]
 
-airline_relationships = g.edges.filter("airline = 'OO'")
+airline_relationships = g.edges.filter("airline = 'DL'")
 airline_graph = GraphFrame(g.vertices, airline_relationships)
 
 result = airline_graph.labelPropagation(maxIter=10)
 (result
  .sort("label")
  .groupby("label")
- .agg(F.collect_list("id").alias("airports"))
- .sort(F.size(F.col("airports")), ascending=False)
+ .agg(F.collect_list("id").alias("airports"),
+      F.count("id").alias("count"))
+ .sort("count", ascending=False)
  .show(truncate=70))
 
-# end::skywest-airport-clusters[]
+# end::airport-clusters[]
 
 
 # tag::airlines[]
