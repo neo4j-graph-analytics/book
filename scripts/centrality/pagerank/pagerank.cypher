@@ -1,8 +1,7 @@
 // tag::neo4j-execute[]
 CALL algo.pageRank.stream('User', 'FOLLOWS', {iterations:20, dampingFactor:0.85})
 YIELD nodeId, score
-MATCH (user) WHERE id(user) = nodeId
-RETURN user.id AS page, score
+RETURN algo.getNodeById(nodeId).id AS page, score
 ORDER BY score DESC
 // end::neo4j-execute[]
 

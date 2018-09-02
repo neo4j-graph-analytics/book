@@ -1,8 +1,7 @@
 // tag::neo4j-execute[]
 CALL algo.betweenness.stream("User", "FOLLOWS")
 YIELD nodeId, centrality
-MATCH (user) WHERE id(user) = nodeId
-RETURN user.id AS user,centrality
+RETURN algo.getNodeById(nodeId).id  AS user, centrality
 ORDER BY centrality DESC
 // end::neo4j-execute[]
 
@@ -11,11 +10,9 @@ CALL algo.betweenness('User', 'FOLLOWS')
 // end::neo4j-write-execute[]
 
 // tag::neo4j-execute-approx[]
-CALL algo.betweenness.sampled.stream("User", "FOLLOWS",
- {strategy:"degree"})
+CALL algo.betweenness.sampled.stream("User", "FOLLOWS", {strategy:"degree"})
 YIELD nodeId, centrality
-MATCH (user) WHERE id(user) = nodeId
-RETURN user.id AS user,centrality
+RETURN algo.getNodeById(nodeId).id AS user, centrality
 ORDER BY centrality DESC
 // end::neo4j-execute-approx[]
 
