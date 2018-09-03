@@ -1,12 +1,8 @@
 // tag::count[]
 MATCH (category:Category {name: "Hotels"})
-RETURN size((category)<-[:IN_CATEGORY]-()) AS count
+RETURN size((category)<-[:IN_CATEGORY]-()) AS businesses,
+       size((:Review)-[:REVIEWS]->(:Business)-[:IN_CATEGORY]->(category)) AS reviews
 // end::count[]
-
-// tag::reviews[]
-MATCH (:Review)-[:REVIEWS]->(:Business)-[:IN_CATEGORY]->(category:Category {name: "Hotels"})
-RETURN count(*) AS count
-// end::reviews[]
 
 // tag::top-rated[]
 MATCH (review:Review)-[:REVIEWS]->(business:Business),
