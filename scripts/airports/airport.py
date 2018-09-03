@@ -96,13 +96,12 @@ result = g.bfs(from_expr, to_expr)
 
 # // tag::motifs-delayed-flights[]
 motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
-          .filter("""(b.id = 'SFO') and 
-                     (ab.date = '2018-05-03' and bc.date = '2018-05-03') and
-                     (ab.arrDelay > 60 or bc.deptDelay > 60) and
-                     (ab.tailNumber = bc.tailNumber) and 
-                     (ab.time < bc.time)"""))
-
-
+          .filter("""(b.id = 'SFO') and
+                  (ab.date = '2018-05-11' and bc.date = '2018-05-11') and
+                  (ab.arrDelay > 60 or bc.deptDelay > 60) and
+                  (ab.flightNumber = bc.flightNumber) and
+                  (ab.airline = bc.airline) and
+                  (ab.time < bc.time)"""))
 # // end::motifs-delayed-flights[]
 
 # // tag::motifs-udf[]
@@ -115,14 +114,6 @@ sum_dist_udf = F.udf(sum_dist, FloatType())
 
 
 # // tag::motifs-delayed-flights-result[]
-motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
-          .filter("""(b.id = 'SFO') and 
-                  (ab.date = '2018-05-11' and bc.date = '2018-05-11') and 
-                  (ab.arrDelay > 60 or bc.deptDelay > 60) and
-                  (ab.flightNumber = bc.flightNumber) and 
-                  (ab.airline = bc.airline) and 
-                  (ab.time < bc.time)"""))
-
 result = (motifs.withColumn("delta", motifs.bc.deptDelay - motifs.ab.arrDelay)
           .select("ab", "bc", "delta")
           .sort("delta", ascending=False))
