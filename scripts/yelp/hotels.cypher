@@ -86,7 +86,7 @@ WITH sc, category, size((category)<-[:IN_CATEGORY]-()) as size
 ORDER BY size DESC
 WITH sc, collect(category.name)[0] as biggestCategory
 ORDER BY size((sc)<-[:IN_SUPER_CATEGORY]-()) DESC
-SET sc.friendlyName = biggestCategory
+SET sc.friendlyName = "SuperCat-" + biggestCategory
 // end::category-friendly-name[]
 
 
