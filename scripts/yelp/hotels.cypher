@@ -28,13 +28,10 @@ CALL algo.pageRank(
    RETURN id(u) AS id',
   'MATCH (u1:User)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {name: $category})
    MATCH (u1)-[:FRIENDS]->(u2)
-   WHERE id(u1) < id(u2)
    RETURN id(u1) AS source, id(u2) AS target',
   {graph: "cypher", write: true, writeProperty: "hotelPageRank",
    params: {category: "Hotels", cutOff: 3}}
 )
-YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, writeProperty
-RETURN nodes, iterations, loadMillis, computeMillis, writeMillis, writeProperty
 // end::best-reviewers[]
 
 // tag::best-reviewers-query[]
@@ -59,8 +56,19 @@ RETURN user.name AS name,
        user.hotelPageRank AS pageRank,
        review.stars AS stars
 ORDER BY user.hotelPageRank DESC
-LIMIT 5
+LIMIT 10
 // end::bellagio[]
+
+// tag::bellagio-bad-rating[]
+MATCH (b:Business {name: "Bellagio Hotel"})
+MATCH (b)<-[:REVIEWS]-(review)<-[:WROTE]-(user)
+WHERE exists(user.hotelPageRank) AND review.stars < 4
+RETURN user.name AS name,
+       user.hotelPageRank AS pageRank,
+       review.stars AS stars
+ORDER BY user.hotelPageRank DESC
+LIMIT 10
+// end::bellagio-bad-rating[]
 
 // tag::category-hierarchies[]
 CALL algo.labelPropagation.stream(
