@@ -113,12 +113,18 @@ def sum_dist(dist1, dist2):
 sum_dist_udf = F.udf(sum_dist, FloatType())
 # // end::motifs-udf[]
 
+motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
+          .filter("""(b.id = 'SFO') and 
+                  (ab.date = '2018-05-11' and bc.date = '2018-05-11') and 
+                  (ab.flightNumber = bc.flightNumber) and 
+                  (ab.airline = bc.airline) and 
+                  (ab.time < bc.time)"""))
 
 # // tag::motifs-delayed-flights-result[]
 motifs = (g.find("(a)-[ab]->(b); (b)-[bc]->(c)")
           .filter("""(b.id = 'SFO') and 
                   (ab.date = '2018-05-11' and bc.date = '2018-05-11') and 
-                  (ab.arrDelay > 60 or bc.deptDelay > 60) and
+                  (ab.arrDelay > 30 or bc.deptDelay > 30) and
                   (ab.flightNumber = bc.flightNumber) and 
                   (ab.airline = bc.airline) and 
                   (ab.time < bc.time)"""))

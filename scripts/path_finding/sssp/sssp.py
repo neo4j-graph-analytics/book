@@ -18,9 +18,9 @@ via_udf = F.udf(lambda path: path[1:-1], ArrayType(StringType()))
 
 # // tag::execute[]
 result = sssp(g, "Amsterdam", "cost")
-result \
-    .withColumn("via", via_udf("path")) \
-    .select("id", "distance", "via") \
-    .sort("distance") \
-    .show(truncate=False)
+(result
+ .withColumn("via", via_udf("path"))
+ .select("id", "distance", "via")
+ .sort("distance")
+ .show(truncate=False))
 # // end::execute[]
