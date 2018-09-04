@@ -66,6 +66,45 @@ ORDER BY user.hotelPageRank DESC
 LIMIT 10
 // end::bellagio-bad-rating[]
 
+// tag::bellagio-bw-tagging[]
+MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CITY]->(:City {name: "Las Vegas"})
+WITH distinct u AS u
+SET u:LasVegas
+// end::bellagio-bw-tagging[]
+
+
+// tag::bellagio-bw[]
+CALL algo.betweenness.sampled('LasVegas', 'FRIENDS',
+  {write: true, writeProperty: "between", maxDepth: 4, probability: 0.2}
+)
+// end::bellagio-bw[]
+
+// tag::bellagio-bw-query[]
+MATCH(u:User)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"})
+WHERE exists(u.between)
+RETURN u.name AS user, toInteger(u.between) AS betweenness
+ORDER BY u.between DESC
+LIMIT 10
+// end::bellagio-bw-query[]
+
+// tag::bellagio-restaurants[]
+MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"})
+WHERE exists(u.between)
+WITH u
+ORDER BY u.between DESC
+LIMIT 50
+MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business),
+      (business)-[:IN_CATEGORY]->(cat:Category {name: "Restaurants"}),
+      (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
+WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
+WHERE numberOfReviews >= 3
+RETURN business.name, averageReview, numberOfReviews
+ORDER BY averageReview DESC
+LIMIT 10
+// end::bellagio-restaurants[]
+
+
+
 // tag::category-hierarchies[]
 CALL algo.labelPropagation.stream(
   'MATCH (c:Category) RETURN id(c) AS id',

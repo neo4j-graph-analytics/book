@@ -88,6 +88,42 @@
 
 // end::bellagio-bad-rating[]
 
+// tag::bellagio-bw-query[]
++---------------------------+
+| user        | betweenness |
++---------------------------+
+| "Misti"     | 841707563   |
+| "Christine" | 236269693   |
+| "Erica"     | 235806844   |
+| "Mike"      | 215534452   |
+| "J"         | 192155233   |
+| "Michael"   | 161335816   |
+| "Jeremy"    | 160312436   |
+| "Michael"   | 139960910   |
+| "Chris"     | 136697785   |
+| "Connie"    | 133372418   |
++---------------------------+
+
+// end::bellagio-bw-query[]
+
+// tag::bellagio-restaurants[]
++-----------------------------------------------------------------------+
+| business.name                       | averageReview | numberOfReviews |
++-----------------------------------------------------------------------+
+| "Rose. Rabbit. Lie"                 | 5.0           | 3               |
+| "Parma By Chef Marc"                | 5.0           | 4               |
+| "Art of Flavors"                    | 5.0           | 4               |
+| "Kabuto"                            | 5.0           | 4               |
+| "Buffet of Buffets"                 | 5.0           | 3               |
+| "Portofino by Chef Michael LaPlaca" | 5.0           | 3               |
+| "Jean Georges Steakhouse"           | 5.0           | 6               |
+| "Harvest by Roy Ellamar"            | 5.0           | 3               |
+| "Montesano's Eateria"               | 5.0           | 3               |
+| "Sushi House Goyemon"               | 5.0           | 6               |
++-----------------------------------------------------------------------+
+// end::bellagio-restaurants[]
+
+
 // tag::similar-categories[]
 +--------------------------------------+
 | otherCategory           | businesses |
