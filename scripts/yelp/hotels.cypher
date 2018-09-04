@@ -82,7 +82,11 @@ CALL algo.betweenness.sampled('LasVegas', 'FRIENDS',
 // tag::bellagio-bw-query[]
 MATCH(u:User)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"})
 WHERE exists(u.between)
-RETURN u.name AS user, toInteger(u.between) AS betweenness
+RETURN u.name AS user,
+       toInteger(u.between) AS betweenness,
+       u.hotelPageRank AS pageRank,
+       size((u)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {name: "Hotels"}))
+       AS hotelReviews
 ORDER BY u.between DESC
 LIMIT 10
 // end::bellagio-bw-query[]
