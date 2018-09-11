@@ -59,7 +59,6 @@ WHERE exists(user.hotelPageRank) AND review.stars < $goodRating
 RETURN user.name AS name,
        user.hotelPageRank AS pageRank,
        review.stars AS stars
-ORDER BY user.hotelPageRank DESC
 """
 
 with driver.session() as session:
