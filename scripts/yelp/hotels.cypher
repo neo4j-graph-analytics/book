@@ -152,7 +152,7 @@ MATCH (hotels:Category {name: "Hotels"}),
       (lasVegas:City {name: "Las Vegas"}),
       (hotels)-[:IN_SUPER_CATEGORY]->()<-[:IN_SUPER_CATEGORY]-(otherCategory)
 RETURN otherCategory.name AS otherCategory,
-       size((otherCategory)<-[:IN_CATEGORY]-()-[:IN_CITY]->(lasVegas)) AS count
+       size((otherCategory)<-[:IN_CATEGORY]-(:Business)-[:IN_CITY]->(lasVegas)) AS businesses
 ORDER BY count DESC
 LIMIT 10
 // end::similar-categories-vegas[]

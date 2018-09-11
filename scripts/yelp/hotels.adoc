@@ -143,20 +143,20 @@
 // end::similar-categories[]
 
 // tag::similar-categories-vegas[]
-+-----------------------------+
-| otherCategory       | count |
-+-----------------------------+
-| "Tours"             | 189   |
-| "Car Rental"        | 160   |
-| "Limos"             | 84    |
-| "Resorts"           | 73    |
-| "Airport Shuttles"  | 52    |
-| "Taxis"             | 35    |
-| "Vacation Rentals"  | 29    |
-| "Airports"          | 25    |
-| "Airlines"          | 23    |
-| "Motorcycle Rental" | 19    |
-+-----------------------------+
++----------------------------------+
+| otherCategory       | businesses |
++----------------------------------+
+| "Tours"             | 189        |
+| "Car Rental"        | 160        |
+| "Limos"             | 84         |
+| "Resorts"           | 73         |
+| "Airport Shuttles"  | 52         |
+| "Taxis"             | 35         |
+| "Vacation Rentals"  | 29         |
+| "Airports"          | 25         |
+| "Airlines"          | 23         |
+| "Motorcycle Rental" | 19         |
++----------------------------------+
 
 // end::similar-categories-vegas[]
 
