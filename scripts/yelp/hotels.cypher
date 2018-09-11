@@ -67,8 +67,8 @@ LIMIT 10
 // end::bellagio-bad-rating[]
 
 // tag::bellagio-bw-tagging[]
-MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CITY]->(:City {name: "Las Vegas"})
-WITH distinct u AS u
+MATCH (u:User)
+WHERE exists((u)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CITY]->(:City {name: "Las Vegas"}))
 SET u:LasVegas
 // end::bellagio-bw-tagging[]
 
