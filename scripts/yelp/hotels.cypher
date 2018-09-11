@@ -103,7 +103,7 @@ MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business),
 WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
 WHERE numberOfReviews >= 3
 RETURN business.name, averageReview, numberOfReviews
-ORDER BY averageReview DESC
+ORDER BY averageReview DESC, numberOfReviews DESC
 LIMIT 10
 // end::bellagio-restaurants[]
 
