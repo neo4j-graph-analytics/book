@@ -103,7 +103,7 @@ MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business),
       (business)-[:IN_CATEGORY]->(cat:Category {name: "Restaurants"}),
       (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
 
-// Only include businesses that have more than 3 reviews
+// Only include restaurants that have more than 3 reviews by these users
 WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
 WHERE numberOfReviews >= 3
 
