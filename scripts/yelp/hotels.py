@@ -12,9 +12,8 @@ driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
 # tag::all-hotels[]
 query = """\
 MATCH (review:Review)-[:REVIEWS]->(business:Business),
-      (business)-[:IN_CATEGORY]->(category:Category),
+      (business)-[:IN_CATEGORY]->(category:Category {name: $category}),
       (business)-[:IN_CITY]->(:City {name: $city})
-WHERE category.name = $category
 WITH business, count(*) AS reviews, avg(review.stars) AS averageRating
 RETURN business.name AS business, reviews, averageRating
 """
