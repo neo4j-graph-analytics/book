@@ -92,16 +92,18 @@ LIMIT 10
 // end::bellagio-bw-query[]
 
 // tag::bellagio-restaurants[]
-MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"})
+MATCH (u:User)
 WHERE exists(u.between)
-WITH u
-ORDER BY u.between DESC
-LIMIT 50
+AND exists((u)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"}))
+WITH u ORDER BY u.between DESC LIMIT 50
+
 MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business),
       (business)-[:IN_CATEGORY]->(cat:Category {name: "Restaurants"}),
       (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
+
 WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
 WHERE numberOfReviews >= 3
+
 RETURN business.name, averageReview, numberOfReviews
 ORDER BY averageReview DESC, numberOfReviews DESC
 LIMIT 10
