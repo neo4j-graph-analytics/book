@@ -160,8 +160,8 @@ pagerank = g.pageRank(resetProbability=0.15, maxIter=20).cache()
 airline_relationships = g.edges.filter("airline = 'DL'")
 airline_graph = GraphFrame(g.vertices, airline_relationships)
 
-result = airline_graph.labelPropagation(maxIter=10)
-(result
+clusters = airline_graph.labelPropagation(maxIter=10)
+(clusters
  .sort("label")
  .groupby("label")
  .agg(F.collect_list("id").alias("airports"),
