@@ -176,7 +176,7 @@ all_flights = g.degrees.withColumnRenamed("id", "aId")
 # end::airport-clusters-drilldown[]
 
 # tag::airport-clusters-drilldown1[]
-(result
+(clusters
  .filter("label=1606317768706")
  .join(all_flights, all_flights.aId == result.id)
  .sort("degree", ascending=False)
@@ -185,7 +185,7 @@ all_flights = g.degrees.withColumnRenamed("id", "aId")
 # end::airport-clusters-drilldown1[]
 
 # tag::airport-clusters-drilldown2[]
-(result
+(clusters
  .filter("label=1219770712067")
  .join(all_flights, all_flights.aId == result.id)
  .sort("degree", ascending=False)
