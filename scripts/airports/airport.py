@@ -67,12 +67,12 @@ result = (g.edges
  .filter("src = 'ORD' and deptDelay > 0")
  .groupBy("src", "dst")
  .agg(F.avg("deptDelay"), F.count("deptDelay"))
- .sort(F.desc("avg(deptDelay)")))
+ .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
+ .withColumn("numberOfDelays", F.col("count(deptDelay)")))
 
 (result
  .join(g.vertices, result.dst == g.vertices.id)
- .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
- .withColumn("numberOfDelays", F.col("count(deptDelay)"))
+ .sort(F.desc("averageDelay"))
  .select("dst", "name", "averageDelay", "numberOfDelays")
  .show(n=10, truncate=False))
 
