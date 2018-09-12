@@ -7,21 +7,20 @@
 // end::count[]
 
 // tag::top-rated[]
-+--------------------------------------------+-----------+-----------------+
-| business                                   |   reviews |   averageRating |
-|--------------------------------------------+-----------+-----------------|
-| ARIA Resort & Casino                       |      3794 |            3.51 |
-| The Cosmopolitan of Las Vegas              |      3772 |            3.87 |
-| Luxor Hotel and Casino Las Vegas           |      3623 |            2.63 |
-| MGM Grand Hotel                            |      3445 |            2.99 |
-| The Venetian Las Vegas                     |      3103 |            3.93 |
-| Flamingo Las Vegas Hotel & Casino          |      2942 |            2.48 |
-| Bellagio Hotel                             |      2781 |            3.71 |
-| Mandalay Bay Resort & Casino               |      2688 |            3.27 |
-| Planet Hollywood Las Vegas Resort & Casino |      2682 |            3.05 |
-| Monte Carlo Hotel And Casino               |      2506 |            2.64 |
-+--------------------------------------------+-----------+-----------------+
-
++--------------------------------------------+-----------+-------+------+------+------+------+------+
+| business                                   |   reviews |   ave |   s1 |   s2 |   s3 |   s4 |   s5 |
+|--------------------------------------------+-----------+-------+------+------+------+------+------|
+| ARIA Resort & Casino                       |      3794 |  3.51 |  544 |  406 |  533 | 1181 | 1130 |
+| The Cosmopolitan of Las Vegas              |      3772 |  3.87 |  425 |  281 |  344 | 1027 | 1695 |
+| Luxor Hotel and Casino Las Vegas           |      3623 |  2.63 |  946 |  757 |  906 |  727 |  287 |
+| MGM Grand Hotel                            |      3445 |  2.99 |  758 |  496 |  708 |  973 |  510 |
+| The Venetian Las Vegas                     |      3103 |  3.93 |  304 |  176 |  293 | 1001 | 1329 |
+| Flamingo Las Vegas Hotel & Casino          |      2942 |  2.48 | 1017 |  545 |  573 |  569 |  238 |
+| Bellagio Hotel                             |      2781 |  3.71 |  327 |  258 |  349 |  795 | 1052 |
+| Mandalay Bay Resort & Casino               |      2688 |  3.27 |  487 |  319 |  426 |  900 |  556 |
+| Planet Hollywood Las Vegas Resort & Casino |      2682 |  3.05 |  536 |  366 |  583 |  818 |  379 |
+| Monte Carlo Hotel And Casino               |      2506 |  2.64 |  627 |  506 |  677 |  543 |  153 |
++--------------------------------------------+-----------+-------+------+------+------+------+------+
 // end::top-rated[]
 
 // tag::best-reviewers[]
