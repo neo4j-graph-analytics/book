@@ -116,15 +116,15 @@ MATCH (u:User)
 WHERE exists(u.between)
 RETURN count(u.between) AS count,
        avg(u.between) AS ave,
-       percentileDisc(u.between, 0.5) AS p50,
-       percentileDisc(u.between, 0.75) AS p75,
-       percentileDisc(u.between, 0.90) AS p90,
-       percentileDisc(u.between, 0.95) AS p95,
-       percentileDisc(u.between, 0.99) AS p99,
-       percentileDisc(u.between, 0.999) AS p999,
-       percentileDisc(u.between, 0.9999) AS p9999,
-       percentileDisc(u.between, 0.99999) AS p99999,
-       percentileDisc(u.between, 1) AS p100
+       toInteger(percentileDisc(u.between, 0.5)) AS p50,
+       toInteger(percentileDisc(u.between, 0.75)) AS p75,
+       toInteger(percentileDisc(u.between, 0.90)) AS p90,
+       toInteger(percentileDisc(u.between, 0.95)) AS p95,
+       toInteger(percentileDisc(u.between, 0.99)) AS p99,
+       toInteger(percentileDisc(u.between, 0.999)) AS p999,
+       toInteger(percentileDisc(u.between, 0.9999)) AS p9999,
+       toInteger(percentileDisc(u.between, 0.99999)) AS p99999,
+       toInteger(percentileDisc(u.between, 1)) AS p100
 // end::bw-dist[]
 
 // tag::bellagio-restaurants[]
