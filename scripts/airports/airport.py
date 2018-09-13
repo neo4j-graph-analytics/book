@@ -171,7 +171,7 @@ clusters = airline_graph.labelPropagation(maxIter=10)
  .agg(F.collect_list("id").alias("airports"),
       F.count("id").alias("count"))
  .sort("count", ascending=False)
- .show(truncate=70))
+ .show(truncate=70, n=10))
 
 # end::airport-clusters[]
 
@@ -267,7 +267,3 @@ res = g3.bfs("id='JFK'", "id='WYS'")
          F.col("e1.time"))
  .show(truncate=False))
 # end::bfs-experimentation[]
-
-
-
-
