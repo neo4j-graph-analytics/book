@@ -121,7 +121,6 @@ result = (motifs.withColumn("delta", motifs.bc.deptDelay - motifs.ab.arrDelay)
           .sort("delta", ascending=False))
 
 result.select(
-    F.col("ab.date"),
     F.col("ab.src").alias("a1"),
     F.col("ab.time").alias("a1DeptTime"),
     F.col("ab.arrDelay"),
