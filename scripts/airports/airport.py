@@ -2,17 +2,18 @@
 from graphframes import *
 from pyspark.sql.types import *
 from pyspark.sql import functions as F
-import pandas as pd
 
 # // end::imports[]
 
 # // tag::load-graph-frame[]
 nodes = spark.read.csv("data/airports.csv", header=False)
 
-cleaned_nodes = (nodes.select("_c1", "_c3", "_c4")
+cleaned_nodes = (nodes.select("_c1", "_c3", "_c4", "_c6", "_c7")
                  .filter("_c3 = 'United States'")
                  .withColumnRenamed("_c1", "name")
                  .withColumnRenamed("_c4", "id")
+                 .withColumnRenamed("_c6", "latitude")
+                 .withColumnRenamed("_c7", "longitude")
                  .drop("_c3"))
 cleaned_nodes = cleaned_nodes[cleaned_nodes["id"] != "\\N"]
 
@@ -21,7 +22,7 @@ relationships = spark.read.csv("data/188591317_T_ONTIME.csv", header=True)
 cleaned_relationships = (relationships
                          .select("ORIGIN", "DEST", "FL_DATE", "DEP_DELAY", "ARR_DELAY",
                                  "DISTANCE", "TAIL_NUM", "FL_NUM", "CRS_DEP_TIME",
-                                 "UNIQUE_CARRIER")
+                                 "CRS_ARR_TIME","UNIQUE_CARRIER")
                          .withColumnRenamed("ORIGIN", "src")
                          .withColumnRenamed("DEST", "dst")
                          .withColumnRenamed("DEP_DELAY", "deptDelay")
@@ -30,11 +31,13 @@ cleaned_relationships = (relationships
                          .withColumnRenamed("FL_NUM", "flightNumber")
                          .withColumnRenamed("FL_DATE", "date")
                          .withColumnRenamed("CRS_DEP_TIME", "time")
+                         .withColumnRenamed("CRS_ARR_TIME", "arrivalTime")
                          .withColumnRenamed("DISTANCE", "distance")
                          .withColumnRenamed("UNIQUE_CARRIER", "airline")
                          .withColumn("deptDelay", F.col("deptDelay").cast(FloatType()))
                          .withColumn("arrDelay", F.col("arrDelay").cast(FloatType()))
                          .withColumn("time", F.col("time").cast(IntegerType()))
+                         .withColumn("arrivalTime", F.col("arrivalTime").cast(IntegerType()))
                          )
 
 g = GraphFrame(cleaned_nodes, cleaned_relationships)
@@ -133,12 +136,13 @@ result.select(
 # // end::motifs-delayed-flights-result[]
 
 
+
 # tag::pagerank[]
 result = g.pageRank(resetProbability=0.15, maxIter=20)
 (result.vertices
  .sort("pagerank", ascending=False)
  .withColumn("pagerank", F.round(F.col("pagerank"), 2))
- .show(truncate=False))
+ .show(truncate=False, n=100))
 # end::pagerank[]
 
 
@@ -230,3 +234,40 @@ airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
  .sort("sccCount", ascending=False)
  .show())
 # end::scc-airlines[]
+
+# tag::bfs-experimentation[]
+filtered_rels = g.edges.filter("date = '2018-05-27'")
+g2 = GraphFrame(g.vertices, filtered_rels)
+
+res = g2.bfs("id='JFK'", "id='WYS'")
+
+(res
+ .filter("e0.arrivalTime < e1.time")
+ .select(F.col("e0.airline"),
+         F.col("e0.flightNumber"),
+         F.col("e0.time"),
+         F.col("v1.name"),
+         F.col("e1.airline"),
+         F.col("e1.flightNumber"),
+         F.col("e1.time"))
+ .show(truncate=False))
+
+g3 = GraphFrame(g.vertices.filter("id <> 'SLC'"), g2.edges)
+
+res = g3.bfs("id='JFK'", "id='WYS'")
+
+(res
+ .filter("e0.arrivalTime < e1.time")
+ .select(F.col("e0.airline"),
+         F.col("e0.flightNumber"),
+         F.col("e0.time"),
+         F.col("v1.name"),
+         F.col("e1.airline"),
+         F.col("e1.flightNumber"),
+         F.col("e1.time"))
+ .show(truncate=False))
+# end::bfs-experimentation[]
+
+
+
+
