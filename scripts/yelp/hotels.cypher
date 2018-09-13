@@ -207,13 +207,11 @@ ORDER BY rand() DESC
 LIMIT 10
 
 // Select businesses from each of those categories that have an average rating higher
-// than the 90th percentile
-WITH otherCategory,
-     [b in businesses where b.averageStars >= p90Stars] AS businesses,
-     p90Stars
+// than the 90th percentile using a pattern comprehension
+WITH otherCategory, [b in businesses where b.averageStars >= p90Stars] AS businesses
 
-// Select one business per categories
-WITH otherCategory, businesses[toInteger(rand() * size(businesses))] AS business, p90Stars
+// Select one business per category
+WITH otherCategory, businesses[toInteger(rand() * size(businesses))] AS business
 
 RETURN otherCategory.name AS otherCategory,
        business.name AS business,
