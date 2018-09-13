@@ -129,9 +129,8 @@ RETURN count(u.between) AS count,
 
 // tag::bellagio-restaurants[]
 // Find the top 50 users who have reviewed the Bellagio
-MATCH (u:User)
-WHERE exists(u.between)
-AND exists((u)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"}))
+MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"})
+WHERE u.between > 4436409
 WITH u ORDER BY u.between DESC LIMIT 50
 
 // Find the restaurants those users have reviewed in Las Vegas
@@ -143,7 +142,7 @@ AND   (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
 WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
 WHERE numberOfReviews >= 3
 
-RETURN business.name, averageReview, numberOfReviews
+RETURN business.name AS business, averageReview, numberOfReviews
 ORDER BY averageReview DESC, numberOfReviews DESC
 LIMIT 10
 // end::bellagio-restaurants[]

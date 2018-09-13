@@ -123,18 +123,18 @@
 
 // tag::bellagio-restaurants[]
 +-----------------------------------------------------------------------+
-| business.name                       | averageReview | numberOfReviews |
+| business                            | averageReview | numberOfReviews |
 +-----------------------------------------------------------------------+
-| "Rose. Rabbit. Lie"                 | 5.0           | 3               |
-| "Parma By Chef Marc"                | 5.0           | 4               |
-| "Art of Flavors"                    | 5.0           | 4               |
-| "Kabuto"                            | 5.0           | 4               |
-| "Buffet of Buffets"                 | 5.0           | 3               |
-| "Portofino by Chef Michael LaPlaca" | 5.0           | 3               |
 | "Jean Georges Steakhouse"           | 5.0           | 6               |
-| "Harvest by Roy Ellamar"            | 5.0           | 3               |
-| "Montesano's Eateria"               | 5.0           | 3               |
 | "Sushi House Goyemon"               | 5.0           | 6               |
+| "Art of Flavors"                    | 5.0           | 4               |
+| "é by José Andrés"                  | 5.0           | 4               |
+| "Parma By Chef Marc"                | 5.0           | 4               |
+| "Yonaka Modern Japanese"            | 5.0           | 4               |
+| "Kabuto"                            | 5.0           | 4               |
+| "Harvest by Roy Ellamar"            | 5.0           | 3               |
+| "Portofino by Chef Michael LaPlaca" | 5.0           | 3               |
+| "Montesano's Eateria"               | 5.0           | 3               |
 +-----------------------------------------------------------------------+
 // end::bellagio-restaurants[]
 
