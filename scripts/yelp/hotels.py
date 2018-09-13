@@ -4,6 +4,12 @@ import pandas as pd
 from tabulate import tabulate
 # end::imports[]
 
+# tag::matplotlib-imports[]
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+# end::matplotlib-imports[]
+
 # tag::driver[]
 driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
 # end::driver[]

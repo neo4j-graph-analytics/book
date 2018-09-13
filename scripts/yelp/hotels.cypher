@@ -20,7 +20,7 @@ RETURN business.name AS business,
 CALL algo.pageRank(
   'MATCH (u:User)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {name: $category})
    WITH u, count(*) AS reviews
-   WHERE reviews > $cutOff
+   WHERE reviews >= $cutOff
    RETURN id(u) AS id',
   'MATCH (u1:User)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {name: $category})
    MATCH (u1)-[:FRIENDS]->(u2)
@@ -30,12 +30,32 @@ CALL algo.pageRank(
 )
 // end::best-reviewers[]
 
-// tag::best-reviewers-query[]
+// tag::top-ranking-dist[]
 MATCH (u:User)
-WHERE u.hotelPageRank > 0
-WITH u
-ORDER BY u.hotelPageRank DESC
+WHERE exists(u.hotelPageRank)
+RETURN count(u.hotelPageRank) AS count,
+       avg(u.hotelPageRank) AS ave,
+       percentileDisc(u.hotelPageRank, 0.5) AS p50,
+       percentileDisc(u.hotelPageRank, 0.75) AS p75,
+       percentileDisc(u.hotelPageRank, 0.90) AS p90,
+       percentileDisc(u.hotelPageRank, 0.95) AS p95,
+       percentileDisc(u.hotelPageRank, 0.99) AS p99,
+       percentileDisc(u.hotelPageRank, 0.999) AS p999,
+       percentileDisc(u.hotelPageRank, 0.9999) AS p9999,
+       percentileDisc(u.hotelPageRank, 0.99999) AS p99999,
+       percentileDisc(u.hotelPageRank, 1) AS p100
+// end::top-ranking-dist[]
+
+
+// tag::best-reviewers-query[]
+// Only find users that have a hotelPageRank score in the top 0.001% of users
+MATCH (u:User)
+WHERE u.hotelPageRank >  1.64951
+
+// Find the top 10 of those users
+WITH u ORDER BY u.hotelPageRank DESC
 LIMIT 10
+
 RETURN u.name AS name,
        u.hotelPageRank AS pageRank,
        size((u)-[:WROTE]->()-[:REVIEWS]->()-[:IN_CATEGORY]->
@@ -91,6 +111,22 @@ ORDER BY u.between DESC
 LIMIT 10
 // end::bellagio-bw-query[]
 
+// tag::bw-dist[]
+MATCH (u:User)
+WHERE exists(u.between)
+RETURN count(u.between) AS count,
+       avg(u.between) AS ave,
+       percentileDisc(u.between, 0.5) AS p50,
+       percentileDisc(u.between, 0.75) AS p75,
+       percentileDisc(u.between, 0.90) AS p90,
+       percentileDisc(u.between, 0.95) AS p95,
+       percentileDisc(u.between, 0.99) AS p99,
+       percentileDisc(u.between, 0.999) AS p999,
+       percentileDisc(u.between, 0.9999) AS p9999,
+       percentileDisc(u.between, 0.99999) AS p99999,
+       percentileDisc(u.between, 1) AS p100
+// end::bw-dist[]
+
 // tag::bellagio-restaurants[]
 // Find the top 50 users who have reviewed the Bellagio
 MATCH (u:User)
@@ -99,9 +135,9 @@ AND exists((u)-[:WROTE]->()-[:REVIEWS]->(:Business {name:"Bellagio Hotel"}))
 WITH u ORDER BY u.between DESC LIMIT 50
 
 // Find the restaurants those users have reviewed in Las Vegas
-MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business),
-      (business)-[:IN_CATEGORY]->(cat:Category {name: "Restaurants"}),
-      (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
+MATCH (u)-[:WROTE]->(review)-[:REVIEWS]-(business)
+WHERE (business)-[:IN_CATEGORY]->(:Category {name: "Restaurants"})
+AND   (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
 
 // Only include restaurants that have more than 3 reviews by these users
 WITH business, avg(review.stars) AS averageReview, count(*) AS numberOfReviews
