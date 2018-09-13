@@ -66,15 +66,15 @@ all_flights = g.outDegrees.withColumnRenamed("id", "oId")
 # // end::flight-count[]
 
 # // tag::ord-delays[]
-result = (g.edges
+delayed_flights = (g.edges
  .filter("src = 'ORD' and deptDelay > 0")
- .groupBy("src", "dst")
+ .groupBy("dst")
  .agg(F.avg("deptDelay"), F.count("deptDelay"))
  .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
  .withColumn("numberOfDelays", F.col("count(deptDelay)")))
 
-(result
- .join(g.vertices, result.dst == g.vertices.id)
+(delayed_flights
+ .join(g.vertices, delayed_flights.dst == g.vertices.id)
  .sort(F.desc("averageDelay"))
  .select("dst", "name", "averageDelay", "numberOfDelays")
  .show(n=10, truncate=False))
