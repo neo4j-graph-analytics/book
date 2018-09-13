@@ -1,0 +1,35 @@
+MERGE (u1:User {name: "Mark"})
+MERGE (u2:User {name: "Praveena"})
+MERGE (u3:User {name: "Arya"})
+MERGE (b1:Business {name: "Hotel 1"})
+MERGE (b2:Business {name: "Hotel 2"})
+MERGE (b3:Business {name: "Hotel 3"})
+MERGE (b4:Business {name: "Hotel 4"})
+MERGE (b5:Business {name: "Restaurant 1"})
+
+MERGE (c1:Category {name: "Restaurants"})
+MERGE (c2:Category {name: "Hotels"})
+
+MERGE (b1)-[:IN_CATEGORY]->(c2)
+MERGE (b2)-[:IN_CATEGORY]->(c2)
+MERGE (b3)-[:IN_CATEGORY]->(c2)
+MERGE (b4)-[:IN_CATEGORY]->(c2)
+MERGE (b5)-[:IN_CATEGORY]->(c1)
+
+MERGE (u1)-[:WROTE]->(:Review {text: "Really great"})-[:REVIEWS]->(b1)
+MERGE (u1)-[:WROTE]->(:Review {text: "Not bad"})-[:REVIEWS]->(b2)
+MERGE (u1)-[:WROTE]->(:Review {text: "Decent food"})-[:REVIEWS]->(b3)
+
+MERGE (u2)-[:WROTE]->(:Review {text: "It was ok"})-[:REVIEWS]->(b1)
+MERGE (u2)-[:WROTE]->(:Review {text: "Average"})-[:REVIEWS]->(b2)
+MERGE (u2)-[:WROTE]->(:Review {text: "I liked it"})-[:REVIEWS]->(b4)
+
+MERGE (u3)-[:WROTE]->(:Review {text: "Great ambience"})-[:REVIEWS]->(b3)
+MERGE (u3)-[:WROTE]->(:Review {text: "Loved it!"})-[:REVIEWS]->(b5)
+
+MERGE (u1)-[:FRIENDS]->(u2)
+MERGE (u2)-[:FRIENDS]->(u1)
+MERGE (u1)-[:FRIENDS]->(u3)
+MERGE (u3)-[:FRIENDS]->(u1)
+MERGE (u2)-[:FRIENDS]->(u3)
+MERGE (u3)-[:FRIENDS]->(u2)

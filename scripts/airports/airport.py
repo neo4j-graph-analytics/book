@@ -70,12 +70,12 @@ result = (g.edges
  .filter("src = 'ORD' and deptDelay > 0")
  .groupBy("src", "dst")
  .agg(F.avg("deptDelay"), F.count("deptDelay"))
- .sort(F.desc("avg(deptDelay)")))
+ .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
+ .withColumn("numberOfDelays", F.col("count(deptDelay)")))
 
 (result
  .join(g.vertices, result.dst == g.vertices.id)
- .withColumn("averageDelay", F.round(F.col("avg(deptDelay)"), 2))
- .withColumn("numberOfDelays", F.col("count(deptDelay)"))
+ .sort(F.desc("averageDelay"))
  .select("dst", "name", "averageDelay", "numberOfDelays")
  .show(n=10, truncate=False))
 
@@ -164,8 +164,8 @@ pagerank = g.pageRank(resetProbability=0.15, maxIter=20).cache()
 airline_relationships = g.edges.filter("airline = 'DL'")
 airline_graph = GraphFrame(g.vertices, airline_relationships)
 
-result = airline_graph.labelPropagation(maxIter=10)
-(result
+clusters = airline_graph.labelPropagation(maxIter=10)
+(clusters
  .sort("label")
  .groupby("label")
  .agg(F.collect_list("id").alias("airports"),
@@ -180,7 +180,7 @@ all_flights = g.degrees.withColumnRenamed("id", "aId")
 # end::airport-clusters-drilldown[]
 
 # tag::airport-clusters-drilldown1[]
-(result
+(clusters
  .filter("label=1606317768706")
  .join(all_flights, all_flights.aId == result.id)
  .sort("degree", ascending=False)
@@ -189,7 +189,7 @@ all_flights = g.degrees.withColumnRenamed("id", "aId")
 # end::airport-clusters-drilldown1[]
 
 # tag::airport-clusters-drilldown2[]
-(result
+(clusters
  .filter("label=1219770712067")
  .join(all_flights, all_flights.aId == result.id)
  .sort("degree", ascending=False)

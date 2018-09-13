@@ -4,6 +4,12 @@ import pandas as pd
 from tabulate import tabulate
 # end::imports[]
 
+# tag::matplotlib-imports[]
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+# end::matplotlib-imports[]
+
 # tag::driver[]
 driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
 # end::driver[]
@@ -12,18 +18,26 @@ driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
 # tag::all-hotels[]
 query = """\
 MATCH (review:Review)-[:REVIEWS]->(business:Business),
-      (business)-[:IN_CATEGORY]->(category:Category),
+      (business)-[:IN_CATEGORY]->(category:Category {name: $category}),
       (business)-[:IN_CITY]->(:City {name: $city})
-WHERE category.name = $category
-WITH business, count(*) AS reviews, avg(review.stars) AS averageRating
-RETURN business.name AS business, reviews, averageRating
+WITH business,
+     count(*) AS reviews,
+     avg(review.stars) AS ave,
+     collect(review.stars) AS allReviews
+WITH business, reviews, ave, apoc.coll.frequencies(allReviews) AS frequencies
+RETURN business.name AS business, reviews, ave,
+       [f in frequencies where f.item = 1 | f.count][0] AS s1,
+       [f in frequencies where f.item = 2 | f.count][0] AS s2,
+       [f in frequencies where f.item = 3 | f.count][0] AS s3,
+       [f in frequencies where f.item = 4 | f.count][0] AS s4,
+       [f in frequencies where f.item = 5 | f.count][0] AS s5
 """
 
 with driver.session() as session:
     params = { "city": "Las Vegas", "category": "Hotels" }
     df = pd.DataFrame([dict(record) for record in session.run(query, params)])
     df = df.round(2)
-    df = df[["business", "reviews", "averageRating"]]
+    df = df[["business", "reviews", "ave", "s1", "s2", "s3", "s4", "s5"]]
 # end::all-hotels[]
 
 # tag::top-rated[]
@@ -40,7 +54,6 @@ WHERE exists(user.hotelPageRank)
 RETURN user.name AS name,
        user.hotelPageRank AS pageRank,
        review.stars AS stars
-ORDER BY user.hotelPageRank DESC
 """
 
 with driver.session() as session:
@@ -61,7 +74,6 @@ WHERE exists(user.hotelPageRank) AND review.stars < $goodRating
 RETURN user.name AS name,
        user.hotelPageRank AS pageRank,
        review.stars AS stars
-ORDER BY user.hotelPageRank DESC
 """
 
 with driver.session() as session:

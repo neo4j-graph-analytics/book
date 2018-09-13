@@ -1,32 +1,32 @@
 // tag::install[]
-pip install neo4j-driver tabulate pandas
+pip install neo4j-driver tabulate pandas matplotlib
 // end::install[]
 
 
 // tag::node-cardinalities[]
-+----------+---------+
-| label    |   count |
-|----------+---------|
-| Country  |      17 |
-| Area     |      54 |
-| City     |    1093 |
-| Category |    1293 |
-| Business |  174567 |
-| User     | 1326101 |
-| Review   | 5261669 |
-+----------+---------+
+[options="header", title="Node Cardinalities", width="50%"]
+|=======
+| label    |   count
+| Country  |      17
+| Area     |      54
+| City     |    1093
+| Category |    1293
+| Business |  174567
+| User     | 1326101
+| Review   | 5261669
+|=======
 // end::node-cardinalities[]
 
 // tag::rel-cardinalities[]
-+-------------+----------+
-| relType     |    count |
-|-------------+----------|
-| IN_COUNTRY  |       54 |
-| IN_AREA     |     1154 |
-| IN_CITY     |   174566 |
-| IN_CATEGORY |   667527 |
-| WROTE       |  5261669 |
-| REVIEWS     |  5261669 |
-| FRIENDS     | 10645356 |
-+-------------+----------+
+[options="header", title="Relationship Cardinalities", width="50%"]
+|=======
+| relType     |    count
+| IN_COUNTRY  |       54
+| IN_AREA     |     1154
+| IN_CITY     |   174566
+| IN_CATEGORY |   667527
+| WROTE       |  5261669
+| REVIEWS     |  5261669
+| FRIENDS     | 10645356
+|=======
 // end::rel-cardinalities[]
