@@ -193,17 +193,29 @@ LIMIT 10
 // end::similar-categories-vegas[]
 
 // tag::trip-plan[]
+// Find businesses in Las Vegas that have the same SuperCategory as Hotels
 MATCH (hotels:Category {name: "Hotels"}),
       (hotels)-[:IN_SUPER_CATEGORY]->()<-[:IN_SUPER_CATEGORY]-(otherCategory),
       (otherCategory)<-[:IN_CATEGORY]-(business)
 WHERE (business)-[:IN_CITY]->(:City {name: "Las Vegas"})
+
+// Select 10 random categories and calculate the 90th percentile star rating
 WITH otherCategory, count(*) AS count,
      collect(business) AS businesses,
-     apoc.coll.avg(collect(business.averageStars)) AS categoryAverageStars
+     percentileDisc(business.averageStars, 0.9) AS p90Stars
 ORDER BY rand() DESC
 LIMIT 10
+
+// Select businesses from each of those categories that have an average rating higher
+// than the 90th percentile
 WITH otherCategory,
-     [b in businesses where b.averageStars >= categoryAverageStars] AS businesses
+     [b in businesses where b.averageStars >= p90Stars] AS businesses,
+     p90Stars
+
+// Select one business per categories
+WITH otherCategory, businesses[toInteger(rand() * size(businesses))] AS business, p90Stars
+
 RETURN otherCategory.name AS otherCategory,
-       [b in businesses | b.name][toInteger(rand() * size(businesses))] AS business
+       business.name AS business,
+       business.averageStars AS averageStars
 // end::trip-plan[]
