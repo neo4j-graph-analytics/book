@@ -5,6 +5,12 @@ from pyspark.sql import functions as F
 
 # // end::imports[]
 
+# tag::matplotlib-imports[]
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+# end::matplotlib-imports[]
+
 # // tag::load-graph-frame[]
 nodes = spark.read.csv("data/airports.csv", header=False)
 
@@ -56,14 +62,32 @@ g.edges.groupBy().max("deptDelay").show()
 # // end::longest-departing-delay[]
 
 # // tag::flight-count[]
-all_flights = g.outDegrees.withColumnRenamed("id", "oId")
+airports_degree = g.outDegrees.withColumnRenamed("id", "oId")
 
-(all_flights
- .join(g.vertices, all_flights.oId == g.vertices.id)
- .sort("outDegree", ascending=False)
- .select("id", "name", "outDegree")
- .show(n=10, truncate=False))
+full_airports_degree = (airports_degree
+                        .join(g.vertices, airports_degree.oId == g.vertices.id)
+                        .sort("outDegree", ascending=False)
+                        .select("id", "name", "outDegree"))
+
+full_airports_degree.show(n=10, truncate=False)
 # // end::flight-count[]
+
+# // tag::flight-plot[]
+plt.style.use('fivethirtyeight')
+
+(full_airports_degree
+ .toPandas()
+ .head(10)
+ .plot(kind='bar', x='id', y='outDegree', legend=None))
+
+plt.axes().xaxis.set_label_text("")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+# end::flight-plot[]
+
+plt.savefig("/tmp/airports.svg")
+plt.close()
 
 # // tag::ord-delays[]
 delayed_flights = (g.edges
