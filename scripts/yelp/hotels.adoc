@@ -177,18 +177,20 @@
 
 
 // tag::trip-plan[]
-+-----------------------------------------------------------+
-| otherCategory           | business                        |
-+-----------------------------------------------------------+
-| "Guest Houses"          | "Hotel Del Kacvinsky"           |
-| "Food Tours"            | "Lip Smacking Foodie Tours"     |
-| "Campgrounds"           | "Callville Bay Resort & Marina" |
-| "Car Share Services"    | "Lyft"                          |
-| "Public Transportation" | "Rtc Ada Paratransit Service"   |
-| "Currency Exchange"     | "Foreign Money Exchange"        |
-| "Health Retreats"       | "Hot Yoga Bliss Vacations"      |
-| "Buses"                 | "BoltBus"                       |
-| "Vacation Rentals"      | "Jewel Manor Estate"            |
-| "Art Tours"             | "Graffiti Art Gallery Alley"    |
-+-----------------------------------------------------------+
++-----------------------------------------------------------------------------------+
+| otherCategory           | business                            | averageStars      |
++-----------------------------------------------------------------------------------+
+| "Motorcycle Rental"     | "Adrenaline Rush Slingshot Rentals" | 5.0               |
+| "Snorkeling"            | "Sin City Scuba"                    | 5.0               |
+| "Guest Houses"          | "Hotel Del Kacvinsky"               | 5.0               |
+| "Car Rental"            | "The Lead Team"                     | 5.0               |
+| "Food Tours"            | "Taste BUZZ Food Tours"             | 5.0               |
+| "Airports"              | "Signature Flight Support"          | 5.0               |
+| "Public Transportation" | "JetSuiteX"                         | 4.6875            |
+| "Ski Resorts"           | "Trikke Las Vegas"                  | 4.833333333333332 |
+| "Town Car Service"      | "MW Travel Vegas"                   | 4.866666666666665 |
+| "Campgrounds"           | "McWilliams Campground"             | 3.875             |
++-----------------------------------------------------------------------------------+
+
+
 // end::trip-plan[]
