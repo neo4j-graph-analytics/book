@@ -266,6 +266,15 @@ airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
  .show())
 # end::scc-airlines[]
 
+# tag::dump-to-csv[]
+(clusters
+ .filter("label=1606317768706")
+ .coalesce(1)
+ .write
+ .format("csv")
+ .save("/tmp/foo6"))
+# end::dump-to-csv[]
+
 # tag::bfs-experimentation[]
 filtered_rels = g.edges.filter("date = '2018-05-27'")
 g2 = GraphFrame(g.vertices, filtered_rels)
