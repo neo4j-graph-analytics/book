@@ -233,10 +233,15 @@ airlines.show()
 
 # tag::scc-airlines-fn[]
 def find_scc_components(g, airline):
+    # Create a sub graph containing only flights on the provided airline
     airline_relationships = g.edges[g.edges.airline == airline]
     airline_graph = GraphFrame(g.vertices, airline_relationships)
-    result = airline_graph.stronglyConnectedComponents(maxIter=10)
-    return (result
+
+    # Calculate the Strongly Connected Components
+    scc = airline_graph.stronglyConnectedComponents(maxIter=10)
+
+    # Find the size of the biggest component and return that
+    return (scc
         .groupBy("component")
         .agg(F.count("id").alias("size"))
         .sort("size", ascending=False)
@@ -247,10 +252,13 @@ scc_udf = F.udf(lambda airline: find_scc_components(airline), IntegerType())
 (airlines.withColumn("sccCount", scc_udf(g, airlines.airline)))
 
 # tag::scc-airlines[]
+# Calculate the largest Strongly Connected Component for each airline
 airline_scc = [(airline, find_scc_components(g, airline))
                for airline in airlines.toPandas()["airline"].tolist()]
-
 airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
+
+# Join the SCC DataFrame with the airlines DataFrame so that we can show the number of flights
+# an airline has alongside the number of airports reachable in its biggest component
 (airline_scc_df
  .join(airlines, airlines.airline == airline_scc_df.id)
  .select("id", "flights", "sccCount")
