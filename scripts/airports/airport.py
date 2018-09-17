@@ -120,6 +120,7 @@ ord_to_ckb = ord_to_ckb.select(
 
 # tag::ord-ckb-plot[]
 (ord_to_ckb
+ .sort("date")
  .toPandas()
  .plot(kind='bar', x='date', y='deptDelay', legend=None))
 
