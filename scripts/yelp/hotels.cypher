@@ -35,15 +35,15 @@ MATCH (u:User)
 WHERE exists(u.hotelPageRank)
 RETURN count(u.hotelPageRank) AS count,
        avg(u.hotelPageRank) AS ave,
-       percentileDisc(u.hotelPageRank, 0.5) AS p50,
-       percentileDisc(u.hotelPageRank, 0.75) AS p75,
-       percentileDisc(u.hotelPageRank, 0.90) AS p90,
-       percentileDisc(u.hotelPageRank, 0.95) AS p95,
-       percentileDisc(u.hotelPageRank, 0.99) AS p99,
-       percentileDisc(u.hotelPageRank, 0.999) AS p999,
-       percentileDisc(u.hotelPageRank, 0.9999) AS p9999,
-       percentileDisc(u.hotelPageRank, 0.99999) AS p99999,
-       percentileDisc(u.hotelPageRank, 1) AS p100
+       percentileDisc(u.hotelPageRank, 0.5) AS `50%`,
+       percentileDisc(u.hotelPageRank, 0.75) AS `75%`,
+       percentileDisc(u.hotelPageRank, 0.90) AS `90%`,
+       percentileDisc(u.hotelPageRank, 0.95) AS `95%`,
+       percentileDisc(u.hotelPageRank, 0.99) AS `99%`,
+       percentileDisc(u.hotelPageRank, 0.999) AS `99.9%`,
+       percentileDisc(u.hotelPageRank, 0.9999) AS `99.99%`,
+       percentileDisc(u.hotelPageRank, 0.99999) AS `99.999%`,
+       percentileDisc(u.hotelPageRank, 1) AS `100%`
 // end::top-ranking-dist[]
 
 
@@ -116,14 +116,14 @@ MATCH (u:User)
 WHERE exists(u.between)
 RETURN count(u.between) AS count,
        avg(u.between) AS ave,
-       toInteger(percentileDisc(u.between, 0.5)) AS p50,
-       toInteger(percentileDisc(u.between, 0.75)) AS p75,
-       toInteger(percentileDisc(u.between, 0.90)) AS p90,
-       toInteger(percentileDisc(u.between, 0.95)) AS p95,
-       toInteger(percentileDisc(u.between, 0.99)) AS p99,
-       toInteger(percentileDisc(u.between, 0.999)) AS p999,
-       toInteger(percentileDisc(u.between, 0.9999)) AS p9999,
-       toInteger(percentileDisc(u.between, 0.99999)) AS p99999,
+       toInteger(percentileDisc(u.between, 0.5)) AS `50%`,
+       toInteger(percentileDisc(u.between, 0.75)) AS `75%`,
+       toInteger(percentileDisc(u.between, 0.90)) AS `90%`,
+       toInteger(percentileDisc(u.between, 0.95)) AS `95%`,
+       toInteger(percentileDisc(u.between, 0.99)) AS `99%`,
+       toInteger(percentileDisc(u.between, 0.999)) AS `99.9%`,
+       toInteger(percentileDisc(u.between, 0.9999)) AS `99.99%`,
+       toInteger(percentileDisc(u.between, 0.99999)) AS `99.999%`,
        toInteger(percentileDisc(u.between, 1)) AS p100
 // end::bw-dist[]
 

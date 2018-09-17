@@ -9,7 +9,6 @@ from pyspark.sql import functions as F
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-plt.style.use('fivethirtyeight')
 # end::matplotlib-imports[]
 
 # // tag::load-graph-frame[]
@@ -109,27 +108,17 @@ delayed_flights = (g.edges
 # tag::ord-ckb[]
 from_expr = 'id = "ORD"'
 to_expr = 'id = "CKB"'
-ord_to_ckb = g.bfs(from_expr, to_expr)
+result = g.bfs(from_expr, to_expr)
 
-ord_to_ckb = ord_to_ckb.select(
+(result.select(
     F.col("e0.date"),
     F.col("e0.time"),
     F.col("e0.flightNumber"),
     F.col("e0.deptDelay"))
+ .sort("deptDelay", ascending=False)
+ .show(n=50))
+
 # end::ord-ckb[]
-
-# tag::ord-ckb-plot[]
-(ord_to_ckb
- .toPandas()
- .plot(kind='bar', x='date', y='deptDelay', legend=None))
-
-plt.axes().xaxis.set_label_text("")
-plt.tight_layout()
-plt.show()
-# end::ord-ckb-plot[]
-
-plt.savefig("/tmp/ord-ckb.svg")
-plt.close()
 
 
 # // tag::motifs-delayed-flights[]
@@ -276,15 +265,6 @@ airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
  .sort("sccCount", ascending=False)
  .show())
 # end::scc-airlines[]
-
-# tag::dump-to-csv[]
-(clusters
- .filter("label=1606317768706")
- .coalesce(1)
- .write
- .format("csv")
- .save("/tmp/foo6"))
-# end::dump-to-csv[]
 
 # tag::bfs-experimentation[]
 filtered_rels = g.edges.filter("date = '2018-05-27'")
