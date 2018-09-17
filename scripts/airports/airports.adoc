@@ -36,16 +36,16 @@
 // tag::motifs-delayed-flights[]
 [options="header", title="Delays at SFO"]
 |=======
-| a1|a1DeptTime|arrDelay| a2|a2DeptTime|deptDelay| a3|airline|flightNumber|delta
-|PDX|      1130|   -18.0|SFO|      1350|    178.0|BUR|     WN|        1454|196.0
-|ACV|      1755|    -9.0|SFO|      2235|     64.0|RDM|     OO|        5700| 73.0
-|BWI|       700|    -3.0|SFO|      1125|     49.0|IAD|     UA|         753| 52.0
-|ATL|       740|    40.0|SFO|      1110|     77.0|SAN|     UA|        1900| 37.0
-|BUR|      1405|    25.0|SFO|      1600|     39.0|PDX|     WN|         157| 14.0
-|DTW|       835|    34.0|SFO|      1135|     44.0|DTW|     DL|         745| 10.0
-|DEN|      1830|    25.0|SFO|      2045|     33.0|BUR|     WN|        1783|  8.0
-|PDX|      1855|   119.0|SFO|      2120|    117.0|DEN|     WN|        5789| -2.0
-|BUR|      2025|    31.0|SFO|      2230|     11.0|PHX|     WN|        1585|-20.0
+|airline|flightNumber| a1|a1DeptTime|arrDelay| a2|a2DeptTime|deptDelay| a3|delta
+|     WN|        1454|PDX|      1130|   -18.0|SFO|      1350|    178.0|BUR|196.0
+|     OO|        5700|ACV|      1755|    -9.0|SFO|      2235|     64.0|RDM| 73.0
+|     UA|         753|BWI|       700|    -3.0|SFO|      1125|     49.0|IAD| 52.0
+|     UA|        1900|ATL|       740|    40.0|SFO|      1110|     77.0|SAN| 37.0
+|     WN|         157|BUR|      1405|    25.0|SFO|      1600|     39.0|PDX| 14.0
+|     DL|         745|DTW|       835|    34.0|SFO|      1135|     44.0|DTW| 10.0
+|     WN|        1783|DEN|      1830|    25.0|SFO|      2045|     33.0|BUR|  8.0
+|     WN|        5789|PDX|      1855|   119.0|SFO|      2120|    117.0|DEN| -2.0
+|     WN|        1585|BUR|      2025|    31.0|SFO|      2230|     11.0|PHX|-20.0
 |=======
 
 
