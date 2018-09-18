@@ -31,9 +31,9 @@ print(tabulate(df.sort_values("count"), headers='keys', tablefmt='psql', showind
 # tag::node-cardinalities-plot[]
 plt.style.use('fivethirtyeight')
 
-df.plot(kind='bar', x='label', y='count', legend=None)
+ax = df.plot(kind='bar', x='label', y='count', legend=None)
 
-plt.axes().xaxis.set_label_text("")
+ax.xaxis.set_label_text("")
 plt.yscale("log")
 plt.xticks(rotation=45)
 plt.tight_layout()
@@ -59,9 +59,9 @@ print(tabulate(df.sort_values("count"), headers='keys', tablefmt='psql', showind
 # tag::rel-cardinalities-plot[]
 plt.style.use('fivethirtyeight')
 
-df.plot(kind='bar', x='relType', y='count', legend=None)
+ax = df.plot(kind='bar', x='relType', y='count', legend=None)
 
-plt.axes().xaxis.set_label_text("")
+ax.xaxis.set_label_text("")
 plt.yscale("log")
 plt.xticks(rotation=45)
 plt.tight_layout()

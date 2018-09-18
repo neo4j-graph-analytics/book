@@ -76,12 +76,12 @@ full_airports_degree.show(n=10, truncate=False)
 # // tag::flight-plot[]
 plt.style.use('fivethirtyeight')
 
-(full_airports_degree
+ax = (full_airports_degree
  .toPandas()
  .head(10)
  .plot(kind='bar', x='id', y='outDegree', legend=None))
 
-plt.axes().xaxis.set_label_text("")
+ax.xaxis.set_label_text("")
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
@@ -119,12 +119,12 @@ ord_to_ckb = ord_to_ckb.select(
 # end::ord-ckb[]
 
 # tag::ord-ckb-plot[]
-(ord_to_ckb
+ax = (ord_to_ckb
  .sort("date")
  .toPandas()
  .plot(kind='bar', x='date', y='deptDelay', legend=None))
 
-plt.axes().xaxis.set_label_text("")
+ax.xaxis.set_label_text("")
 plt.tight_layout()
 plt.show()
 # end::ord-ckb-plot[]
