@@ -168,8 +168,18 @@ MATCH (sc:SuperCategory)<-[:IN_SUPER_CATEGORY]-(category)
 WITH sc, category, size((category)<-[:IN_CATEGORY]-()) as size
 ORDER BY size DESC
 WITH sc, collect(category.name)[0] as biggestCategory
-SET sc.friendlyName = "SuperCat-" + biggestCategory
+SET sc.friendlyName = "SuperCat " + biggestCategory
 // end::category-friendly-name[]
+
+// tag::supercats[]
+MATCH (sc:SuperCategory)
+where sc.friendlyName = "SuperCat Hotels" or sc.friendlyName contains "Vietnamese"  or sc.friendlyName contains "General"
+WITH sc LIMIT 3
+MATCH (sc)<-[:IN_SUPER_CATEGORY]-(cat)
+WITH sc, collect(cat)[0..10] AS cats
+UNWIND cats as cat
+RETURN sc, cat
+// end::supercats[] x
 
 
 // tag::similar-categories[]
