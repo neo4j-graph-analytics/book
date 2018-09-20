@@ -43,16 +43,16 @@
 [options="header", title="Best Hotel Reviewers"]
 |=======
 | name      | pageRank           | hotelReviews | totalReviews | friends
-| "Phil"    | 17.361242          | 15           | 134          | 8154
-| "Philip"  | 16.871013          | 21           | 620          | 9634
-| "Carol"   | 12.416060999999997 | 6            | 119          | 6218
-| "Misti"   | 12.239516000000004 | 19           | 730          | 6230
-| "Joseph"  | 12.003887499999998 | 5            | 32           | 6596
-| "Michael" | 11.460049          | 13           | 51           | 6572
-| "J"       | 11.431505999999997 | 103          | 1322         | 6498
-| "Abby"    | 11.376136999999998 | 9            | 82           | 7922
-| "Erica"   | 10.993773          | 6            | 15           | 7071
-| "Randy"   | 10.748785999999999 | 21           | 125          | 7846
+| Phil    | 17.361242          | 15           | 134          | 8154
+| Philip  | 16.871013          | 21           | 620          | 9634
+| Carol   | 12.416060999999997 | 6            | 119          | 6218
+| Misti   | 12.239516000000004 | 19           | 730          | 6230
+| Joseph  | 12.003887499999998 | 5            | 32           | 6596
+| Michael | 11.460049          | 13           | 51           | 6572
+| J       | 11.431505999999997 | 103          | 1322         | 6498
+| Abby    | 11.376136999999998 | 9            | 82           | 7922
+| Erica   | 10.993773          | 6            | 15           | 7071
+| Randy   | 10.748785999999999 | 21           | 125          | 7846
 |=======
 
 // end::best-reviewers-query[]
@@ -61,16 +61,16 @@
 [options="header", title="Influential Bellagio visitors"]
 |=======
 | name        | pageRank           | stars
-| "Misti"     | 12.239516000000004 | 5
-| "Michael"   | 11.460049          | 4
-| "J"         | 11.431505999999997 | 5
-| "Erica"     | 10.993773          | 4
-| "Christine" | 10.740770499999998 | 4
-| "Jeremy"    | 9.576763499999998  | 5
-| "Connie"    | 9.118103499999998  | 5
-| "Joyce"     | 7.621449000000001  | 4
-| "Henry"     | 7.299146           | 5
-| "Flora"     | 6.7570075          | 4
+| Misti     | 12.239516000000004 | 5
+| Michael   | 11.460049          | 4
+| J         | 11.431505999999997 | 5
+| Erica     | 10.993773          | 4
+| Christine | 10.740770499999998 | 4
+| Jeremy    | 9.576763499999998  | 5
+| Connie    | 9.118103499999998  | 5
+| Joyce     | 7.621449000000001  | 4
+| Henry     | 7.299146           | 5
+| Flora     | 6.7570075          | 4
 |=======
 
 // end::bellagio[]
@@ -106,16 +106,16 @@
 [options="header", title="Super-connectors at the Bellagio"]
 |=======
 | user        | betweenness | pageRank           | hotelReviews
-| "Misti"     | 841707563   | 12.239516000000004 | 19
-| "Christine" | 236269693   | 10.740770499999998 | 16
-| "Erica"     | 235806844   | 10.993773          | 6
-| "Mike"      | 215534452   | NULL               | 2
-| "J"         | 192155233   | 11.431505999999997 | 103
-| "Michael"   | 161335816   | 5.105143           | 31
-| "Jeremy"    | 160312436   | 9.576763499999998  | 6
-| "Michael"   | 139960910   | 11.460049          | 13
-| "Chris"     | 136697785   | 5.838922499999999  | 5
-| "Connie"    | 133372418   | 9.118103499999998  | 7
+| Misti     | 841707563   | 12.239516000000004 | 19
+| Christine | 236269693   | 10.740770499999998 | 16
+| Erica     | 235806844   | 10.993773          | 6
+| Mike      | 215534452   | NULL               | 2
+| J         | 192155233   | 11.431505999999997 | 103
+| Michael   | 161335816   | 5.105143           | 31
+| Jeremy    | 160312436   | 9.576763499999998  | 6
+| Michael   | 139960910   | 11.460049          | 13
+| Chris     | 136697785   | 5.838922499999999  | 5
+| Connie    | 133372418   | 9.118103499999998  | 7
 |=======
 
 // end::bellagio-bw-query[]
@@ -124,16 +124,16 @@
 [options="header", title="Restaurant suggestions by Bellagio Super-connectors"]
 |=======
 | business                            | averageReview | numberOfReviews
-| "Jean Georges Steakhouse"           | 5.0           | 6
-| "Sushi House Goyemon"               | 5.0           | 6
-| "Art of Flavors"                    | 5.0           | 4
-| "é by José Andrés"                  | 5.0           | 4
-| "Parma By Chef Marc"                | 5.0           | 4
-| "Yonaka Modern Japanese"            | 5.0           | 4
-| "Kabuto"                            | 5.0           | 4
-| "Harvest by Roy Ellamar"            | 5.0           | 3
-| "Portofino by Chef Michael LaPlaca" | 5.0           | 3
-| "Montesano's Eateria"               | 5.0           | 3
+| Jean Georges Steakhouse           | 5.0           | 6
+| Sushi House Goyemon               | 5.0           | 6
+| Art of Flavors                    | 5.0           | 4
+| é by José Andrés                  | 5.0           | 4
+| Parma By Chef Marc                | 5.0           | 4
+| Yonaka Modern Japanese            | 5.0           | 4
+| Kabuto                            | 5.0           | 4
+| Harvest by Roy Ellamar            | 5.0           | 3
+| Portofino by Chef Michael LaPlaca | 5.0           | 3
+| Montesano's Eateria               | 5.0           | 3
 |=======
 // end::bellagio-restaurants[]
 
@@ -142,16 +142,16 @@
 [options="header", title="Categories similar to Hotels"]
 |=======
 | otherCategory           | businesses
-| "Car Rental"            | 811
-| "Tours"                 | 603
-| "Limos"                 | 345
-| "Airport Shuttles"      | 296
-| "Taxis"                 | 239
-| "Bed & Breakfast"       | 208
-| "Public Transportation" | 202
-| "Resorts"               | 171
-| "Airports"              | 145
-| "Airlines"              | 114
+| Car Rental            | 811
+| Tours                 | 603
+| Limos                 | 345
+| Airport Shuttles      | 296
+| Taxis                 | 239
+| Bed & Breakfast       | 208
+| Public Transportation | 202
+| Resorts               | 171
+| Airports              | 145
+| Airlines              | 114
 |=======
 
 // end::similar-categories[]
@@ -160,16 +160,16 @@
 [options="header", title="Categories similar to Hotels in Vegas"]
 |=======
 | otherCategory       | businesses
-| "Tours"             | 189
-| "Car Rental"        | 160
-| "Limos"             | 84
-| "Resorts"           | 73
-| "Airport Shuttles"  | 52
-| "Taxis"             | 35
-| "Vacation Rentals"  | 29
-| "Airports"          | 25
-| "Airlines"          | 23
-| "Motorcycle Rental" | 19
+| Tours             | 189
+| Car Rental        | 160
+| Limos             | 84
+| Resorts           | 73
+| Airport Shuttles  | 52
+| Taxis             | 35
+| Vacation Rentals  | 29
+| Airports          | 25
+| Airlines          | 23
+| Motorcycle Rental | 19
 |=======
 
 // end::similar-categories-vegas[]
