@@ -302,11 +302,22 @@ airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
 
 # Join the SCC DataFrame with the airlines DataFrame so that we can show the number of flights
 # an airline has alongside the number of airports reachable in its biggest component
-(airline_scc_df.join(full_name_airlines, full_name_airlines.code == airline_scc_df.id)
+airline_reach = (airline_scc_df.join(full_name_airlines, full_name_airlines.code == airline_scc_df.id)
  .select("code", "name", "flights", "sccCount")
- .sort("sccCount", ascending=False)
- .show(truncate=False))
+ .sort("sccCount", ascending=False))
 # end::scc-airlines[]
+
+# tag::scc-airlines-plot[]
+ax = (airline_reach.toPandas()
+      .plot(kind='bar', x='name', y='sccCount', legend=None))
+
+ax.xaxis.set_label_text("")
+plt.tight_layout()
+plt.show()
+# end::scc-airlines-plot[]
+
+plt.savefig("/tmp/airlines-scc-count.svg")
+plt.close()
 
 # tag::dump-to-csv[]
 (clusters
