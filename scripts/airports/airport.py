@@ -260,9 +260,11 @@ airlines = (g.edges
  .agg(F.count("airline").alias("flights"))
  .sort("flights", ascending=False))
 
-(airlines_reference.join(airlines, airlines.airline == airlines_reference.code)
- .select("code", "name", "flights")
- .show(truncate=False))
+full_name_airlines = (airlines_reference
+                      .join(airlines, airlines.airline == airlines_reference.code)
+                      .select("code", "name", "flights"))
+
+full_name_airlines.show(truncate=False)
 # end::airlines[]
 
 # tag::scc-airlines-fn[]
@@ -293,11 +295,10 @@ airline_scc_df = spark.createDataFrame(airline_scc, ['id', 'sccCount'])
 
 # Join the SCC DataFrame with the airlines DataFrame so that we can show the number of flights
 # an airline has alongside the number of airports reachable in its biggest component
-(airline_scc_df
- .join(airlines, airlines.airline == airline_scc_df.id)
- .select("id", "flights", "sccCount")
+(airline_scc_df.join(full_name_airlines, full_name_airlines.code == airline_scc_df.id)
+ .select("code", "name", "flights", "sccCount")
  .sort("sccCount", ascending=False)
- .show())
+ .show(truncate=False))
 # end::scc-airlines[]
 
 # tag::dump-to-csv[]

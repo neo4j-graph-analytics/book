@@ -268,24 +268,25 @@
 // tag::scc-airlines[]
 [options="header", title="Number of airports reachable by airline"]
 |=======
-| id|flights|sccCount
-| OO|  65157|     221
-| DL|  81735|     142
-| MQ|  25364|     124
-| G4|   8033|     114
-| EV|  16661|     102
-| 9E|  21097|      98
-| UA|  52816|      94
-| OH|  23869|      93
-| YV|  17866|      91
-| AA|  77957|      91
-| WN| 116849|      85
-| YX|  27398|      83
-| F9|  10297|      76
-| AS|  22974|      70
-| B6|  26513|      64
-| NK|  14889|      37
-| HA|   7054|      16
+| code| name | flights|sccCount
+|OO  |SkyWest                    |65157  |221
+|DL  |Delta Air Lines            |81735  |142
+|MQ  |American Eagle Airlines    |25364  |124
+|G4  |Allegiant Air              |8033   |114
+|EV  |Atlantic Southeast Airlines|16661  |102
+|9E  |Pinnacle Airlines          |21097  |98
+|UA  |United Airlines            |52816  |94
+|OH  |Comair                     |23869  |93
+|AA  |American Airlines          |77957  |91
+|YV  |Mesa Airlines              |17866  |91
+|WN  |Southwest Airlines         |116849 |85
+|YX  |Midwest Airlines           |27398  |83
+|F9  |Frontier Airlines          |10297  |76
+|AS  |Alaska Airlines            |22974  |70
+|B6  |JetBlue Airways            |26513  |64
+|NK  |Spirit Airlines            |14889  |37
+|HA  |Hawaiian Airlines          |7054   |16
+
 |=======
 
 // end::scc-airlines[]
