@@ -1,36 +1,36 @@
 // tag::pyspark-results[]
-+-----+---------------+
-|count|             id|
-+-----+---------------+
-|    1|        jupyter|
-|    1|python-dateutil|
-|    1|            six|
-|    1|      ipykernel|
-|    1|     matplotlib|
-|    1|    jpy-console|
-+-----+---------------+
+[options=header]
+|===
+|count|             id
+|    1|        jupyter
+|    1|python-dateutil
+|    1|            six
+|    1|      ipykernel
+|    1|     matplotlib
+|    1|    jpy-console
+|===
 // end::pyspark-results[]
 
 
 // tag::neo4j-results[]
-+-----------------------------------------+
-| library           | coefficient         |
-+-----------------------------------------+
-| "ipykernel"       | 1.0                 |
-| "jupyter"         | 0.3333333333333333  |
-| "jpy-console"     | 0.3333333333333333  |
-| "six"             | 0.3333333333333333  |
-| "python-dateutil" | 0.3333333333333333  |
-| "matplotlib"      | 0.16666666666666666 |
-+-----------------------------------------+
+[options=header]
+|===
+| library           | coefficient
+| ipykernel       | 1.0
+| jupyter         | 0.3333333333333333
+| jpy-console     | 0.3333333333333333
+| six             | 0.3333333333333333
+| python-dateutil | 0.3333333333333333
+| matplotlib      | 0.16666666666666666
+|===
 // end::neo4j-results[]
 
 // tag::neo4j-triangle-stream-results[]
-+--------------------------------------------------+
-| nodeA        | nodeB         | nodeC             |
-+--------------------------------------------------+
-| "matplotlib" | "six"         | "python-dateutil" |
-| "jupyter"    | "jpy-console" | "ipykernel"       |
-+--------------------------------------------------+
+[options=header]
+|===
+| nodeA        | nodeB         | nodeC
+| matplotlib | six         | python-dateutil
+| jupyter    | jpy-console | ipykernel
+|===
 
 // end::neo4j-triangle-stream-results[]

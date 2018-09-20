@@ -1,67 +1,67 @@
 // tag::pyspark-results[]
-+-------------+-----------------+
-|component    |libraries        |
-+-------------+-----------------+
-|180388626432 |[jpy-core]       |
-|223338299392 |[spacy]          |
-|498216206336 |[numpy]          |
-|523986010112 |[six]            |
-|549755813888 |[pandas]         |
-|558345748480 |[nbconvert]      |
-|661424963584 |[ipykernel]      |
-|721554505728 |[jupyter]        |
-|764504178688 |[jpy-client]     |
-|833223655424 |[pytz]           |
-|910533066752 |[python-dateutil]|
-|936302870528 |[pyspark]        |
-|944892805120 |[matplotlib]     |
-|1099511627776|[jpy-console]    |
-|1279900254208|[py4j]           |
-+-------------+-----------------+
+[options=header]
+|===
+|component    |libraries
+|180388626432 |[jpy-core]
+|223338299392 |[spacy]
+|498216206336 |[numpy]
+|523986010112 |[six]
+|549755813888 |[pandas]
+|558345748480 |[nbconvert]
+|661424963584 |[ipykernel]
+|721554505728 |[jupyter]
+|764504178688 |[jpy-client]
+|833223655424 |[pytz]
+|910533066752 |[python-dateutil]
+|936302870528 |[pyspark]
+|944892805120 |[matplotlib]
+|1099511627776|[jpy-console]
+|1279900254208|[py4j]
+|===
 
 // end::pyspark-results[]
 
 // tag::neo4j-results[]
-+---------------------------------+
-| partition | libraries           |
-+---------------------------------+
-| 8         | ["ipykernel"]       |
-| 11        | ["six"]             |
-| 2         | ["matplotlib"]      |
-| 5         | ["jupyter"]         |
-| 14        | ["python-dateutil"] |
-| 13        | ["numpy"]           |
-| 4         | ["py4j"]            |
-| 7         | ["nbconvert"]       |
-| 1         | ["pyspark"]         |
-| 10        | ["jpy-core"]        |
-| 9         | ["jpy-client"]      |
-| 3         | ["spacy"]           |
-| 12        | ["pandas"]          |
-| 6         | ["jpy-console"]     |
-| 0         | ["pytz"]            |
-+---------------------------------+
+[options=header]
+|===
+| partition | libraries
+| 8         | [ipykernel]
+| 11        | [six]
+| 2         | [matplotlib]
+| 5         | [jupyter]
+| 14        | [python-dateutil]
+| 13        | [numpy]
+| 4         | [py4j]
+| 7         | [nbconvert]
+| 1         | [pyspark]
+| 10        | [jpy-core]
+| 9         | [jpy-client]
+| 3         | [spacy]
+| 12        | [pandas]
+| 6         | [jpy-console]
+| 0         | [pytz]
+|===
 
 // end::neo4j-results[]
 
 // tag::neo4j-circular-dependency-results[]
-+------------------------------------------+
-| partition | libraries                    |
-+------------------------------------------+
-| 1         | ["pyspark", "py4j", "extra"] |
-| 8         | ["ipykernel"]                |
-| 11        | ["six"]                      |
-| 2         | ["matplotlib"]               |
-| 5         | ["jupyter"]                  |
-| 14        | ["numpy"]                    |
-| 13        | ["pandas"]                   |
-| 7         | ["nbconvert"]                |
-| 10        | ["jpy-core"]                 |
-| 9         | ["jpy-client"]               |
-| 3         | ["spacy"]                    |
-| 15        | ["python-dateutil"]          |
-| 6         | ["jpy-console"]              |
-| 0         | ["pytz"]                     |
-+------------------------------------------+
+[options=header]
+|===
+| partition | libraries
+| 1         | [pyspark, py4j, extra]
+| 8         | [ipykernel]
+| 11        | [six]
+| 2         | [matplotlib]
+| 5         | [jupyter]
+| 14        | [numpy]
+| 13        | [pandas]
+| 7         | [nbconvert]
+| 10        | [jpy-core]
+| 9         | [jpy-client]
+| 3         | [spacy]
+| 15        | [python-dateutil]
+| 6         | [jpy-console]
+| 0         | [pytz]
+|===
 
 // end::neo4j-circular-dependency-results[]

@@ -1,45 +1,45 @@
 // tag::stream[]
-+---------------------------------+
-| libraries         | communities |
-+---------------------------------+
-| "pytz"            | [0, 0]      |
-| "pyspark"         | [1, 1]      |
-| "matplotlib"      | [2, 0]      |
-| "spacy"           | [2, 0]      |
-| "py4j"            | [1, 1]      |
-| "jupyter"         | [3, 2]      |
-| "jpy-console"     | [3, 2]      |
-| "nbconvert"       | [4, 2]      |
-| "ipykernel"       | [3, 2]      |
-| "jpy-client"      | [4, 2]      |
-| "jpy-core"        | [4, 2]      |
-| "six"             | [2, 0]      |
-| "pandas"          | [0, 0]      |
-| "numpy"           | [2, 0]      |
-| "python-dateutil" | [2, 0]      |
-+---------------------------------+
+[options=header]
+|===
+| libraries         | communities 
+| pytz            | [0, 0]
+| pyspark         | [1, 1]
+| matplotlib      | [2, 0]
+| spacy           | [2, 0]
+| py4j            | [1, 1]
+| jupyter         | [3, 2]
+| jpy-console     | [3, 2]
+| nbconvert       | [4, 2]
+| ipykernel       | [3, 2]
+| jpy-client      | [4, 2]
+| jpy-core        | [4, 2]
+| six             | [2, 0]
+| pandas          | [0, 0]
+| numpy           | [2, 0]
+| python-dateutil | [2, 0]
+|===
 
 // end::stream[]
 
 // tag::read-layer-1[]
-+---------------------------------------------------------------+
-| community | libraries                                         |
-+---------------------------------------------------------------+
-| 2         | ["matplotlib", "spacy", "six", "python-dateutil"] |
-| 4         | ["nbconvert", "jpy-client", "jpy-core"]           |
-| 3         | ["jupyter", "jpy-console", "ipykernel"]           |
-| 1         | ["pyspark", "py4j"]                               |
-| 0         | ["pytz", "pandas"]                                |
-| 5         | ["numpy"]                                         |
-+---------------------------------------------------------------+
+[options=header]
+|===
+| community | libraries
+| 2         | [matplotlib, spacy, six, python-dateutil]
+| 4         | [nbconvert, jpy-client, jpy-core]
+| 3         | [jupyter, jpy-console, ipykernel]
+| 1         | [pyspark, py4j]
+| 0         | [pytz, pandas]
+| 5         | [numpy]
+|===
 // end::read-layer-1[]
 
 // tag::read-layer-2[]
-+--------------------------------------------------------------------------------------------+
-| community | libraries                                                                      |
-+--------------------------------------------------------------------------------------------+
-| 0         | ["pytz", "matplotlib", "spacy", "six", "pandas", "numpy", "python-dateutil"]   |
-| 2         | ["jupyter", "jpy-console", "nbconvert", "ipykernel", "jpy-client", "jpy-core"] |
-| 1         | ["pyspark", "py4j"]                                                            |
-+--------------------------------------------------------------------------------------------+
+[options=header]
+|===
+| community | libraries
+| 0         | [pytz, matplotlib, spacy, six, pandas, numpy, python-dateutil]
+| 2         | [jupyter, jpy-console, nbconvert, ipykernel, jpy-client, jpy-core]
+| 1         | [pyspark, py4j]
+|===
 // end::read-layer-2[]
