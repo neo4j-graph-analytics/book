@@ -50,6 +50,27 @@ cleaned_relationships = (relationships
 g = GraphFrame(cleaned_nodes, cleaned_relationships)
 # // end::load-graph-frame[]
 
+# tag::airlines-mapping-csv[]
+airlines_reference = (spark.read.csv("data/airlines.csv")
+      .select("_c1", "_c3")
+      .withColumnRenamed("_c1", "name")
+      .withColumnRenamed("_c3", "code"))
+
+airlines_reference = airlines_reference[airlines_reference["code"] != "null"]
+
+# end::airlines-mapping-csv[]
+
+# tag::airlines-mapping-json[]
+df = spark.read.option("multiline", "true").json("data/airlines.json")
+dummyDf = spark.createDataFrame([("test", "test")], ["code", "name"])
+
+for code in df.schema.fieldNames():
+    tempDf = (df.withColumn("code", F.lit(code))
+              .withColumn("name", df[code]))
+    tdf = tempDf.select("code", "name")
+    dummyDf = dummyDf.union(tdf)
+# end::airlines-mapping-json[]
+
 # // tag::nodes[]
 g.vertices.count()
 # // end::nodes[]
@@ -239,9 +260,10 @@ airlines = (g.edges
  .agg(F.count("airline").alias("flights"))
  .sort("flights", ascending=False))
 
-airlines.show()
+(airlines_reference.join(airlines, airlines.airline == airlines_reference.code)
+ .select("code", "name", "flights")
+ .show(truncate=False))
 # end::airlines[]
-
 
 # tag::scc-airlines-fn[]
 def find_scc_components(g, airline):
