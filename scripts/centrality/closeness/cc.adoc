@@ -1,63 +1,65 @@
 // tag::pyspark-results[]
-+-------+-----------------------------------------------------------------+------------------+
-|id     |ids                                                              |closeness         |
-+-------+-----------------------------------------------------------------+------------------+
-|Doug   |[[Charles, 1], [Mark, 1], [Alice, 1], [Bridget, 1], [Michael, 1]]|1.0               |
-|Alice  |[[Charles, 1], [Mark, 1], [Bridget, 1], [Doug, 1], [Michael, 1]] |1.0               |
-|David  |[[James, 1], [Amy, 1]]                                           |1.0               |
-|Bridget|[[Charles, 2], [Mark, 2], [Alice, 1], [Doug, 1], [Michael, 1]]   |0.7142857142857143|
-|Michael|[[Charles, 2], [Mark, 2], [Alice, 1], [Doug, 1], [Bridget, 1]]   |0.7142857142857143|
-|James  |[[Amy, 2], [David, 1]]                                           |0.6666666666666666|
-|Amy    |[[James, 2], [David, 1]]                                         |0.6666666666666666|
-|Mark   |[[Bridget, 2], [Charles, 2], [Michael, 2], [Doug, 1], [Alice, 1]]|0.625             |
-|Charles|[[Bridget, 2], [Mark, 2], [Michael, 2], [Doug, 1], [Alice, 1]]   |0.625             |
-+-------+-----------------------------------------------------------------+------------------+
+[options=header, subs=+macros]
+|===
+|id     |ids                                                              |closeness
+|Doug   |+++[++++++[+++Charles, 1], +++[+++Mark, 1], +++[+++Alice, 1], +++[+++Bridget, 1], +++[+++Michael, 1]]|1.0
+|Alice  |+++[++++++[+++Charles, 1], +++[+++Mark, 1], +++[+++Bridget, 1], +++[+++Doug, 1], +++[+++Michael, 1]] |1.0
+|David  |+++[++++++[+++James, 1], +++[+++Amy, 1]]                                           |1.0
+|Bridget|+++[++++++[+++Charles, 2], +++[+++Mark, 2], +++[+++Alice, 1], +++[+++Doug, 1], +++[+++Michael, 1]]   |0.7142857142857143
+|Michael|+++[++++++[+++Charles, 2], +++[+++Mark, 2], +++[+++Alice, 1], +++[+++Doug, 1], +++[+++Bridget, 1]]   |0.7142857142857143
+|James  |+++[++++++[+++Amy, 2], +++[+++David, 1]]                                           |0.6666666666666666
+|Amy    |+++[++++++[+++James, 2], +++[+++David, 1]]                                         |0.6666666666666666
+|Mark   |+++[++++++[+++Bridget, 2], +++[+++Charles, 2], +++[+++Michael, 2], +++[+++Doug, 1], +++[+++Alice, 1]]|0.625
+|Charles|+++[++++++[+++Bridget, 2], +++[+++Mark, 2], +++[+++Michael, 2], +++[+++Doug, 1], +++[+++Alice, 1]]   |0.625|===
+|===
 // end::pyspark-results[]
 
 // tag::neo4j-results[]
-+--------------------------------+
-| user      | centrality         |
-+--------------------------------+
-| "Alice"   | 1.0                |
-| "Doug"    | 1.0                |
-| "David"   | 1.0                |
-| "Bridget" | 0.7142857142857143 |
-| "Michael" | 0.7142857142857143 |
-| "Amy"     | 0.6666666666666666 |
-| "James"   | 0.6666666666666666 |
-| "Charles" | 0.625              |
-| "Mark"    | 0.625              |
-+--------------------------------+
+[options=header]
+|===
+| user      | centrality
+| Alice   | 1.0
+| Doug    | 1.0
+| David   | 1.0
+| Bridget | 0.7142857142857143
+| Michael | 0.7142857142857143
+| Amy     | 0.6666666666666666
+| James   | 0.6666666666666666
+| Charles | 0.625
+| Mark    | 0.625
+|===
+
 // end::neo4j-results[]
 
 // tag::neo4j-results-wasserman-faust[]
-+---------------------------------+
-| user      | centrality          |
-+---------------------------------+
-| "Alice"   | 0.5                 |
-| "Doug"    | 0.5                 |
-| "Bridget" | 0.35714285714285715 |
-| "Michael" | 0.35714285714285715 |
-| "Charles" | 0.3125              |
-| "Mark"    | 0.3125              |
-| "David"   | 0.125               |
-| "Amy"     | 0.08333333333333333 |
-| "James"   | 0.08333333333333333 |
-+---------------------------------+
+[options=header]
+|===
+| user      | centrality
+| Alice   | 0.5
+| Doug    | 0.5
+| Bridget | 0.35714285714285715
+| Michael | 0.35714285714285715
+| Charles | 0.3125
+| Mark    | 0.3125
+| David   | 0.125
+| Amy     | 0.08333333333333333
+| James   | 0.08333333333333333
+|===
+
 // end::neo4j-results-wasserman-faust[]
 
 // tag::neo4j-results-harmonic[]
-+------------------------+
-| user      | centrality |
-+------------------------+
-| "Alice"   | 0.625      |
-| "Doug"    | 0.625      |
-| "Bridget" | 0.5        |
-| "Michael" | 0.5        |
-| "Charles" | 0.4375     |
-| "Mark"    | 0.4375     |
-| "David"   | 0.25       |
-| "Amy"     | 0.1875     |
-| "James"   | 0.1875     |
-+------------------------+
+[options=header]
+|===
+| user      | centrality
+| Alice   | 0.625
+| Doug    | 0.625
+| Bridget | 0.5
+| Michael | 0.5
+| Charles | 0.4375
+| Mark    | 0.4375
+| David   | 0.25
+| Amy     | 0.1875
+| James   | 0.1875
+|===
 // end::neo4j-results-harmonic[]

@@ -1,15 +1,15 @@
 // tag::pyspark-results[]
-+-------+------+--------+---------+
-|     id|degree|inDegree|outDegree|
-+-------+------+--------+---------+
-|   Doug|     6|       5|        1|
-|  Alice|     7|       3|        4|
-|Michael|     5|       2|        3|
-|Bridget|     5|       2|        3|
-|Charles|     2|       1|        1|
-|   Mark|     3|       1|        2|
-|  David|     2|       1|        1|
-|    Amy|     1|       1|        0|
-|  James|     1|       0|        1|
-+-------+------+--------+---------+
+[options="header"]
+|===
+|     id|degree|inDegree|outDegree
+|   Doug|     6|       5|        1
+|  Alice|     7|       3|        4
+|Michael|     5|       2|        3
+|Bridget|     5|       2|        3
+|Charles|     2|       1|        1
+|   Mark|     3|       1|        2
+|  David|     2|       1|        1
+|    Amy|     1|       1|        0
+|  James|     1|       0|        1
+|===
 // end::pyspark-results[]

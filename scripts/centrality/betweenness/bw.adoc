@@ -1,48 +1,48 @@
 // tag::neo4j-results[]
-+------------------------+
-| user      | centrality |
-+------------------------+
-| "Alice"   | 10.0       |
-| "Doug"    | 7.0        |
-| "Mark"    | 7.0        |
-| "David"   | 1.0        |
-| "Bridget" | 0.0        |
-| "Charles" | 0.0        |
-| "Michael" | 0.0        |
-| "Amy"     | 0.0        |
-| "James"   | 0.0        |
-+------------------------+
+[options=header]
+|===
+| user      | centrality
+| Alice   | 10.0
+| Doug    | 7.0
+| Mark    | 7.0
+| David   | 1.0
+| Bridget | 0.0
+| Charles | 0.0
+| Michael | 0.0
+| Amy     | 0.0
+| James   | 0.0
+|===
 // end::neo4j-results[]
 
 // tag::neo4j-local-bridge-results[]
-+--------------------------------+
-| user      | centrality         |
-+--------------------------------+
-| "Jason"   | 44.33333333333333  |
-| "Doug"    | 18.333333333333332 |
-| "Alice"   | 16.666666666666664 |
-| "Amy"     | 8.0                |
-| "James"   | 8.0                |
-| "Michael" | 4.0                |
-| "Mark"    | 2.1666666666666665 |
-| "David"   | 0.5                |
-| "Bridget" | 0.0                |
-| "Charles" | 0.0                |
-+--------------------------------+
+[options=header]
+|===
+| user      | centrality
+| Jason   | 44.33333333333333
+| Doug    | 18.333333333333332
+| Alice   | 16.666666666666664
+| Amy     | 8.0
+| James   | 8.0
+| Michael | 4.0
+| Mark    | 2.1666666666666665
+| David   | 0.5
+| Bridget | 0.0
+| Charles | 0.0
+|===
 // end::neo4j-local-bridge-results[]
 
 // tag::neo4j-results-approx[]
-+------------------------+
-| user      | centrality |
-+------------------------+
-| "Alice"   | 9.0        |
-| "Mark"    | 9.0        |
-| "Doug"    | 4.5        |
-| "David"   | 2.25       |
-| "Bridget" | 0.0        |
-| "Charles" | 0.0        |
-| "Michael" | 0.0        |
-| "Amy"     | 0.0        |
-| "James"   | 0.0        |
-+------------------------+
+[options=header]
+|===
+| user      | centrality
+| Alice   | 9.0
+| Mark    | 9.0
+| Doug    | 4.5
+| David   | 2.25
+| Bridget | 0.0
+| Charles | 0.0
+| Michael | 0.0
+| Amy     | 0.0
+| James   | 0.0
+|===
 // end::neo4j-results-approx[]
