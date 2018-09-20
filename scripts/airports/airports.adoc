@@ -244,7 +244,7 @@
 // tag::airlines[]
 [options="header", title="Number of flights by airline"]
 |=======
-|code|name||flights
+|code|name|flights
 |WN  |Southwest Airlines         |116849
 |DL  |Delta Air Lines            |81735
 |AA  |American Airlines          |77957
