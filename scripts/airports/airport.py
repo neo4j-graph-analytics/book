@@ -267,6 +267,18 @@ full_name_airlines = (airlines_reference
 full_name_airlines.show(truncate=False)
 # end::airlines[]
 
+# tag::airlines-plot[]
+ax = (full_name_airlines.toPandas()
+      .plot(kind='bar', x='name', y='flights', legend=None))
+
+ax.xaxis.set_label_text("")
+plt.tight_layout()
+plt.show()
+# end::airlines-plot[]
+
+plt.savefig("/tmp/airlines-count.svg")
+plt.close()
+
 # tag::scc-airlines-fn[]
 def find_scc_components(g, airline):
     # Create a sub graph containing only flights on the provided airline
@@ -283,9 +295,6 @@ def find_scc_components(g, airline):
         .sort("size", ascending=False)
         .take(1)[0]["size"])
 # end::scc-airlines-fn[]
-
-scc_udf = F.udf(lambda airline: find_scc_components(airline), IntegerType())
-(airlines.withColumn("sccCount", scc_udf(g, airlines.airline)))
 
 # tag::scc-airlines[]
 # Calculate the largest Strongly Connected Component for each airline
