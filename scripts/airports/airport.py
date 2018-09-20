@@ -263,8 +263,6 @@ airlines = (g.edges
 full_name_airlines = (airlines_reference
                       .join(airlines, airlines.airline == airlines_reference.code)
                       .select("code", "name", "flights"))
-
-full_name_airlines.show(truncate=False)
 # end::airlines[]
 
 # tag::airlines-plot[]
