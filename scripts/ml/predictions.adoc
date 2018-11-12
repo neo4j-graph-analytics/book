@@ -1,0 +1,36 @@
+// tag::feature-matrix[]
+[options="header", title="Restaurant Feature Matrix"]
+|=======
+|userId                |userFriends|aveMyStars        |aveOtherStars     |stars
+|n86B7IkbU20AkxlFX_5aew|642        |3.672251308900523 |4.0588235294117645|false
+|1dWLN4Mr4hKhu8MQUCKqXQ|1146       |3.99397590361446  |4.166666666666666 |true
+|dOFyIGbyfB69VB4pnoKqQA|342        |3.3708609271523176|4.5               |true
+|qb-8RrNbVj-3WkXYuxpi3w|178        |4.106382978723405 |4.0               |false
+|wQxtHpZw1D2t9C-on7as4A|99         |3.2857142857142856|5.0               |true
+|iBcGfYnZIIZie_LxUJxSIA|5          |4.058823529411765 |2.0               |true
+|fzerr1Pq9omzx6ysQwnBVw|71         |3.3333333333333335|5.0               |false
+|r3Jbpf3rd9IBElbNeE7J5Q|3          |5.0               |4.0               |true
+|sL9dYZyNLpzLD3cfTWwyOQ|125        |3.899999999999999 |4.5               |true
+|Oi0G3jFm2jtG2W02dZTdEQ|41         |4.208333333333333 |4.0               |true
+|-2UOdDlzg7XLuUuyOrldhA|46         |3.744186046511628 |5.0               |true
+|UTU-dD6WUyD_j8myX_9yFA|289        |4.2857142857142865|4.0               |true
+|i2GG027_zrb6GytWSyACSg|71         |3.4883720930232545|4.333333333333333 |true
+|qewG3X2O4X6JKskxyyqFwQ|3105       |3.8543956043956054|3.6363636363636367|true
+|CNaaizAUc2c4WIb1M3BBPw|459        |3.8741496598639475|4.333333333333334 |true
+|zwLq4aVDSH7HyMbVjKfkRg|446        |4.347222222222222 |4.272727272727273 |true
+|eOIMO2wT_WbNqmavhnCRxw|253        |3.6261061946902617|4.25              |true
+|IKi5cCvrzNqF1RqqXQ5E3Q|137        |3.8125            |5.0               |true
+|mC-Nq-FfHJb-8OTWOh0pxw|251        |3.717948717948718 |5.0               |true
+|YANbbv5ua4nxId8vv2gOKw|275        |4.290322580645161 |3.75              |true
+|=======
+// end::feature-matrix[]
+
+// tag::evaluate-basic[]
+[options="header", title="Evaluation of Basic Model"]
+|=======
+|Measure             | Score
+|Accuracy     |  0.657135
+|Precision   | 0.478165
+|Recall       | 0.446252
+|=======
+// end::evaluate-basic[]
