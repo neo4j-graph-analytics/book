@@ -1,0 +1,34 @@
+// tag::label[]
+
+[options="header", title="Label Summary"]
+|=======
+
+|summary|label
+|  count|            452929
+|   mean|0.5476862819558915
+| stddev|0.4977213733171475
+|    min|                 0
+|    max|                 1
+
+|=======
+
+// end::label[]
+
+// tag::label-agg[]
+
+[options="header", title="Label Summary"]
+|=======
+
+|label|count
+|    0|204866
+|    1|248063
+
+|=======
+
+// end::label-agg[]
+
+// tag::common-authors[]
+
+0.20797996196887802   
+
+// end::common-authors[]

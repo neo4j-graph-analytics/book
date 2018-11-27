@@ -1,0 +1,49 @@
+// tag::basic[]
+
+[options="header", title="Evaluating basic models"]
+|=======
+
+|Measure|Score
+
+|   Accuracy | 0.500000
+|  Precision | 0.549125
+|     Recall | 1.000000
+
+
+|=======
+
+// end::basic[]
+
+// tag::citations[]
+
+[options="header", title="Evaluating model with citations"]
+|=======
+
+|Measure|Score
+
+|   Accuracy | 0.887172
+|  Precision | 0.811424
+|     Recall | 0.837888
+
+
+
+|=======
+
+// end::citations[]
+
+// tag::feature-importance-citations[]
+
+[options="header", title="Feature Importannce - model with citations"]
+|=======
+
+|Feature         |  Importance
+|  commonAuthors |  0.137612
+|        p1Cited |  0.019510
+|        p2Cited |  0.842878
+
+
+
+
+|=======
+
+// end::feature-importance-citations[]
