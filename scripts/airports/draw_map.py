@@ -4,6 +4,7 @@ import csv
 
 us_states = us_states.data.copy()
 
+
 del us_states["HI"]
 del us_states["AK"]
 
@@ -13,7 +14,7 @@ state_ys = [us_states[code]["lats"] for code in us_states]
 
 # init figure
 p = figure(title="Plotting Points Example: The 5 Largest Cities in Texas",
-           toolbar_location="left", plot_width=1100, plot_height=700)
+           toolbar_location="left", width=1100, height=700)
 
 # Draw state lines
 p.patches(state_xs, state_ys, fill_alpha=0.0, line_color="#884444", line_width=1.5)
